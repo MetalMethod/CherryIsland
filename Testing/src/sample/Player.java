@@ -66,10 +66,7 @@ public class Player {
                     break;
             }
             System.out.println(rectangle.toString());
-            //System.out.println(rectangle.getLayoutX());
-            if(GridPane.getColumnIndex(rectangle) == 0 && GridPane.getRowIndex(rectangle) == 0) {
-                System.out.println("ZERO ZERO");
-            }
+
         }
     };
 }
