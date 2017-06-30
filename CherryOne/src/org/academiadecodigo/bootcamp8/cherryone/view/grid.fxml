@@ -7,7 +7,7 @@
 <?import javafx.scene.shape.Rectangle?>
 
 
-<ScrollPane fx:id="scroll" hbarPolicy="NEVER" prefHeight="600.0" prefWidth="800.0" vbarPolicy="NEVER" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<ScrollPane fx:id="scroll" hbarPolicy="NEVER" prefHeight="600.0" prefWidth="800.0" vbarPolicy="NEVER" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.academiadecodigo.bootcamp8.cherryone.controller.Controller">
    <content>
       <GridPane fx:id="grid" gridLinesVisible="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1500.0">
         <columnConstraints>
