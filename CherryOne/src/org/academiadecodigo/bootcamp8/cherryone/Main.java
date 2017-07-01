@@ -12,17 +12,18 @@ public class Main extends Application {
 
     private final int STARTING_COL = 10;
     private final int STARTING_ROW = 10;
+    private final String INITIAL_VIEW = "grid";
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("view/grid.fxml"));
-        Parent root = fxmlLoader.load();
+        Navigation navigation = Navigation.getInstance();
+        navigation.setStage(primaryStage);
         primaryStage.setTitle("Cherry Island");
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
 
         Game game = new Game(STARTING_COL, STARTING_ROW);
-        ((PlayerController)fxmlLoader.getController()).setGame(game);
+        ((PlayerController)navigation.getController(INITIAL_VIEW)).setGame(game);
+
+        navigation.loadScreen(INITIAL_VIEW);
     }
 
 
