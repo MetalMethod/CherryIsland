@@ -6,6 +6,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Rectangle;
+import org.academiadecodigo.bootcamp8.cherryone.model.Player;
 import org.academiadecodigo.bootcamp8.cherryone.service.Game;
 
 import java.net.URL;
@@ -20,8 +21,7 @@ public class PlayerController implements Initializable {
     @FXML
     private GridPane gridPane;
 
-    @FXML
-    private Rectangle player;
+    private Player player;
 
     private Game game;
 
@@ -33,38 +33,62 @@ public class PlayerController implements Initializable {
 
             case UP:
                 System.out.println("UP");
-                System.out.println(scrollPane.getVvalue());
 
+                if (player.getPosition().getRow() == 8){
+                    return;
+                }
+
+                player.setPosition(player.getPosition().getCol(), player.getPosition().getRow() - 1);
                 scrollPane.setVvalue(scrollPane.getVvalue() - 30.1);
 
-                System.out.println(scrollPane.getVvalue());
+                System.out.println("COL: " + player.getPosition().getCol());
+                System.out.println("ROW: " + player.getPosition().getRow());
+
                 break;
 
             case DOWN:
                 System.out.println("DOWN");
-                System.out.println(scrollPane.getVvalue());
 
+                if (player.getPosition().getRow() == 99){
+                    return;
+                }
+
+                player.setPosition(player.getPosition().getCol() - 0, player.getPosition().getRow() +1);
                 scrollPane.setVvalue(scrollPane.getVvalue() + 30.1);
 
-                System.out.println(scrollPane.getVvalue());
+                System.out.println("COL: " + player.getPosition().getCol());
+                System.out.println("ROW: " + player.getPosition().getRow());
+
                 break;
 
             case LEFT:
                 System.out.println("LEFT");
-                System.out.println(scrollPane.getHvalue());
 
+                if (player.getPosition().getCol() == 0){
+                    return;
+                }
+
+                player.setPosition(player.getPosition().getCol() - 1, player.getPosition().getRow()-0);
                 scrollPane.setHvalue(scrollPane.getHvalue() - 30.1);
 
-                System.out.println(scrollPane.getHvalue());
+                System.out.println("COL: " + player.getPosition().getCol());
+                System.out.println("ROW: " + player.getPosition().getRow());
+
                 break;
 
             case RIGHT:
                 System.out.println("RIGHT");
-                System.out.println(scrollPane.getHvalue());
 
+                if (player.getPosition().getCol() == 99){
+                    return;
+                }
+
+                player.setPosition(player.getPosition().getCol() + 1 , player.getPosition().getRow()-0);
                 scrollPane.setHvalue(scrollPane.getHvalue() + 30.1);
 
-                System.out.println(scrollPane.getHvalue());
+                System.out.println("COL: " + player.getPosition().getCol());
+                System.out.println("ROW: " + player.getPosition().getRow());
+
                 break;
 
 
@@ -81,6 +105,10 @@ public class PlayerController implements Initializable {
         scrollPane.requestFocus();
     }
 
+    public void setPlayer(Player player){
+        this.player=player;
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -89,5 +117,6 @@ public class PlayerController implements Initializable {
         scrollPane.setPannable(false);
 
     }
+
 }
 

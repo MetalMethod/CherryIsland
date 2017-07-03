@@ -11,12 +11,22 @@ public class Game {
 
     private Player player;
 
-    public Game(int startingCol, int startingRow) {
-        player = new Player(new GridPosition(startingCol, startingRow));
+    public Game() {
+
 
     }
 
     public void movePlayer(int col, int row) {
         player.setPosition(col, row);
+    }
+
+    public boolean comparePosition(GridPosition g1, GridPosition g2){
+
+        if (g1.getCol() == g2.getCol() || g1.getRow() == g2.getRow()){
+            return true;
+        }
+
+        return false;
+
     }
 }

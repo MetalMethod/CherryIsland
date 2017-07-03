@@ -7,8 +7,9 @@ public class Player {
 
     private GridPosition position;
 
-    public Player(GridPosition position) {
-        this.position = position;
+    public Player(int col, int row) {
+        position =  new GridPosition(col , row);
+        setPosition(col,row);
     } // Instanciation -> Player player = new Player(new GridPosition(col, row));
 
     public GridPosition getPosition() {
