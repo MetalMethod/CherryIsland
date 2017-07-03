@@ -17,8 +17,8 @@ import java.util.Map;
 
 public final class Navigation {
 
-    private final int MIN_WIDTH = 600;
-    private final int MIN_HEIGHT = 400;
+    private final int MIN_WIDTH = 425;
+    private final int MIN_HEIGHT = 425;
     private final String VIEW_PATH = "view/";
     private static Navigation instance = null;
     private Stage stage;
@@ -49,6 +49,9 @@ public final class Navigation {
             scenes.push(scene);
 
             setScene(scene);
+
+
+
 
         } catch (IOException e) {
             System.out.println("Failure to load view " + view + " : " + e.getMessage());

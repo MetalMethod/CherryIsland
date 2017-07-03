@@ -1,78 +1,93 @@
 package org.academiadecodigo.bootcamp8.cherryone.controller;
 
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Rectangle;
 import org.academiadecodigo.bootcamp8.cherryone.service.Game;
 
-import java.lang.reflect.Method;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class PlayerController {
+public class PlayerController implements Initializable {
+
+
+    @FXML
+    private ScrollPane scrollPane;
+
+    @FXML
+    private GridPane gridPane;
+
+    @FXML
+    private Rectangle player;
 
     private Game game;
 
     @FXML
-    ScrollPane scrollPane;
+    void scrollPaneKeyPressed(KeyEvent event) {
+        System.out.println("keypressed");
 
-    @FXML
-    GridPane gridPane;
+        switch (event.getCode()){
 
-    @FXML
-    Rectangle rectangle;
+            case UP:
+                System.out.println("UP");
+                System.out.println(scrollPane.getVvalue());
 
-    // more FXML stuff
+                scrollPane.setVvalue(scrollPane.getVvalue() - 30.1);
 
-    EventHandler<KeyEvent> keyboardHandler = new EventHandler<KeyEvent>() {
-        @Override
-        public void handle(KeyEvent event) {
-            final int maxCols = 10;
-            final int maxRows = 10;
+                System.out.println(scrollPane.getVvalue());
+                break;
 
-            int currentColumn = GridPane.getColumnIndex(rectangle);
-            int currentRow = GridPane.getRowIndex(rectangle);
+            case DOWN:
+                System.out.println("DOWN");
+                System.out.println(scrollPane.getVvalue());
 
-            switch (event.getCode()) {
+                scrollPane.setVvalue(scrollPane.getVvalue() + 30.1);
 
-                case UP:
-                    System.out.println("up");
-                    if (currentRow > 0) {
-                        currentRow--;
-                        GridPane.setRowIndex(rectangle, currentRow);
-                        /*pane.getChildren().remove(rectangle);
-                        pane.add(rectangle, currentColumn, currentRow);*/
-                    }
-                    break;
-                case DOWN:
-                    System.out.println("down");
-                    if (currentRow < maxRows - 1) {
-                        currentRow++;
-                        GridPane.setRowIndex(rectangle, currentRow);
-                    }
-                    break;
-                case LEFT:
-                    System.out.println("left");
-                    if (currentColumn > 0) {
-                        currentColumn--;
-                        GridPane.setColumnIndex(rectangle, currentColumn);
-                    }
-                    break;
-                case RIGHT:
-                    System.out.println("right");
-                    if (currentColumn < maxCols - 1) {
-                        currentColumn++;
-                        GridPane.setColumnIndex(rectangle, currentColumn);
-                    }
-                    break;
-            }
-            System.out.println(rectangle.toString());
+                System.out.println(scrollPane.getVvalue());
+                break;
+
+            case LEFT:
+                System.out.println("LEFT");
+                System.out.println(scrollPane.getHvalue());
+
+                scrollPane.setHvalue(scrollPane.getHvalue() - 30.1);
+
+                System.out.println(scrollPane.getHvalue());
+                break;
+
+            case RIGHT:
+                System.out.println("RIGHT");
+                System.out.println(scrollPane.getHvalue());
+
+                scrollPane.setHvalue(scrollPane.getHvalue() + 30.1);
+
+                System.out.println(scrollPane.getHvalue());
+                break;
+
+
 
         }
-    };
+
+    }
 
     public void setGame(Game game) {
         this.game = game;
     }
+
+    public void scrollPaneRequest(){
+        scrollPane.requestFocus();
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+        scrollPane.setVmax(2501);
+        scrollPane.setHmax(2501);
+        scrollPane.setPannable(false);
+
+    }
 }
+

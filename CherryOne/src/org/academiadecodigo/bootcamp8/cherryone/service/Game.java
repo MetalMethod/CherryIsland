@@ -13,6 +13,7 @@ public class Game {
 
     public Game(int startingCol, int startingRow) {
         player = new Player(new GridPosition(startingCol, startingRow));
+
     }
 
     public void movePlayer(int col, int row) {
