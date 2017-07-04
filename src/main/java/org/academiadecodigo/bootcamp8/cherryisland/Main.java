@@ -1,10 +1,10 @@
-package org.academiadecodigo.bootcamp8.cherryone;
+package org.academiadecodigo.bootcamp8.cherryisland;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import org.academiadecodigo.bootcamp8.cherryone.controller.PlayerController;
-import org.academiadecodigo.bootcamp8.cherryone.model.Player;
-import org.academiadecodigo.bootcamp8.cherryone.service.Game;
+import org.academiadecodigo.bootcamp8.cherryisland.controller.PlayerController;
+import org.academiadecodigo.bootcamp8.cherryisland.model.Player;
+import org.academiadecodigo.bootcamp8.cherryisland.service.Game;
 
 public class Main extends Application {
 
@@ -22,7 +22,7 @@ public class Main extends Application {
         Player player = new Player(STARTING_COL , STARTING_ROW);
 
         navigation.loadScreen(INITIAL_VIEW);
-        ((PlayerController)navigation.getController(INITIAL_VIEW)).setGame(game);
+        ((PlayerController) navigation.getController(INITIAL_VIEW)).setGame(game);
         ((PlayerController) navigation.getController(INITIAL_VIEW)).scrollPaneRequest();
         ((PlayerController) navigation.getController(INITIAL_VIEW)).setPlayer1(player);
     }

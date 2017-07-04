@@ -1,18 +1,17 @@
-package org.academiadecodigo.bootcamp8.cherryone.controller;
+package org.academiadecodigo.bootcamp8.cherryisland.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
-import org.academiadecodigo.bootcamp8.cherryone.model.Player;
-import org.academiadecodigo.bootcamp8.cherryone.service.Game;
+import org.academiadecodigo.bootcamp8.cherryisland.model.Player;
+import org.academiadecodigo.bootcamp8.cherryisland.service.Game;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class PlayerController implements Initializable {
-
 
     @FXML
     private ScrollPane scrollPane;
@@ -89,11 +88,7 @@ public class PlayerController implements Initializable {
                 System.out.println("ROW: " + player1.getPosition().getRow());
 
                 break;
-
-
-
         }
-
     }
 
     public void setGame(Game game) {
@@ -114,7 +109,6 @@ public class PlayerController implements Initializable {
         scrollPane.setVmax(2501);
         scrollPane.setHmax(2501);
         scrollPane.setPannable(false);
-
 
     }
 

@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Rectangle?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="425.0" prefWidth="425.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.academiadecodigo.bootcamp8.cherryisland.controller.PlayerController">
+   <children>
+      <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" onKeyPressed="#scrollPaneKeyPressed" prefHeight="425.0" prefWidth="425.0" vbarPolicy="NEVER">
+         <content>
+            <Pane>
+               <children>
+                  <ImageView fitHeight="2500.0" fitWidth="2500.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/cherryisland_map.png" />
+                     </image>
+                  </ImageView>
+                  <GridPane fx:id="gridPane" layoutX="0.5" layoutY="0.5">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                    </rowConstraints>
+                  </GridPane>
+               </children>
+            </Pane>
+         </content>
+      </ScrollPane>
+      <Rectangle fx:id="player" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="25.0" stroke="BLACK" strokeType="INSIDE" width="25.0" x="200.0" y="200.0" />
+   </children>
+</Pane>

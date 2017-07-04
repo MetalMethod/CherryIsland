@@ -1,4 +1,4 @@
-package org.academiadecodigo.bootcamp8.cherryone.model;
+package org.academiadecodigo.bootcamp8.cherryisland.model;
 
 /**
  * Created by dgcst on 30/06/17.

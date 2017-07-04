@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.shape.Rectangle?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="425.0" prefWidth="425.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.academiadecodigo.bootcamp8.cherryone.controller.PlayerController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="425.0" prefWidth="425.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.academiadecodigo.bootcamp8.cherryisland.controller.PlayerController">
    <children>
       <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" onKeyPressed="#scrollPaneKeyPressed" prefHeight="425.0" prefWidth="425.0" vbarPolicy="NEVER">
          <content>
@@ -17,7 +17,7 @@
                <children>
                   <ImageView fitHeight="2500.0" fitWidth="2500.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@/cherryisland_map_compressed.png" />
+                        <Image url="@/cherryisland_map.png" />
                      </image>
                   </ImageView>
                   <GridPane fx:id="gridPane" layoutX="0.5" layoutY="0.5">

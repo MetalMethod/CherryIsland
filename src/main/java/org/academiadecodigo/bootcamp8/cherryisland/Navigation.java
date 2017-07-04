@@ -1,11 +1,11 @@
-package org.academiadecodigo.bootcamp8.cherryone;
+package org.academiadecodigo.bootcamp8.cherryisland;
 
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.academiadecodigo.bootcamp8.cherryone.controller.PlayerController;
+import org.academiadecodigo.bootcamp8.cherryisland.controller.PlayerController;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -20,7 +20,7 @@ public final class Navigation {
 
     private final int MIN_WIDTH = 425;
     private final int MIN_HEIGHT = 425;
-    private final String VIEW_PATH = "view/";
+    private final String VIEW_PATH = "/view/";
     private static Navigation instance = null;
     private Stage stage;
     private LinkedList<Scene> scenes = new LinkedList<Scene>();
