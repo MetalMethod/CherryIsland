@@ -27,7 +27,6 @@ public class Main extends Application {
         ((PlayerController) navigation.getController(INITIAL_VIEW)).setPlayer1(player);
     }
 
-
     public static void main(String[] args) {
         launch(args);
     }
