@@ -1,6 +1,7 @@
 package org.academiadecodigo.bootcamp8.cherryisland;
 
 import javafx.application.Application;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.academiadecodigo.bootcamp8.cherryisland.controller.PlayerController;
 import org.academiadecodigo.bootcamp8.cherryisland.model.Player;
@@ -8,8 +9,8 @@ import org.academiadecodigo.bootcamp8.cherryisland.service.Game;
 
 public class Main extends Application {
 
-    private final int STARTING_COL = 8;
-    private final int STARTING_ROW = 8;
+    private final int STARTING_COL = 0;
+    private final int STARTING_ROW = 0;
     private final String INITIAL_VIEW = "grid";
 
     @Override
@@ -25,6 +26,9 @@ public class Main extends Application {
         ((PlayerController) navigation.getController(INITIAL_VIEW)).setGame(game);
         ((PlayerController) navigation.getController(INITIAL_VIEW)).scrollPaneRequest();
         ((PlayerController) navigation.getController(INITIAL_VIEW)).setPlayer1(player);
+
+
+
     }
 
     public static void main(String[] args) {

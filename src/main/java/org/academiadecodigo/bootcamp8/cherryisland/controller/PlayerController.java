@@ -32,7 +32,7 @@ public class PlayerController implements Initializable {
             case UP:
                 System.out.println("UP");
 
-                if (player1.getPosition().getRow() == 8){
+                if (player1.getPosition().getRow() == 0){
                     return;
                 }
 
@@ -47,7 +47,7 @@ public class PlayerController implements Initializable {
             case DOWN:
                 System.out.println("DOWN");
 
-                if (player1.getPosition().getRow() == 92){
+                if (player1.getPosition().getRow() == 78){
                     return;
                 }
 
@@ -77,7 +77,7 @@ public class PlayerController implements Initializable {
             case RIGHT:
                 System.out.println("RIGHT");
 
-                if (player1.getPosition().getCol() == 92){
+                if (player1.getPosition().getCol() == 90){
                     return;
                 }
 
@@ -106,11 +106,11 @@ public class PlayerController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+
         scrollPane.setVmax(2501);
         scrollPane.setHmax(2501);
         scrollPane.setPannable(false);
 
     }
-
 }
 
