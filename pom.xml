@@ -18,7 +18,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>org.academiadecodigo.bootcamp.loginmvc.Main</mainClass>
+                            <mainClass>org.academiadecodigo.bootcamp8.cherryisland.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -31,7 +31,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>org.academiadecodigo.bootcamp.loginmvc.Main</mainClass>
+                            <mainClass>org.academiadecodigo.bootcamp8.cherryisland.Main</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>jar-with-dependencies</descriptorRefs>
