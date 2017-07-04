@@ -20,7 +20,7 @@
                         <Image url="@/cherryisland_map_compressed.png" />
                      </image>
                   </ImageView>
-                  <GridPane fx:id="gridPane" gridLinesVisible="true" layoutX="0.5" layoutY="0.5">
+                  <GridPane fx:id="gridPane" layoutX="0.5" layoutY="0.5">
                     <columnConstraints>
                       <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
                         <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
