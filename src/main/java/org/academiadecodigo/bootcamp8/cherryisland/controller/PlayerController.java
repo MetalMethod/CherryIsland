@@ -37,7 +37,7 @@ public class PlayerController implements Initializable {
                 }
 
                 player1.setPosition(player1.getPosition().getCol(), player1.getPosition().getRow() - 1);
-                scrollPane.setVvalue(scrollPane.getVvalue() - 30.1);
+                scrollPane.setVvalue(scrollPane.getVvalue() - 29.15);
 
                 System.out.println("COL: " + player1.getPosition().getCol());
                 System.out.println("ROW: " + player1.getPosition().getRow());
@@ -47,12 +47,12 @@ public class PlayerController implements Initializable {
             case DOWN:
                 System.out.println("DOWN");
 
-                if (player1.getPosition().getRow() == 78){
+                if (player1.getPosition().getRow() == 80){
                     return;
                 }
 
-                player1.setPosition(player1.getPosition().getCol() - 0, player1.getPosition().getRow() +1);
-                scrollPane.setVvalue(scrollPane.getVvalue() + 30.1);
+                player1.setPosition(player1.getPosition().getCol(), player1.getPosition().getRow() +1);
+                scrollPane.setVvalue(scrollPane.getVvalue() + 29.15);
 
                 System.out.println("COL: " + player1.getPosition().getCol());
                 System.out.println("ROW: " + player1.getPosition().getRow());
@@ -66,8 +66,8 @@ public class PlayerController implements Initializable {
                     return;
                 }
 
-                player1.setPosition(player1.getPosition().getCol() - 1, player1.getPosition().getRow()-0);
-                scrollPane.setHvalue(scrollPane.getHvalue() - 30.1);
+                player1.setPosition(player1.getPosition().getCol() - 1, player1.getPosition().getRow());
+                scrollPane.setHvalue(scrollPane.getHvalue() - 33.12);
 
                 System.out.println("COL: " + player1.getPosition().getCol());
                 System.out.println("ROW: " + player1.getPosition().getRow());
@@ -81,8 +81,8 @@ public class PlayerController implements Initializable {
                     return;
                 }
 
-                player1.setPosition(player1.getPosition().getCol() + 1 , player1.getPosition().getRow()-0);
-                scrollPane.setHvalue(scrollPane.getHvalue() + 30.1);
+                player1.setPosition(player1.getPosition().getCol() + 1 , player1.getPosition().getRow());
+                scrollPane.setHvalue(scrollPane.getHvalue() + 33.12);
 
                 System.out.println("COL: " + player1.getPosition().getCol());
                 System.out.println("ROW: " + player1.getPosition().getRow());
