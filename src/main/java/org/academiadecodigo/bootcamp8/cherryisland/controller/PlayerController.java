@@ -4,7 +4,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.shape.Rectangle;
 import org.academiadecodigo.bootcamp8.cherryisland.model.Player;
 import org.academiadecodigo.bootcamp8.cherryisland.service.Game;
 
@@ -91,6 +93,7 @@ public class PlayerController implements Initializable {
         }
     }
 
+
     public void setGame(Game game) {
         this.game = game;
     }
@@ -105,7 +108,6 @@ public class PlayerController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
 
         scrollPane.setVmax(2501);
         scrollPane.setHmax(2501);
