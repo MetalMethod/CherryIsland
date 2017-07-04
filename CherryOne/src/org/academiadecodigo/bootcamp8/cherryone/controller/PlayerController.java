@@ -5,7 +5,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.shape.Rectangle;
 import org.academiadecodigo.bootcamp8.cherryone.model.Player;
 import org.academiadecodigo.bootcamp8.cherryone.service.Game;
 
@@ -21,73 +20,73 @@ public class PlayerController implements Initializable {
     @FXML
     private GridPane gridPane;
 
-    private Player player;
+    private Player player1;
 
     private Game game;
 
     @FXML
     void scrollPaneKeyPressed(KeyEvent event) {
-        System.out.println("keypressed");
+        System.out.println("-------------");
 
         switch (event.getCode()){
 
             case UP:
                 System.out.println("UP");
 
-                if (player.getPosition().getRow() == 8){
+                if (player1.getPosition().getRow() == 8){
                     return;
                 }
 
-                player.setPosition(player.getPosition().getCol(), player.getPosition().getRow() - 1);
+                player1.setPosition(player1.getPosition().getCol(), player1.getPosition().getRow() - 1);
                 scrollPane.setVvalue(scrollPane.getVvalue() - 30.1);
 
-                System.out.println("COL: " + player.getPosition().getCol());
-                System.out.println("ROW: " + player.getPosition().getRow());
+                System.out.println("COL: " + player1.getPosition().getCol());
+                System.out.println("ROW: " + player1.getPosition().getRow());
 
                 break;
 
             case DOWN:
                 System.out.println("DOWN");
 
-                if (player.getPosition().getRow() == 99){
+                if (player1.getPosition().getRow() == 92){
                     return;
                 }
 
-                player.setPosition(player.getPosition().getCol() - 0, player.getPosition().getRow() +1);
+                player1.setPosition(player1.getPosition().getCol() - 0, player1.getPosition().getRow() +1);
                 scrollPane.setVvalue(scrollPane.getVvalue() + 30.1);
 
-                System.out.println("COL: " + player.getPosition().getCol());
-                System.out.println("ROW: " + player.getPosition().getRow());
+                System.out.println("COL: " + player1.getPosition().getCol());
+                System.out.println("ROW: " + player1.getPosition().getRow());
 
                 break;
 
             case LEFT:
                 System.out.println("LEFT");
 
-                if (player.getPosition().getCol() == 0){
+                if (player1.getPosition().getCol() == 0){
                     return;
                 }
 
-                player.setPosition(player.getPosition().getCol() - 1, player.getPosition().getRow()-0);
+                player1.setPosition(player1.getPosition().getCol() - 1, player1.getPosition().getRow()-0);
                 scrollPane.setHvalue(scrollPane.getHvalue() - 30.1);
 
-                System.out.println("COL: " + player.getPosition().getCol());
-                System.out.println("ROW: " + player.getPosition().getRow());
+                System.out.println("COL: " + player1.getPosition().getCol());
+                System.out.println("ROW: " + player1.getPosition().getRow());
 
                 break;
 
             case RIGHT:
                 System.out.println("RIGHT");
 
-                if (player.getPosition().getCol() == 99){
+                if (player1.getPosition().getCol() == 92){
                     return;
                 }
 
-                player.setPosition(player.getPosition().getCol() + 1 , player.getPosition().getRow()-0);
+                player1.setPosition(player1.getPosition().getCol() + 1 , player1.getPosition().getRow()-0);
                 scrollPane.setHvalue(scrollPane.getHvalue() + 30.1);
 
-                System.out.println("COL: " + player.getPosition().getCol());
-                System.out.println("ROW: " + player.getPosition().getRow());
+                System.out.println("COL: " + player1.getPosition().getCol());
+                System.out.println("ROW: " + player1.getPosition().getRow());
 
                 break;
 
@@ -105,8 +104,8 @@ public class PlayerController implements Initializable {
         scrollPane.requestFocus();
     }
 
-    public void setPlayer(Player player){
-        this.player=player;
+    public void setPlayer1(Player player1){
+        this.player1 = player1;
     }
 
     @Override
@@ -115,6 +114,7 @@ public class PlayerController implements Initializable {
         scrollPane.setVmax(2501);
         scrollPane.setHmax(2501);
         scrollPane.setPannable(false);
+
 
     }
 

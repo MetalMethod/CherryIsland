@@ -24,7 +24,7 @@ public class Main extends Application {
         navigation.loadScreen(INITIAL_VIEW);
         ((PlayerController)navigation.getController(INITIAL_VIEW)).setGame(game);
         ((PlayerController) navigation.getController(INITIAL_VIEW)).scrollPaneRequest();
-        ((PlayerController) navigation.getController(INITIAL_VIEW)).setPlayer(player);
+        ((PlayerController) navigation.getController(INITIAL_VIEW)).setPlayer1(player);
     }
 
 
