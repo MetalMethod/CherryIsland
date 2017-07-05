@@ -18,8 +18,8 @@ import java.util.Map;
 
 public final class Navigation {
 
-    private final int MIN_WIDTH = 720;
-    private final int MIN_HEIGHT = 405;
+    private final int MIN_WIDTH = 725;
+    private final int MIN_HEIGHT = 725;
     private final String VIEW_PATH = "/view/";
     private static Navigation instance = null;
     private Stage stage;

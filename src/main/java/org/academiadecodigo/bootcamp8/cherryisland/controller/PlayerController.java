@@ -34,12 +34,12 @@ public class PlayerController implements Initializable {
             case UP:
                 System.out.println("UP");
 
-                if (player1.getPosition().getRow() == 0){
+                if (player1.getPosition().getRow() == 14){
                     return;
                 }
 
                 player1.setPosition(player1.getPosition().getCol(), player1.getPosition().getRow() - 1);
-                scrollPane.setVvalue(scrollPane.getVvalue() - 29.15);
+                scrollPane.setVvalue(scrollPane.getVvalue() - 25);
 
                 System.out.println("COL: " + player1.getPosition().getCol());
                 System.out.println("ROW: " + player1.getPosition().getRow());
@@ -49,12 +49,12 @@ public class PlayerController implements Initializable {
             case DOWN:
                 System.out.println("DOWN");
 
-                if (player1.getPosition().getRow() == 80){
+                if (player1.getPosition().getRow() == 85){
                     return;
                 }
 
                 player1.setPosition(player1.getPosition().getCol(), player1.getPosition().getRow() +1);
-                scrollPane.setVvalue(scrollPane.getVvalue() + 29.15);
+                scrollPane.setVvalue(scrollPane.getVvalue() + 25);
 
                 System.out.println("COL: " + player1.getPosition().getCol());
                 System.out.println("ROW: " + player1.getPosition().getRow());
@@ -64,12 +64,12 @@ public class PlayerController implements Initializable {
             case LEFT:
                 System.out.println("LEFT");
 
-                if (player1.getPosition().getCol() == 0){
+                if (player1.getPosition().getCol() == 14){
                     return;
                 }
 
                 player1.setPosition(player1.getPosition().getCol() - 1, player1.getPosition().getRow());
-                scrollPane.setHvalue(scrollPane.getHvalue() - 33.12);
+                scrollPane.setHvalue(scrollPane.getHvalue() - 25);
 
                 System.out.println("COL: " + player1.getPosition().getCol());
                 System.out.println("ROW: " + player1.getPosition().getRow());
@@ -79,12 +79,12 @@ public class PlayerController implements Initializable {
             case RIGHT:
                 System.out.println("RIGHT");
 
-                if (player1.getPosition().getCol() == 90){
+                if (player1.getPosition().getCol() == 85){
                     return;
                 }
 
                 player1.setPosition(player1.getPosition().getCol() + 1 , player1.getPosition().getRow());
-                scrollPane.setHvalue(scrollPane.getHvalue() + 33.12);
+                scrollPane.setHvalue(scrollPane.getHvalue() + 25);
 
                 System.out.println("COL: " + player1.getPosition().getCol());
                 System.out.println("ROW: " + player1.getPosition().getRow());
@@ -109,8 +109,8 @@ public class PlayerController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        scrollPane.setVmax(2501);
-        scrollPane.setHmax(2501);
+        scrollPane.setVmax(2500-725);
+        scrollPane.setHmax(2500-725);
         scrollPane.setPannable(false);
 
     }
