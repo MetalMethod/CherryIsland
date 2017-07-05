@@ -235,5 +235,6 @@
          </content>
       </ScrollPane>
       <Rectangle fx:id="player" arcHeight="100.0" arcWidth="100.0" fill="#a4c238" height="25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="5.0" width="25.0" x="352.0" y="202.0" />
+       <Rectangle fx:id="enemy" arcHeight="100.0" arcWidth="100.0" fill="#a4c228" height="25.0" stroke="RED" strokeType="INSIDE" strokeWidth="5.0" width="25.0" x="352.0" y="202.0" />
    </children>
 </Pane>
