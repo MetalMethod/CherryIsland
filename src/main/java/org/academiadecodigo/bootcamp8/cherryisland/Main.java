@@ -6,12 +6,14 @@ import javafx.stage.Stage;
 import org.academiadecodigo.bootcamp8.cherryisland.controller.PlayerController;
 import org.academiadecodigo.bootcamp8.cherryisland.model.Player;
 import org.academiadecodigo.bootcamp8.cherryisland.service.Game;
+import org.academiadecodigo.bootcamp8.cherryisland.service.PlayerService;
+import org.academiadecodigo.bootcamp8.cherryisland.service.ServiceRegistry;
 
 public class Main extends Application {
 
     private final int STARTING_COL = 14;
     private final int STARTING_ROW = 14;
-    private final String INITIAL_VIEW = "grid";
+    private final String INITIAL_VIEW = "menu";
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -22,10 +24,17 @@ public class Main extends Application {
         Game game = new Game();
         Player player = new Player(STARTING_COL , STARTING_ROW);
 
+
+        PlayerService playerService = new PlayerService();
+
+        ServiceRegistry serviceRegistry = ServiceRegistry.getInstance();
+        serviceRegistry.addService(playerService.getName(), playerService);
+
         navigation.loadScreen(INITIAL_VIEW);
-        ((PlayerController) navigation.getController(INITIAL_VIEW)).setGame(game);
-        ((PlayerController) navigation.getController(INITIAL_VIEW)).scrollPaneRequest();
-        ((PlayerController) navigation.getController(INITIAL_VIEW)).setPlayer1(player);
+
+        /*((PlayerController) navigation.getController("grid")).setGame(game);
+        ((PlayerController) navigation.getController("grid")).scrollPaneRequest();
+        ((PlayerController) navigation.getController("grid")).setPlayer1(player);*/
 
 
 

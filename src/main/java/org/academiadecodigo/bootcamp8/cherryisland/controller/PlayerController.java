@@ -9,21 +9,23 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Rectangle;
 import org.academiadecodigo.bootcamp8.cherryisland.model.Player;
 import org.academiadecodigo.bootcamp8.cherryisland.service.Game;
+import org.academiadecodigo.bootcamp8.cherryisland.service.PlayerService;
+import org.academiadecodigo.bootcamp8.cherryisland.service.ServiceRegistry;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class PlayerController implements Initializable {
 
+    private PlayerService playerService;
+    private Player player1;
+    private Game game;
+
     @FXML
     private ScrollPane scrollPane;
 
     @FXML
     private GridPane gridPane;
-
-    private Player player1;
-
-    private Game game;
 
     @FXML
     void scrollPaneKeyPressed(KeyEvent event) {
@@ -108,6 +110,7 @@ public class PlayerController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        playerService = (PlayerService) ServiceRegistry.getInstance().getService(PlayerService.class.getSimpleName());
 
         scrollPane.setVmax(2500-725);
         scrollPane.setHmax(2500-725);

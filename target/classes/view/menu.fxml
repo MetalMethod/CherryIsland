@@ -1,8 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="405.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.academiadecodigo.bootcamp8.cherryisland.controller.MenuController">
-
-</AnchorPane>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="725.0" prefWidth="725.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.academiadecodigo.bootcamp8.cherryisland.controller.MenuController">
+   <children>
+      <Label fx:id="labelNickname" layoutX="216.0" layoutY="479.0" text="Please enter your desired nickname:">
+         <font>
+            <Font name="Avenir Roman" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="textFieldNickname" layoutX="279.0" layoutY="522.0">
+         <font>
+            <Font name="Avenir Medium" size="13.0" />
+         </font>
+      </TextField>
+      <Button fx:id="registerButton" layoutX="325.0" layoutY="571.0" mnemonicParsing="false" onAction="#onRegisterButtonClick" prefHeight="27.0" prefWidth="73.2" style="-fx-background-color: green;" text="Register" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="closeButton" layoutX="325.0" layoutY="610.0" mnemonicParsing="false" onAction="#onCloseButtonClick" prefHeight="27.0" prefWidth="73.2" style="-fx-background-color: transparent;" text="Close" />
+   </children>
+</Pane>
