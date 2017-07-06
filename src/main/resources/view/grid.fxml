@@ -17,7 +17,7 @@
                <children>
                   <ImageView fitHeight="2500.0" fitWidth="2500.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@/cherryisland_map.png" />
+                        <Image url="@/map/cherryisland_map.png" />
                      </image>
                   </ImageView>
                   <GridPane fx:id="gridPane" layoutX="0.5" layoutY="0.5">
