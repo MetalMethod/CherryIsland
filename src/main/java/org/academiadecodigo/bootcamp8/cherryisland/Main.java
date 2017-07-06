@@ -1,7 +1,6 @@
 package org.academiadecodigo.bootcamp8.cherryisland;
 
 import javafx.application.Application;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.academiadecodigo.bootcamp8.cherryisland.controller.PlayerController;
 import org.academiadecodigo.bootcamp8.cherryisland.model.Player;
@@ -26,8 +25,6 @@ public class Main extends Application {
         ((PlayerController) navigation.getController(INITIAL_VIEW)).setGame(game);
         ((PlayerController) navigation.getController(INITIAL_VIEW)).scrollPaneRequest();
         ((PlayerController) navigation.getController(INITIAL_VIEW)).setPlayer1(player);
-
-
 
     }
 
