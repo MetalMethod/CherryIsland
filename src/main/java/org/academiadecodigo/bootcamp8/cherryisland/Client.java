@@ -48,7 +48,6 @@ public class Client extends Application {
         // Creates a new thread to handle incoming server grid
         Thread thread = new Thread(new MapRunnable(primaryStage));
         thread.start();
-
     }
 
     // Runnable to handle incoming messages from the server
@@ -62,8 +61,6 @@ public class Client extends Application {
 
         private MapRunnable(Stage stage) {
             try {
-
-
                 socket = new Socket("0.0.0.0", 6666);
 
                 Navigation navigation = Navigation.getInstance();
@@ -91,16 +88,23 @@ public class Client extends Application {
 
             try {
 
-                int[] enemypos = null;
+                int[] enemypos = {0,0};
+                String input;
+                String[] splitinput;
                 // Block waiting for incoming messages from server
-                ObjectInputStream sockIn = new ObjectInputStream(socket.getInputStream());
+                BufferedReader sockIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 while (!socket.isClosed()) {
-
-
                     try {
-                        enemypos = (int[]) sockIn.readObject();
-                        ((PlayerController)Navigation.getInstance().getController(INITIAL_VIEW)).setEnemyPos(enemypos[0], enemypos[1]);
-
+                        //receive updated data from server and update game
+                        input=sockIn.readLine();
+                                if(input != null) {
+                            splitinput=input.split(" ");
+                                    if (splitinput.length == 2 ) {
+                                        enemypos[0] = Integer.parseInt(splitinput[0]);
+                                        enemypos[1] = Integer.parseInt(splitinput[1]);
+                                        ((PlayerController) Navigation.getInstance().getController(INITIAL_VIEW)).setEnemyPos(enemypos[0], enemypos[1]);
+                                    }
+                                }
                     } catch (Exception ex) {
                         ex.printStackTrace();
                     }

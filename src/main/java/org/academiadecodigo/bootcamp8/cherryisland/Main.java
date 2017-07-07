@@ -9,8 +9,8 @@ import org.academiadecodigo.bootcamp8.cherryisland.service.Game;
 
 public class Main extends Application {
 
-    private final int STARTING_COL = 0;
-    private final int STARTING_ROW = 0;
+    private final int STARTING_COL = 14;
+    private final int STARTING_ROW = 14;
     private final String INITIAL_VIEW = "grid";
 
     @Override
