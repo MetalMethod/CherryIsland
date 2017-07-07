@@ -4,18 +4,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Rectangle;
 import org.academiadecodigo.bootcamp8.cherryisland.model.Player;
 import org.academiadecodigo.bootcamp8.cherryisland.service.Game;
 import org.academiadecodigo.bootcamp8.cherryisland.util.U;
 
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
-import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -50,8 +44,8 @@ public class PlayerController implements Initializable {
                 System.out.println("UP");
 
                 if (player1.getPosition().getRow() == 14 ||
-                        game.getPositionsOccupied()[U.GRID_COLS*(player1.getPosition().getRow()-1)
-                                +player1.getPosition().getCol()]){
+                        !game.getPositionContents()[U.GRID_COLS*(player1.getPosition().getRow()-1)
+                                +player1.getPosition().getCol()].equals("empty")){
                     return;
                 }
 
@@ -67,8 +61,8 @@ public class PlayerController implements Initializable {
                 System.out.println("DOWN");
 
                 if (player1.getPosition().getRow() == 85 ||
-                        game.getPositionsOccupied()[U.GRID_COLS*(player1.getPosition().getRow()+1)
-                                +player1.getPosition().getCol()]){
+                        !game.getPositionContents()[U.GRID_COLS*(player1.getPosition().getRow()+1)
+                                +player1.getPosition().getCol()].equals("empty")){
                     return;
                 }
 
@@ -84,8 +78,8 @@ public class PlayerController implements Initializable {
                 System.out.println("LEFT");
 
                 if (player1.getPosition().getCol() == 14 ||
-                        game.getPositionsOccupied()[U.GRID_COLS*(player1.getPosition().getRow())
-                                +player1.getPosition().getCol()-1]){
+                        !game.getPositionContents()[U.GRID_COLS*(player1.getPosition().getRow())
+                                +player1.getPosition().getCol()-1].equals("empty")){
                     return;
                 }
 
@@ -101,8 +95,8 @@ public class PlayerController implements Initializable {
                 System.out.println("RIGHT");
 
                 if (player1.getPosition().getCol() == 85 ||
-                        game.getPositionsOccupied()[U.GRID_COLS*(player1.getPosition().getRow())
-                                +player1.getPosition().getCol()+1]){
+                        !game.getPositionContents()[U.GRID_COLS*(player1.getPosition().getRow())
+                                +player1.getPosition().getCol()+1].equals("empty")){
                     return;
                 }
 

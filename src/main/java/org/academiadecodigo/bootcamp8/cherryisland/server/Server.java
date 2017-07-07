@@ -109,9 +109,9 @@ public class Server {
 
 
             //initialize global game variables
-            boolean[] positionsOccupied=new boolean[U.GRID_COLS*U.GRID_COLS];
-            for(Boolean b:positionsOccupied){
-                b=false;
+            String[] positionContents=new String[U.GRID_COLS*U.GRID_COLS];
+            for(int i=0;i<positionContents.length;i++){
+                positionContents[i]="empty";
             }
             int numberOfTrees = 250;
             int numberOfCherries=50;
@@ -125,7 +125,7 @@ public class Server {
             gameObjectInit.add("lake "+"add "+targetCol+" "+targetRow);
             for(int i=0;i<U.LAKECOLSPAN;i++){
                 for(int j=-1;j<2;j++){
-                    positionsOccupied[(j*U.GRID_COLS)+U.GRID_COLS*targetRow+targetCol+i]=true;
+                    positionContents[(j*U.GRID_COLS)+U.GRID_COLS*targetRow+targetCol+i]="lake";
                 }
             }
 
@@ -134,24 +134,24 @@ public class Server {
             for(int i=0;i<numberOfTrees;i++){
                 targetRow=(int)((Math.random())*U.GREEN_COLS)+U.BEACH_WIDTH+U.P1_STARTING_ROW;
                 targetCol=(int)((Math.random())*U.GREEN_COLS)+U.BEACH_WIDTH+U.P1_STARTING_COL;
-                while(positionsOccupied[U.GRID_COLS*targetRow+targetCol] == true ){
+                while(!positionContents[U.GRID_COLS*targetRow+targetCol].equals("empty") ){
                     targetRow=(int)((Math.random())*U.GREEN_COLS)+U.BEACH_WIDTH+U.P1_STARTING_ROW;
                     targetCol=(int)((Math.random())*U.GREEN_COLS)+U.BEACH_WIDTH+U.P1_STARTING_COL;
                 }
                 gameObjectInit.add("tree "+"add "+targetCol+" "+targetRow);
-                positionsOccupied[U.GRID_COLS*targetRow+targetCol]=true;
+                positionContents[U.GRID_COLS*targetRow+targetCol]="tree";
             }
 
             //set cherry locations
             for(int i=0;i<numberOfCherries;i++){
                 targetRow=(int)((Math.random())*U.GREEN_COLS)+U.BEACH_WIDTH+U.P1_STARTING_ROW;
                 targetCol=(int)((Math.random())*U.GREEN_COLS)+U.BEACH_WIDTH+U.P1_STARTING_COL;
-                while(positionsOccupied[U.GRID_COLS*targetRow+targetCol] == true ){
+                while(!positionContents[U.GRID_COLS*targetRow+targetCol].equals("empty") ){
                     targetRow=(int)((Math.random())*U.GREEN_COLS)+U.BEACH_WIDTH+U.P1_STARTING_ROW;
                     targetCol=(int)((Math.random())*U.GREEN_COLS)+U.BEACH_WIDTH+U.P1_STARTING_COL;
                 }
                 gameObjectInit.add("cherries "+"add "+targetCol+" "+targetRow);
-                positionsOccupied[U.GRID_COLS*targetRow+targetCol]=true;
+                positionContents[U.GRID_COLS*targetRow+targetCol]="cherries";
             }
 
             //tell all players to start game and send them information about global game variables (tree positions, etc)
