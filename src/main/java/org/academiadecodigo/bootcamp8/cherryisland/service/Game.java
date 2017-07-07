@@ -28,9 +28,9 @@ public class Game extends Application {
     private Player player;
     private GridPane gridPane;
     private HashMap<String, GameObject> gameObjectHashMap = new HashMap<>();
-    private ImageView cherries = new ImageView("PATH TO CHERRIES");
-    private ImageView tree = new ImageView("PATH TO TREE");
-    private ImageView lake = new ImageView("PATH TO LAKE");
+    private ImageView cherries = new ImageView("/gameobjects/cherrytree1.png");
+    private ImageView tree = new ImageView("/gameobjects/tree1.png");
+    private ImageView lake = new ImageView("/gameobjects/lake1.png");
 
     @Override
     public void start(Stage primaryStage) throws Exception {
