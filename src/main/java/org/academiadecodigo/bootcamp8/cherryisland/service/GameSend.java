@@ -20,8 +20,6 @@ public class GameSend implements Runnable {
 
         /*
         while (socket.isConnected()){
-
-
         }
         */
     }

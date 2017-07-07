@@ -5,29 +5,16 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Rectangle;
 import org.academiadecodigo.bootcamp8.cherryisland.model.Player;
 import org.academiadecodigo.bootcamp8.cherryisland.service.Game;
 import org.academiadecodigo.bootcamp8.cherryisland.util.U;
-import org.academiadecodigo.bootcamp8.cherryisland.service.PlayerService;
-import org.academiadecodigo.bootcamp8.cherryisland.service.ServiceRegistry;
 
-import javax.swing.text.html.ImageView;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
-import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class PlayerController implements Initializable {
-
-    private PlayerService playerService;
-    private Player player1;
-    private Game game;
 
     @FXML
     private ScrollPane scrollPane;
@@ -45,6 +32,10 @@ public class PlayerController implements Initializable {
     @FXML
     private Pane menu;
 
+    private Player player1;
+
+    private Game game;
+
     //private Rectangle enemy;
 
     @FXML
@@ -56,7 +47,9 @@ public class PlayerController implements Initializable {
             case UP:
                 System.out.println("UP");
 
-                if (player1.getPosition().getRow() == 14){
+                if (player1.getPosition().getRow() == 14 ||
+                        !game.getPositionContents()[U.GRID_COLS*(player1.getPosition().getRow()-1)
+                                +player1.getPosition().getCol()].equals("empty")){
                     return;
                 }
 
@@ -71,7 +64,9 @@ public class PlayerController implements Initializable {
             case DOWN:
                 System.out.println("DOWN");
 
-                if (player1.getPosition().getRow() == 85){
+                if (player1.getPosition().getRow() == 85 ||
+                        !game.getPositionContents()[U.GRID_COLS*(player1.getPosition().getRow()+1)
+                                +player1.getPosition().getCol()].equals("empty")){
                     return;
                 }
 
@@ -86,7 +81,9 @@ public class PlayerController implements Initializable {
             case LEFT:
                 System.out.println("LEFT");
 
-                if (player1.getPosition().getCol() == 14){
+                if (player1.getPosition().getCol() == 14 ||
+                        !game.getPositionContents()[U.GRID_COLS*(player1.getPosition().getRow())
+                                +player1.getPosition().getCol()-1].equals("empty")){
                     return;
                 }
 
@@ -101,7 +98,9 @@ public class PlayerController implements Initializable {
             case RIGHT:
                 System.out.println("RIGHT");
 
-                if (player1.getPosition().getCol() == 85){
+                if (player1.getPosition().getCol() == 85 ||
+                        !game.getPositionContents()[U.GRID_COLS*(player1.getPosition().getRow())
+                                +player1.getPosition().getCol()+1].equals("empty")){
                     return;
                 }
 
@@ -113,6 +112,8 @@ public class PlayerController implements Initializable {
 
                 break;
         }
+
+
     }
 
 
@@ -138,7 +139,6 @@ public class PlayerController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        playerService = (PlayerService) ServiceRegistry.getInstance().getService(PlayerService.class.getSimpleName());
 
         scrollPane.setVmax(2500-725);
         scrollPane.setHmax(2500-725);
