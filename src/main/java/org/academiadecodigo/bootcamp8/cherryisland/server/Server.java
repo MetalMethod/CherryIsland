@@ -125,7 +125,7 @@ public class Server {
             //set lake location
             int targetRow=(int)((Math.random())*(numrows-1-LAKEROWSPAN))+1;
             int targetCol=(int)((Math.random())*(numcols-1-LAKECOLSPAN))+1;
-            gameObjectInit.add("Lake "+"add "+targetCol+" "+targetRow);
+            gameObjectInit.add("lake "+"add "+targetCol+" "+targetRow);
             for(int i=0;i<LAKECOLSPAN;i++){
                 for(int j=0;j<LAKEROWSPAN;j++){
                     positionsOccupied[(j*numcols)+numcols*targetRow+targetCol+i]=true;
@@ -137,11 +137,11 @@ public class Server {
             for(int i=0;i<numberOfTrees;i++){
                 targetRow=(int)((Math.random())*numrows);
                 targetCol=(int)((Math.random())*numcols);
-                while(positionsOccupied[numcols*targetRow+targetCol] == true){
+                while(positionsOccupied[numcols*targetRow+targetCol] == true ){
                     targetRow=(int)((Math.random())*numrows);
                     targetCol=(int)((Math.random())*numcols);
                 }
-                gameObjectInit.add("Tree "+"add "+targetCol+" "+targetRow);
+                gameObjectInit.add("tree "+"add "+targetCol+" "+targetRow);
                 positionsOccupied[numcols*targetRow+targetCol]=true;
             }
 
@@ -153,7 +153,7 @@ public class Server {
                     targetRow=(int)((Math.random())*numrows);
                     targetCol=(int)((Math.random())*numcols);
                 }
-                gameObjectInit.add("Cherry "+"add "+targetCol+" "+targetRow);
+                gameObjectInit.add("cherries "+"add "+targetCol+" "+targetRow);
                 positionsOccupied[numcols*targetRow+targetCol]=true;
             }
 
@@ -195,10 +195,13 @@ public class Server {
 
             Iterator<ServerWorker> it = workers.iterator();
             while (it.hasNext()) {
+                /*
                 ServerWorker serverWorker1=it.next();
                 if(!serverWorker1.equals(serverWorker)){
                     serverWorker1.send(s);
                 }
+                */
+                it.next().send(s);
             }
         }
     }

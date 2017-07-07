@@ -74,7 +74,7 @@ public class Client extends Application {
                 ((PlayerController) navigation.getController(INITIAL_VIEW)).setGame(game);
                 ((PlayerController) navigation.getController(INITIAL_VIEW)).scrollPaneRequest();
                 ((PlayerController) navigation.getController(INITIAL_VIEW)).setPlayer1(player);
-                ((PlayerController) navigation.getController(INITIAL_VIEW)).setSocket(socket);
+                //((PlayerController) navigation.getController(INITIAL_VIEW)).setSocket(socket);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -102,7 +102,7 @@ public class Client extends Application {
                                     if (splitinput.length == 2 ) {
                                         enemypos[0] = Integer.parseInt(splitinput[0]);
                                         enemypos[1] = Integer.parseInt(splitinput[1]);
-                                        ((PlayerController) Navigation.getInstance().getController(INITIAL_VIEW)).setEnemyPos(enemypos[0], enemypos[1]);
+                                        //((PlayerController) Navigation.getInstance().getController(INITIAL_VIEW)).setEnemyPos(enemypos[0], enemypos[1]);
                                     }
                                 }
                     } catch (Exception ex) {
