@@ -13,7 +13,7 @@
    <children>
       <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" onKeyPressed="#scrollPaneKeyPressed" prefHeight="725.0" prefWidth="725.0" vbarPolicy="NEVER">
          <content>
-            <Pane>
+            <Pane fx:id="pane">
                <children>
                   <ImageView fitHeight="2500.0" fitWidth="2500.0" pickOnBounds="true" preserveRatio="true">
                      <image>

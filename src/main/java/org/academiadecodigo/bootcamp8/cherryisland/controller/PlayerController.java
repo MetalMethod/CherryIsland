@@ -6,10 +6,16 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import org.academiadecodigo.bootcamp8.cherryisland.model.Player;
 import org.academiadecodigo.bootcamp8.cherryisland.service.Game;
+import org.academiadecodigo.bootcamp8.cherryisland.util.U;
 
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
+import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -21,9 +27,18 @@ public class PlayerController implements Initializable {
     @FXML
     private GridPane gridPane;
 
+    public Pane getPane() {
+        return pane;
+    }
+
+    @FXML
+    private Pane pane;
+
     private Player player1;
 
     private Game game;
+
+    //private Rectangle enemy;
 
     @FXML
     void scrollPaneKeyPressed(KeyEvent event) {
@@ -39,7 +54,7 @@ public class PlayerController implements Initializable {
                 }
 
                 player1.setPosition(player1.getPosition().getCol(), player1.getPosition().getRow() - 1);
-                scrollPane.setVvalue(scrollPane.getVvalue() - 25);
+                scrollPane.setVvalue(scrollPane.getVvalue() - U.COL_ROW_SIZE);
 
                 System.out.println("COL: " + player1.getPosition().getCol());
                 System.out.println("ROW: " + player1.getPosition().getRow());
@@ -54,7 +69,7 @@ public class PlayerController implements Initializable {
                 }
 
                 player1.setPosition(player1.getPosition().getCol(), player1.getPosition().getRow() +1);
-                scrollPane.setVvalue(scrollPane.getVvalue() + 25);
+                scrollPane.setVvalue(scrollPane.getVvalue() + U.COL_ROW_SIZE);
 
                 System.out.println("COL: " + player1.getPosition().getCol());
                 System.out.println("ROW: " + player1.getPosition().getRow());
@@ -69,7 +84,7 @@ public class PlayerController implements Initializable {
                 }
 
                 player1.setPosition(player1.getPosition().getCol() - 1, player1.getPosition().getRow());
-                scrollPane.setHvalue(scrollPane.getHvalue() - 25);
+                scrollPane.setHvalue(scrollPane.getHvalue() - U.COL_ROW_SIZE);
 
                 System.out.println("COL: " + player1.getPosition().getCol());
                 System.out.println("ROW: " + player1.getPosition().getRow());
@@ -84,13 +99,15 @@ public class PlayerController implements Initializable {
                 }
 
                 player1.setPosition(player1.getPosition().getCol() + 1 , player1.getPosition().getRow());
-                scrollPane.setHvalue(scrollPane.getHvalue() + 25);
+                scrollPane.setHvalue(scrollPane.getHvalue() + U.COL_ROW_SIZE);
 
                 System.out.println("COL: " + player1.getPosition().getCol());
                 System.out.println("ROW: " + player1.getPosition().getRow());
 
                 break;
         }
+
+
     }
 
 
@@ -102,8 +119,16 @@ public class PlayerController implements Initializable {
         scrollPane.requestFocus();
     }
 
+    public GridPane getGridPane() {
+        return gridPane;
+    }
+
     public void setPlayer1(Player player1){
         this.player1 = player1;
+    }
+
+    public ScrollPane getScrollPane() {
+        return scrollPane;
     }
 
     @Override
@@ -114,5 +139,13 @@ public class PlayerController implements Initializable {
         scrollPane.setPannable(false);
 
     }
+
+    /* Minimap
+    public void setEnemyPos(int row, int col) {
+        enemy.setX( col + 8);//magic number is horizontal padding
+        enemy.setY( row + 8);//magic number is vertical padding
+    }
+    */
+
 }
 
