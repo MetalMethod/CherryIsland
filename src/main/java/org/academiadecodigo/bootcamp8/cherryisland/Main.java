@@ -3,6 +3,7 @@ package org.academiadecodigo.bootcamp8.cherryisland;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import org.academiadecodigo.bootcamp8.cherryisland.controller.PlayerController;
+import org.academiadecodigo.bootcamp8.cherryisland.gameObjects.GameObjectFactory;
 import org.academiadecodigo.bootcamp8.cherryisland.model.Player;
 import org.academiadecodigo.bootcamp8.cherryisland.service.Game;
 
