@@ -57,7 +57,7 @@ public class Client extends Application {
         private Stage stage;
         private final int STARTING_COL = 0;
         private final int STARTING_ROW = 0;
-        private final String INITIAL_VIEW = "grid";
+        private final String INITIAL_VIEW = "/view/grid";
 
         private MapRunnable(Stage stage) {
             try {

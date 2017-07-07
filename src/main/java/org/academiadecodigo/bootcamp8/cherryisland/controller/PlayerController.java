@@ -3,6 +3,7 @@ package org.academiadecodigo.bootcamp8.cherryisland.controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.GridPane;
@@ -14,6 +15,7 @@ import org.academiadecodigo.bootcamp8.cherryisland.util.U;
 import org.academiadecodigo.bootcamp8.cherryisland.service.PlayerService;
 import org.academiadecodigo.bootcamp8.cherryisland.service.ServiceRegistry;
 
+import javax.swing.text.html.ImageView;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
@@ -39,6 +41,9 @@ public class PlayerController implements Initializable {
 
     @FXML
     private Pane pane;
+
+    @FXML
+    private Pane menu;
 
     //private Rectangle enemy;
 
@@ -139,6 +144,13 @@ public class PlayerController implements Initializable {
         scrollPane.setHmax(2500-725);
         scrollPane.setPannable(false);
 
+    }
+
+    public void enterPressed(KeyEvent keyEvent) {
+        if (keyEvent.getCode().equals(KeyCode.M) && !menu.isVisible()) {
+            menu.setVisible(true);
+        }
+        menu.setVisible(false);
     }
 
     /* Minimap
