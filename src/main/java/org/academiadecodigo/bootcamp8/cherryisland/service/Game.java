@@ -35,7 +35,17 @@ public class Game extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        try {
+
+        Navigation navigation = Navigation.getInstance();
+        primaryStage.setTitle("Cherry Island");
+        navigation.setStage(primaryStage);
+
+        PlayerService playerService = new PlayerService();
+        ServiceRegistry.getInstance().addService(playerService.getName(), playerService);
+        
+        navigation.loadScreen(U.INITIAL_VIEW);
+
+        /*try {
             Socket socket = new Socket("127.0.0.1", 6666);
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -94,7 +104,7 @@ public class Game extends Application {
 
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     public static void main(String[] args) {

@@ -24,6 +24,9 @@ public class MenuController implements Initializable {
     private String nickname;
 
     @FXML
+    ImageView imageViewSplash;
+
+    @FXML
     TextField textFieldNickname;
 
     @FXML
@@ -36,11 +39,12 @@ public class MenuController implements Initializable {
     Button readyButton;
 
     @FXML
-    ImageView imageWaiting;
+    ImageView imageViewWaiting;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         playerService = (PlayerService) ServiceRegistry.getInstance().getService(PlayerService.class.getSimpleName());
+        ServiceRegistry.getInstance().addService("PlayerService", playerService); // FIX THIS
     }
 
     public void onRegisterButtonClick() {
@@ -48,6 +52,7 @@ public class MenuController implements Initializable {
             return;
         }
         nickname = textFieldNickname.getText();
+        System.out.println("Nick: " + nickname + " | Service: " + playerService);
         if (nickname.equals("") || playerService.playerExists(nickname)) {
             labelInfo.setStyle("-fx-text-fill: red;");
             labelInfo.setText("Nickname invalid or already in use, please choose a different one.");
@@ -70,6 +75,10 @@ public class MenuController implements Initializable {
         textFieldNickname.setVisible(false);
         labelNickname.setText(nickname);
         labelNickname.setVisible(true);
-        imageWaiting.setVisible(true);
+        imageViewWaiting.setVisible(true);
+    }
+
+    public ImageView getImageViewSplash() {
+        return imageViewSplash;
     }
 }

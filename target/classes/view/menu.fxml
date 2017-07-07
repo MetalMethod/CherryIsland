@@ -24,7 +24,12 @@
       <RowConstraints maxHeight="281.0" minHeight="10.0" prefHeight="83.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <ImageView fx:id="imageWaiting" fitHeight="43.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+      <ImageView fitHeight="725.0" fitWidth="725.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowSpan="7">
+         <image>
+            <Image url="@../menu.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imageViewWaiting" fitHeight="43.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="1">
          <image>
             <Image url="@../waiting.gif" />
          </image>
@@ -44,11 +49,16 @@
             <Font name="Avenir Heavy" size="20.0" />
          </font>
       </Label>
-      <Button fx:id="readyButton" mnemonicParsing="false" onAction="#onRegisterButtonClick" prefHeight="27.0" prefWidth="73.2" style="-fx-background-color: black;" text="Ready" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+      <Button fx:id="readyButton" mnemonicParsing="false" onAction="#onRegisterButtonClick" prefHeight="27.0" prefWidth="73.2" style="-fx-background-color: red;" text="Ready" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="4">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Button>
       <Button fx:id="closeButton" mnemonicParsing="false" onAction="#onCloseButtonClick" prefHeight="27.0" prefWidth="73.2" style="-fx-background-color: transparent;" text="Close" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+      <ImageView fx:id="imageViewSplash" fitHeight="725.0" fitWidth="725.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.halignment="CENTER" GridPane.rowSpan="7" GridPane.valignment="CENTER">
+         <image>
+            <Image url="@../splash.png" />
+         </image>
+      </ImageView>
    </children>
 </GridPane>
