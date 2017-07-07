@@ -42,7 +42,7 @@ public class Game extends Application {
 
         PlayerService playerService = new PlayerService();
         ServiceRegistry.getInstance().addService(playerService.getName(), playerService);
-        
+
         navigation.loadScreen(U.INITIAL_VIEW);
 
         /*try {

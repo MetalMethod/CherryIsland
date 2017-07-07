@@ -55,7 +55,7 @@ public class MenuController implements Initializable {
         System.out.println("Nick: " + nickname + " | Service: " + playerService);
         if (nickname.equals("") || playerService.playerExists(nickname)) {
             labelInfo.setStyle("-fx-text-fill: red;");
-            labelInfo.setText("Nickname invalid or already in use, please choose a different one.");
+            labelInfo.setText("Ye can nah choose that name!");
             return;
         }
         waitForGame();
@@ -71,7 +71,7 @@ public class MenuController implements Initializable {
     private void waitForGame() {
         readyButton.setStyle("-fx-background-color: green;");
         labelInfo.setStyle("-fx-text-fill: black;");
-        labelInfo.setText("Please wait for the game to start...");
+        labelInfo.setText("Wait fer th' game t' start...");
         textFieldNickname.setVisible(false);
         labelNickname.setText(nickname);
         labelNickname.setVisible(true);
