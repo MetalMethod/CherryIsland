@@ -27,16 +27,10 @@ public class MenuController implements Initializable {
     TextField textFieldNickname;
 
     @FXML
+    Label labelInfo;
+
+    @FXML
     Label labelNickname;
-
-    @FXML
-    Label labelNicknameExists;
-
-    @FXML
-    Label labelWaiting;
-
-    @FXML
-    Label labelNicknameChoice;
 
     @FXML
     Button readyButton;
@@ -50,13 +44,13 @@ public class MenuController implements Initializable {
     }
 
     public void onRegisterButtonClick() {
-        labelNickname.setVisible(true);
-
+        if (labelNickname.isVisible()) {
+            return;
+        }
         nickname = textFieldNickname.getText();
-
-        if(nickname.equals("") || playerService.playerExists(nickname)) {
-            labelNickname.setVisible(false);
-            labelNicknameExists.setVisible(true);
+        if (nickname.equals("") || playerService.playerExists(nickname)) {
+            labelInfo.setStyle("-fx-text-fill: red;");
+            labelInfo.setText("Nickname invalid or already in use, please choose a different one.");
             return;
         }
         waitForGame();
@@ -71,12 +65,11 @@ public class MenuController implements Initializable {
 
     private void waitForGame() {
         readyButton.setStyle("-fx-background-color: green;");
-        labelNickname.setVisible(false);
-        labelNicknameExists.setVisible(false);
+        labelInfo.setStyle("-fx-text-fill: black;");
+        labelInfo.setText("Please wait for the game to start...");
         textFieldNickname.setVisible(false);
-        labelNicknameChoice.setText(nickname);
-        labelNicknameChoice.setVisible(true);
-        labelWaiting.setVisible(true);
+        labelNickname.setText(nickname);
+        labelNickname.setVisible(true);
         imageWaiting.setVisible(true);
     }
 }
