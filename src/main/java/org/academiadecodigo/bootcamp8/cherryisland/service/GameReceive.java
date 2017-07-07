@@ -1,9 +1,7 @@
 package org.academiadecodigo.bootcamp8.cherryisland.service;
 
 import javafx.application.Platform;
-import javafx.scene.layout.GridPane;
 import org.academiadecodigo.bootcamp8.cherryisland.gameObjects.ObjectType;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -45,24 +43,38 @@ public class GameReceive implements Runnable {
                                     int col = Integer.parseInt(msg2.split(" ")[2]);
                                     int row = Integer.parseInt(msg2.split(" ")[3]);
 
-                                    game.addGameObject(ObjectType.TREE, col+14, row+14);
+                                    game.addGameObject(ObjectType.TREE, col, row);
                                 }
 
                                 if (msg2.split(" ")[0].equals("cherries")) {
                                     int col = Integer.parseInt(msg2.split(" ")[2]);
                                     int row = Integer.parseInt(msg2.split(" ")[3]);
 
-                                    game.addGameObject(ObjectType.CHERRIES, col+14, row+14);
+                                    game.addGameObject(ObjectType.CHERRIES, col, row);
                                 }
 
                                 if (msg2.split(" ")[0].equals("lake")) {
                                     int col = Integer.parseInt(msg2.split(" ")[2]);
                                     int row = Integer.parseInt(msg2.split(" ")[3]);
 
-                                    game.addGameObject(ObjectType.LAKE, col+14, row+14);
+                                    game.addGameObject(ObjectType.LAKE, col, row);
                                 }
                             }
                         });
+                    }
+
+                    if (msg2.split(" ")[1].equals("remove")){
+                        Platform.runLater(new Runnable() {
+                            @Override
+                            public void run() {
+                                int col = Integer.parseInt(msg2.split(" ")[2]);
+                                int row = Integer.parseInt(msg2.split(" ")[3]);
+
+                                game.removeGameObject(col, row);
+
+                            }
+                        });
+
                     }
                 }
             }
