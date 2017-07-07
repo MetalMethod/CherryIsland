@@ -34,6 +34,7 @@ public class Game extends Application {
     private Pane pane;
     private ScrollPane scrollPane;
     private Socket socket;
+    private String[] positionContents;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -46,6 +47,10 @@ public class Game extends Application {
             String start;
 
             gameObjectHashMap = new HashMap<>();
+            positionContents =new String[U.GRID_COLS*U.GRID_COLS];
+            for(int i=0;i<positionContents.length;i++){
+                positionContents[i]="empty";
+            }
 
             playerNumber = reader.readLine();
             start = reader.readLine();
@@ -110,18 +115,25 @@ public class Game extends Application {
                 GameObject cherries = GameObjectFactory.getObject(ObjectType.CHERRIES, new GridPosition(col, row));
                 gameObjectHashMap.put(String.valueOf(col) + String.valueOf(row), cherries);
                 gridPane.add(new ImageView("/gameobjects/cherrytree1.png"), col, row);
+                positionContents[U.GRID_COLS*row+col]="cherries";
                 break;
 
             case TREE:
                 GameObject tree = GameObjectFactory.getObject(ObjectType.TREE, new GridPosition(col, row));
                 gameObjectHashMap.put(String.valueOf(col) + String.valueOf(row), tree);
                 gridPane.add(new ImageView("/gameobjects/tree1.png"), col, row);
+                positionContents[U.GRID_COLS*row+col]="tree";
                 break;
 
             case LAKE:
                 GameObject lake = GameObjectFactory.getObject(ObjectType.LAKE, new GridPosition(col, row));
                 gameObjectHashMap.put(String.valueOf(col) + String.valueOf(row), lake);
                 gridPane.add(new ImageView("/gameobjects/lake1.png"), col, row);
+                for(int i=0;i<U.LAKECOLSPAN;i++){
+                    for(int j=-1;j<2;j++){
+                        positionContents[(j*U.GRID_COLS)+U.GRID_COLS*row+col+i]="lake";
+                    }
+                }
                 break;
 
         }
@@ -146,6 +158,8 @@ public class Game extends Application {
         }
 
     }
+
+    public String[] getPositionContents(){return positionContents;}
 
 
     public void movePlayer(int col, int row) {
