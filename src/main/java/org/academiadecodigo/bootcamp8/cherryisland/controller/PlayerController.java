@@ -49,7 +49,9 @@ public class PlayerController implements Initializable {
             case UP:
                 System.out.println("UP");
 
-                if (player1.getPosition().getRow() == 14){
+                if (player1.getPosition().getRow() == 14 ||
+                        game.getPositionsOccupied()[U.GRID_COLS*(player1.getPosition().getRow()-1)
+                                +player1.getPosition().getCol()]){
                     return;
                 }
 
@@ -64,7 +66,9 @@ public class PlayerController implements Initializable {
             case DOWN:
                 System.out.println("DOWN");
 
-                if (player1.getPosition().getRow() == 85){
+                if (player1.getPosition().getRow() == 85 ||
+                        game.getPositionsOccupied()[U.GRID_COLS*(player1.getPosition().getRow()+1)
+                                +player1.getPosition().getCol()]){
                     return;
                 }
 
@@ -79,7 +83,9 @@ public class PlayerController implements Initializable {
             case LEFT:
                 System.out.println("LEFT");
 
-                if (player1.getPosition().getCol() == 14){
+                if (player1.getPosition().getCol() == 14 ||
+                        game.getPositionsOccupied()[U.GRID_COLS*(player1.getPosition().getRow())
+                                +player1.getPosition().getCol()-1]){
                     return;
                 }
 
@@ -94,7 +100,9 @@ public class PlayerController implements Initializable {
             case RIGHT:
                 System.out.println("RIGHT");
 
-                if (player1.getPosition().getCol() == 85){
+                if (player1.getPosition().getCol() == 85 ||
+                        game.getPositionsOccupied()[U.GRID_COLS*(player1.getPosition().getRow())
+                                +player1.getPosition().getCol()+1]){
                     return;
                 }
 

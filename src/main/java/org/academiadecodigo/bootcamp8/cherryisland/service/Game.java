@@ -1,5 +1,6 @@
 package org.academiadecodigo.bootcamp8.cherryisland.service;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import javafx.application.Application;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
@@ -18,6 +19,7 @@ import org.academiadecodigo.bootcamp8.cherryisland.util.U;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.HashMap;
 
@@ -32,6 +34,7 @@ public class Game extends Application {
     private HashMap<String, GameObject> gameObjectHashMap;
     private Pane pane;
     private ScrollPane scrollPane;
+    private boolean[] positionsOccupied;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -44,6 +47,8 @@ public class Game extends Application {
             String start;
 
             gameObjectHashMap = new HashMap<>();
+            positionsOccupied=new boolean[U.GRID_COLS*U.GRID_COLS];
+            for(Boolean b:positionsOccupied){b=false;}
 
             playerNumber = reader.readLine();
             start = reader.readLine();
@@ -87,6 +92,9 @@ public class Game extends Application {
 
                 send.start();
                 receive.start();
+
+                PrintWriter printWriter= new PrintWriter(socket.getOutputStream(),true);
+                printWriter.println("start");
             }
 
             System.out.println("EERRRROOOOORRRRRR");
@@ -121,10 +129,18 @@ public class Game extends Application {
                 GameObject lake = GameObjectFactory.getObject(ObjectType.LAKE, new GridPosition(col, row));
                 //gameObjectHashMap.put(String.valueOf(col) + String.valueOf(row), lake);
                 gridPane.add(new ImageView("/gameobjects/lake1.png"), col, row);
+                for(int i=0;i<U.LAKECOLSPAN;i++){
+                    for(int j=-1;j<2;j++){
+                        positionsOccupied[(j*U.GRID_COLS)+U.GRID_COLS*row+col+i]=true;
+                    }
+                }
                 break;
 
         }
+        positionsOccupied[U.GRID_COLS*row+col]=true;
     }
+
+    public boolean[] getPositionsOccupied(){return positionsOccupied;}
 
 
     public void movePlayer(int col, int row) {

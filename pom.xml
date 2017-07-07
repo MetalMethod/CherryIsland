@@ -18,7 +18,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>org.academiadecodigo.bootcamp8.cherryisland.Main</mainClass>
+                            <mainClass>org.academiadecodigo.bootcamp8.cherryisland.server.Server</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -31,7 +31,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>org.academiadecodigo.bootcamp8.cherryisland.Main</mainClass>
+                            <mainClass>org.academiadecodigo.bootcamp8.cherryisland.server.Server</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>jar-with-dependencies</descriptorRefs>
