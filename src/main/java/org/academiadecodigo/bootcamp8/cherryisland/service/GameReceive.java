@@ -64,6 +64,20 @@ public class GameReceive implements Runnable {
                             }
                         });
                     }
+
+                    if (msg2.split(" ")[1].equals("remove")){
+                        Platform.runLater(new Runnable() {
+                            @Override
+                            public void run() {
+                                int col = Integer.parseInt(msg2.split(" ")[2]);
+                                int row = Integer.parseInt(msg2.split(" ")[3]);
+
+                                game.removeGameObject(col, row);
+
+                            }
+                        });
+
+                    }
                 }
             }
         } catch (IOException e) {

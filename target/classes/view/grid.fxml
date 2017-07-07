@@ -231,10 +231,10 @@
          </content>
       </ScrollPane>
       <Rectangle fx:id="player" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="25.0" stroke="BLACK" strokeType="INSIDE" width="25.0" x="350.0" y="350.0" />
-      <ImageView fx:id="menu" fitHeight="252.0" fitWidth="182.0" layoutX="518.0" layoutY="19.0" onKeyPressed="#enterPressed" pickOnBounds="true" preserveRatio="true" visible="false">
+      <!--<ImageView fx:id="menu" fitHeight="252.0" fitWidth="182.0" layoutX="518.0" layoutY="19.0" onKeyPressed="#enterPressed" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../interface/menubackground.png" />
          </image>
-      </ImageView>
+      </ImageView>-->
    </children>
 </Pane>

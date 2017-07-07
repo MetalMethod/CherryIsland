@@ -11,6 +11,7 @@ import org.academiadecodigo.bootcamp8.cherryisland.model.Player;
 import org.academiadecodigo.bootcamp8.cherryisland.service.Game;
 import org.academiadecodigo.bootcamp8.cherryisland.util.U;
 
+import javax.swing.text.html.ImageView;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -28,9 +29,6 @@ public class PlayerController implements Initializable {
 
     @FXML
     private Pane pane;
-
-    @FXML
-    private Pane menu;
 
     private Player player1;
 
@@ -144,13 +142,6 @@ public class PlayerController implements Initializable {
         scrollPane.setHmax(2500-725);
         scrollPane.setPannable(false);
 
-    }
-
-    public void enterPressed(KeyEvent keyEvent) {
-        if (keyEvent.getCode().equals(KeyCode.M) && !menu.isVisible()) {
-            menu.setVisible(true);
-        }
-        menu.setVisible(false);
     }
 
     /* Minimap
