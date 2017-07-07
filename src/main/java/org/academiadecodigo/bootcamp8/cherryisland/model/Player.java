@@ -6,10 +6,13 @@ package org.academiadecodigo.bootcamp8.cherryisland.model;
 public class Player {
 
     private GridPosition position;
+    private String username;
 
-    public Player(int col, int row) {
+    public Player(int col, int row, String username) {
+        this.username=username;
         position =  new GridPosition(col , row);
         setPosition(col,row);
+
     } // Instanciation -> Player player = new Player(new GridPosition(col, row));
 
     public GridPosition getPosition() {

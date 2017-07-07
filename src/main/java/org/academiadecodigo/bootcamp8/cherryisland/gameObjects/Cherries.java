@@ -9,5 +9,6 @@ public class Cherries extends GameObject {
 
     public Cherries(GridPosition gridPosition) {
         super(gridPosition, ObjectType.CHERRIES);
+
     }
 }
