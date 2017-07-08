@@ -238,7 +238,7 @@
       </ScrollPane>
       <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="675.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../interface/iButton.png" />
+            <Image url="@../interface/ibutton.png" />
          </image>
       </ImageView>
       <Rectangle fx:id="player" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="25.0" stroke="BLACK" strokeType="INSIDE" width="25.0" x="350.0" y="350.0" />
