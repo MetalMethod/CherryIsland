@@ -18,4 +18,6 @@ abstract public class GameObject {
     public GridPosition getGridPosition(){
         return gridPosition;
     }
+
+    public ObjectType getObjectType() {return objectType;}
 }

@@ -20,7 +20,7 @@ public class GameReceive implements Runnable {
 
     public GameReceive(Socket socket, Game game) {
         this.socket = socket;
-        this.game=game;
+        this.game = game;
     }
 
     @Override
@@ -35,7 +35,7 @@ public class GameReceive implements Runnable {
                 while ((msgRecieved = buffer.readLine()) != null) {
 
                     System.out.println(msgRecieved);
-                    final String msg2=msgRecieved;
+                    final String msg2 = msgRecieved;
 
                     if (msg2.split(" ")[1].equals("add")) {
                         Platform.runLater(new Runnable() {
@@ -65,7 +65,7 @@ public class GameReceive implements Runnable {
                         });
                     }
 
-                    if (msg2.split(" ")[1].equals("remove")){
+                    if (msg2.split(" ")[1].equals("remove")) {
                         Platform.runLater(new Runnable() {
                             @Override
                             public void run() {
@@ -77,6 +77,28 @@ public class GameReceive implements Runnable {
                             }
                         });
 
+                    }
+
+                    if (msg2.split(" ")[1].equals("move")) {
+                        Platform.runLater(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (!msg2.split(" ")[0].equals(game.getPlayerNumber())) {
+                                    int newcol = Integer.parseInt(msg2.split(" ")[2]);
+                                    int newrow = Integer.parseInt(msg2.split(" ")[3]);
+
+                                    game.moveGameObject(game.getEnemy(), newcol, newrow);
+                                }
+                            }
+                        });
+                    }
+
+                    if (msg2.split(" ")[1].equals("wins")) {
+                        if (msg2.split(" ")[0].equals(game.getPlayerNumber())) {
+                            //load "You Win!" screen
+                        } else {
+                            //load "You lose!" screen
+                        }
                     }
                 }
             }

@@ -6,6 +6,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import org.academiadecodigo.bootcamp8.cherryisland.model.Direction;
 import org.academiadecodigo.bootcamp8.cherryisland.model.Player;
 import org.academiadecodigo.bootcamp8.cherryisland.service.Game;
 import org.academiadecodigo.bootcamp8.cherryisland.util.U;
@@ -43,6 +44,7 @@ public class PlayerController implements Initializable {
         switch (event.getCode()){
 
             case UP:
+                player1.setDirection(Direction.UP);
                 System.out.println("UP");
 
                 if (player1.getPosition().getRow() == 14 ||
@@ -57,9 +59,13 @@ public class PlayerController implements Initializable {
                 System.out.println("COL: " + player1.getPosition().getCol());
                 System.out.println("ROW: " + player1.getPosition().getRow());
 
+                game.gameSend(game.getPlayerNumber()+" move "+
+                        player1.getPosition().getCol()+" "+player1.getPosition().getRow());
+                player1.loseHealth();
                 break;
 
             case DOWN:
+                player1.setDirection(Direction.DOWN);
                 System.out.println("DOWN");
 
                 if (player1.getPosition().getRow() == 85 ||
@@ -74,9 +80,13 @@ public class PlayerController implements Initializable {
                 System.out.println("COL: " + player1.getPosition().getCol());
                 System.out.println("ROW: " + player1.getPosition().getRow());
 
+                game.gameSend(game.getPlayerNumber()+" move "+
+                        player1.getPosition().getCol()+" "+player1.getPosition().getRow());
+                player1.loseHealth();
                 break;
 
             case LEFT:
+                player1.setDirection(Direction.LEFT);
                 System.out.println("LEFT");
 
                 if (player1.getPosition().getCol() == 14 ||
@@ -91,9 +101,13 @@ public class PlayerController implements Initializable {
                 System.out.println("COL: " + player1.getPosition().getCol());
                 System.out.println("ROW: " + player1.getPosition().getRow());
 
+                game.gameSend(game.getPlayerNumber()+" move "+
+                        player1.getPosition().getCol()+" "+player1.getPosition().getRow());
+                player1.loseHealth();
                 break;
 
             case RIGHT:
+                player1.setDirection(Direction.RIGHT);
                 System.out.println("RIGHT");
 
                 if (player1.getPosition().getCol() == 85 ||
@@ -108,8 +122,25 @@ public class PlayerController implements Initializable {
                 System.out.println("COL: " + player1.getPosition().getCol());
                 System.out.println("ROW: " + player1.getPosition().getRow());
 
+                game.gameSend(game.getPlayerNumber()+" move "+
+                        player1.getPosition().getCol()+" "+player1.getPosition().getRow());
+                player1.loseHealth();
+                break;
+
+            case Z:
+                System.out.println("Trying to take action");
+
+                takeAction();
+
                 break;
         }
+    }
+
+    private void takeAction(){
+        //1-check player direction
+        //2- check if there is a lake, cherries, tree or beach in the position player is facing
+        //3-take corresponding action if there is something (get health from lake, cut tree to get wood, take cherries, build boat)
+        //4-send corresponding message to server:"tree (re)move col row", "cherries (re)move col row", or "player_ wins"
     }
 
 

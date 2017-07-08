@@ -34,7 +34,29 @@
                             <mainClass>org.academiadecodigo.bootcamp8.cherryisland.server.Server</mainClass>
                         </manifest>
                     </archive>
-                    <descriptorRefs>jar-with-dependencies</descriptorRefs>
+                    <descriptorRefs>server-jar</descriptorRefs>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>org.academiadecodigo.bootcamp8.cherryisland.service.Game</mainClass>
+                        </manifest>
+                    </archive>
+                    <descriptorRefs>game-jar</descriptorRefs>
                 </configuration>
                 <executions>
                     <execution>

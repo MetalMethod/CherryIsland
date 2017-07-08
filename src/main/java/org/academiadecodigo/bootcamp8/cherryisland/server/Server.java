@@ -48,9 +48,11 @@ public class Server {
 
         try {
 
+            /*
             if (args.length > 0) {
                 port = Integer.parseInt(args[0]);
             }
+            */
 
             Server server = new Server();
             server.start(port);
@@ -113,7 +115,7 @@ public class Server {
             for(int i=0;i<positionContents.length;i++){
                 positionContents[i]="empty";
             }
-            int numberOfTrees = 250;
+            int numberOfTrees = 200;
             int numberOfCherries=50;
             //int numberOfLakes=3;
             ArrayList<String> gameObjectInit=new ArrayList<>();
@@ -173,7 +175,8 @@ public class Server {
                 thread.setName(serverWorker.getName());
                 thread.start();
             }
-            // Serve the client connection with a new Thread
+
+            // Souts for testing
             for(String s:gameObjectInit){
                 System.out.println(s);
             }

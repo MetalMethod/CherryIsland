@@ -16,4 +16,6 @@ public class U {
     public static final int GRID_COLS=100;
     public static final int LAKECOLSPAN=3;
     public static final int LAKEROWSPAN=3;
+    public static final int PLAYER_INITHEALTH=1000;
+    public static final int WOODFORBOAT=40;
 }

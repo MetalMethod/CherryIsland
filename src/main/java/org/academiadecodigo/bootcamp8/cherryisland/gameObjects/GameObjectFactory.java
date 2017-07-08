@@ -29,6 +29,10 @@ public class GameObjectFactory {
             case CHERRIES:
                 gameObject = new Cherries(gridPosition);
                 break;
+
+            case ENEMY:
+                gameObject = new Enemy(gridPosition);
+                break;
         }
 
         return gameObject;
