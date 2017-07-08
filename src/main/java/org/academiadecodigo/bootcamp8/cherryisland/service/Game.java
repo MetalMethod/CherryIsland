@@ -39,13 +39,14 @@ public class Game extends Application {
     public static String hostname;
     private String playerNumber;
     private GameObject enemy;
+    private ImageView enemyImg;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         try {
-            if(hostname != null){
-            socket = new Socket(hostname, 6666);
-            } else{
+            if (hostname != null) {
+                socket = new Socket(hostname, 6666);
+            } else {
                 socket = new Socket("127.0.0.1", 6666);
             }
 
@@ -54,9 +55,9 @@ public class Game extends Application {
             String start;
 
             gameObjectHashMap = new HashMap<>();
-            positionContents =new String[U.GRID_COLS*U.GRID_COLS];
-            for(int i=0;i<positionContents.length;i++){
-                positionContents[i]="empty";
+            positionContents = new String[U.GRID_COLS * U.GRID_COLS];
+            for (int i = 0; i < positionContents.length; i++) {
+                positionContents[i] = "empty";
             }
 
             playerNumber = reader.readLine();
@@ -73,8 +74,7 @@ public class Game extends Application {
             }
 
 
-
-            if (start.equals("start") ) {
+            if (start.equals("start")) {
 
                 Navigation.getInstance().setStage(primaryStage);
                 primaryStage.setTitle("Cherry Island");
@@ -87,21 +87,23 @@ public class Game extends Application {
                 playerController.setPlayer1(player);
 
                 gridPane = playerController.getGridPane();
-                pane=playerController.getPane();
-                scrollPane=playerController.getScrollPane();
+                pane = playerController.getPane();
+                scrollPane = playerController.getScrollPane();
 
-                if(playerNumber.equals("1")){
+                if (playerNumber.equals("1")) {
                     gameObjectHashMap.put(String.valueOf(U.P2_STARTING_COL) + String.valueOf(U.P2_STARTING_ROW), enemy);
-                    gridPane.add(new ImageView(ObjectType.ENEMY.getPath()), U.P2_STARTING_COL, U.P2_STARTING_ROW);
-                    positionContents[U.GRID_COLS*U.P2_STARTING_ROW+U.P2_STARTING_COL]="enemy";
+                    enemyImg = new ImageView(ObjectType.ENEMY.getPath());
+                    gridPane.add(enemyImg, U.P1_STARTING_COL, U.P1_STARTING_ROW);
+                    positionContents[U.GRID_COLS * U.P2_STARTING_ROW + U.P2_STARTING_COL] = "enemy";
                 }
 
-                if(playerNumber.equals("2")) {
-                  scrollPane.setVvalue(2500-725);
-                  scrollPane.setHvalue(2500-725);
+                if (playerNumber.equals("2")) {
+                    scrollPane.setVvalue(2500 - 725);
+                    scrollPane.setHvalue(2500 - 725);
                     gameObjectHashMap.put(String.valueOf(U.P1_STARTING_COL) + String.valueOf(U.P1_STARTING_ROW), enemy);
-                    gridPane.add(new ImageView(ObjectType.ENEMY.getPath()), U.P1_STARTING_COL, U.P1_STARTING_ROW);
-                    positionContents[U.GRID_COLS*U.P1_STARTING_ROW+U.P1_STARTING_COL]="enemy";
+                    enemyImg = new ImageView(ObjectType.ENEMY.getPath());
+                    gridPane.add(enemyImg, U.P1_STARTING_COL, U.P1_STARTING_ROW);
+                    positionContents[U.GRID_COLS * U.P1_STARTING_ROW + U.P1_STARTING_COL] = "enemy";
                 }
 
                 GameReceive gameReceive = new GameReceive(socket, this);
@@ -122,9 +124,9 @@ public class Game extends Application {
     }
 
     public static void main(String[] args) {
-        Game.hostname=null;
-        if(args.length > 0){
-            Game.hostname=args[0];
+        Game.hostname = null;
+        if (args.length > 0) {
+            Game.hostname = args[0];
         }
         launch(args);
     }
@@ -137,23 +139,23 @@ public class Game extends Application {
                 GameObject cherries = GameObjectFactory.getObject(ObjectType.CHERRIES, new GridPosition(col, row));
                 gameObjectHashMap.put(String.valueOf(col) + String.valueOf(row), cherries);
                 gridPane.add(new ImageView("/gameobjects/cherrytree1.png"), col, row);
-                positionContents[U.GRID_COLS*row+col]="cherries";
+                positionContents[U.GRID_COLS * row + col] = "cherries";
                 break;
 
             case TREE:
                 GameObject tree = GameObjectFactory.getObject(ObjectType.TREE, new GridPosition(col, row));
                 gameObjectHashMap.put(String.valueOf(col) + String.valueOf(row), tree);
                 gridPane.add(new ImageView("/gameobjects/tree1.png"), col, row);
-                positionContents[U.GRID_COLS*row+col]="tree";
+                positionContents[U.GRID_COLS * row + col] = "tree";
                 break;
 
             case LAKE:
                 GameObject lake = GameObjectFactory.getObject(ObjectType.LAKE, new GridPosition(col, row));
                 gameObjectHashMap.put(String.valueOf(col) + String.valueOf(row), lake);
                 gridPane.add(new ImageView("/gameobjects/lake1.png"), col, row);
-                for(int i=0;i<U.LAKECOLSPAN;i++){
-                    for(int j=-1;j<2;j++){
-                        positionContents[(j*U.GRID_COLS)+U.GRID_COLS*row+col+i]="lake";
+                for (int i = 0; i < U.LAKECOLSPAN; i++) {
+                    for (int j = -1; j < 2; j++) {
+                        positionContents[(j * U.GRID_COLS) + U.GRID_COLS * row + col + i] = "lake";
                     }
                 }
                 break;
@@ -161,38 +163,42 @@ public class Game extends Application {
         }
     }
 
-    public void removeGameObject(int col, int row){
+    public void removeGameObject(int col, int row) {
 
-        for (Node n:gridPane.getChildren()){
-            if(GridPane.getColumnIndex(n)==col && GridPane.getRowIndex(n)==row){
-                gridPane.getChildren().remove(n);
+        for (Node n : gridPane.getChildren()) {
+            if (GridPane.getColumnIndex(n) == col && GridPane.getRowIndex(n) == row) {
+                gridPane.getChildren().remove(gridPane.getChildren().indexOf(n));
             }
         }//stackoverflow says row and col(cont col and row)
-        String key = String.valueOf(col)+String.valueOf(row);
+        String key = String.valueOf(col) + String.valueOf(row);
         gameObjectHashMap.remove(key);
         System.out.println("hbouhbi");
-        positionContents[U.GRID_COLS*row+col]="empty";
+        positionContents[U.GRID_COLS * row + col] = "empty";
     }
 
-    public synchronized void moveGameObject(GameObject gameObject, int col, int row){
-        int currentcol=gameObject.getGridPosition().getCol();
-        int currentrow=gameObject.getGridPosition().getRow();
-            for (Node n : gridPane.getChildren()) {
-                if (GridPane.getColumnIndex(n) == currentcol && GridPane.getRowIndex(n) == currentrow) {
-                    gridPane.getChildren().remove(n);
-                }
-            }
-        gridPane.add(new ImageView(gameObject.getObjectType().getPath()),col,row);
+    public synchronized void moveGameObject(GameObject gameObject, int col, int row) {
+        int currentcol = gameObject.getGridPosition().getCol();
+        int currentrow = gameObject.getGridPosition().getRow();
+
+
+
+        System.out.println(col + " " + row + " " + currentcol + " " + currentrow);
+
+        gridPane.getChildren().remove(enemyImg);
+        gridPane.add(enemyImg, col, row);
+
+        enemy.getGridPosition().setCol(col);
+        enemy.getGridPosition().setRow(row);
         //stackoverflow says row and col(cont col and row)
-        String key = String.valueOf(currentcol)+String.valueOf(currentrow);
-        String keynew= String.valueOf(col)+String.valueOf(row);
+        String key = String.valueOf(currentcol) + String.valueOf(currentrow);
+        String keynew = String.valueOf(col) + String.valueOf(row);
         gameObjectHashMap.remove(key);
-        gameObjectHashMap.put(keynew,gameObject);
-        positionContents[U.GRID_COLS*currentrow+currentcol]="empty";
-        positionContents[U.GRID_COLS*row+col]=gameObject.getObjectType().getName();
+        gameObjectHashMap.put(keynew, gameObject);
+        positionContents[U.GRID_COLS * currentrow + currentcol] = "empty";
+        positionContents[U.GRID_COLS * row + col] = gameObject.getObjectType().getName();
     }
 
-    public void gameSend(String msgToSend){
+    public void gameSend(String msgToSend) {
         try {
             PrintWriter printWriter = new PrintWriter(socket.getOutputStream(), true);
 
@@ -204,11 +210,17 @@ public class Game extends Application {
 
     }
 
-    public String[] getPositionContents(){return positionContents;}
+    public String[] getPositionContents() {
+        return positionContents;
+    }
 
-    public String getPlayerNumber(){return playerNumber;}
+    public String getPlayerNumber() {
+        return playerNumber;
+    }
 
-    public GameObject getEnemy(){return enemy;}
+    public GameObject getEnemy() {
+        return enemy;
+    }
 
 
     public void movePlayer(int col, int row) {
