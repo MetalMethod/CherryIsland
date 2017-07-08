@@ -93,7 +93,7 @@ public class Game extends Application {
                 if (playerNumber.equals("1")) {
                     gameObjectHashMap.put(String.valueOf(U.P2_STARTING_COL) + String.valueOf(U.P2_STARTING_ROW), enemy);
                     enemyImg = new ImageView(ObjectType.ENEMY.getPath());
-                    gridPane.add(enemyImg, U.P1_STARTING_COL, U.P1_STARTING_ROW);
+                    gridPane.add(enemyImg, U.P2_STARTING_COL, U.P2_STARTING_ROW);
                     positionContents[U.GRID_COLS * U.P2_STARTING_ROW + U.P2_STARTING_COL] = "enemy";
                 }
 
@@ -165,11 +165,8 @@ public class Game extends Application {
 
     public void removeGameObject(int col, int row) {
 
-        for (Node n : gridPane.getChildren()) {
-            if (GridPane.getColumnIndex(n) == col && GridPane.getRowIndex(n) == row) {
-                gridPane.getChildren().remove(gridPane.getChildren().indexOf(n));
-            }
-        }//stackoverflow says row and col(cont col and row)
+        gridPane.getChildren().remove(gameObjectHashMap.get(String.valueOf(col)+String.valueOf(row)));
+        //stackoverflow says row and col(cont col and row)
         String key = String.valueOf(col) + String.valueOf(row);
         gameObjectHashMap.remove(key);
         System.out.println("hbouhbi");
