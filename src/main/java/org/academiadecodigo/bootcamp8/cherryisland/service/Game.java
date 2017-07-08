@@ -1,12 +1,14 @@
 package org.academiadecodigo.bootcamp8.cherryisland.service;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.academiadecodigo.bootcamp8.cherryisland.Navigation;
+import org.academiadecodigo.bootcamp8.cherryisland.controller.MenuController;
 import org.academiadecodigo.bootcamp8.cherryisland.controller.PlayerController;
 import org.academiadecodigo.bootcamp8.cherryisland.gameObjects.GameObject;
 import org.academiadecodigo.bootcamp8.cherryisland.gameObjects.GameObjectFactory;
@@ -29,17 +31,22 @@ import java.util.HashMap;
 public class Game extends Application {
 
     private Player player;
-    private GridPane gridPane;
     private HashMap<String, GameObject> gameObjectHashMap;
     private Pane pane;
+    private GridPane gridPane;
     private ScrollPane scrollPane;
     private Socket socket;
     private String[] positionContents;
+    private Navigation navigation;
+
+    public static void main(String[] args) {
+        launch(args);
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        navigation = Navigation.getInstance();
 
-        Navigation navigation = Navigation.getInstance();
         primaryStage.setTitle("Cherry Island");
         navigation.setStage(primaryStage);
 
@@ -48,22 +55,29 @@ public class Game extends Application {
 
         navigation.loadScreen(U.INITIAL_VIEW);
 
-        /*try {
+        MenuController menuController = (MenuController) navigation.getController(U.INITIAL_VIEW);
+        menuController.setGame(this);
+    }
+
+    public void connection() {
+        try {
             socket = new Socket("127.0.0.1", 6666);
-
             BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-
             String playerNumber;
             String start;
 
             gameObjectHashMap = new HashMap<>();
-            positionContents =new String[U.GRID_COLS*U.GRID_COLS];
-            for(int i=0;i<positionContents.length;i++){
-                positionContents[i]="empty";
+            positionContents = new String[U.GRID_COLS*U.GRID_COLS];
+            for(int i = 0; i < positionContents.length; i++){
+                positionContents[i] = "empty";
             }
+
+            System.out.println("aqui");
 
             playerNumber = reader.readLine();
             start = reader.readLine();
+
+            System.out.println("here");
 
             if (playerNumber.equals("1")) {
                 player = new Player(U.P1_STARTING_COL, U.P1_STARTING_ROW);
@@ -73,27 +87,20 @@ public class Game extends Application {
                 player = new Player(U.P2_STARTING_COL, U.P2_STARTING_ROW);
             }
 
-
-
             if (start.equals("start") ) {
-
-                Navigation.getInstance().setStage(primaryStage);
-                primaryStage.setTitle("Cherry Island");
-
-
-                Navigation.getInstance().loadScreen(U.INITIAL_VIEW);
-                PlayerController playerController = (PlayerController) Navigation.getInstance().getController(U.INITIAL_VIEW);
+                navigation.loadScreen(U.GAME_VIEW);
+                PlayerController playerController = (PlayerController) navigation.getController(U.GAME_VIEW);
                 playerController.setGame(this);
                 playerController.scrollPaneRequest();
                 playerController.setPlayer1(player);
 
                 gridPane = playerController.getGridPane();
-                pane=playerController.getPane();
-                scrollPane=playerController.getScrollPane();
+                pane = playerController.getPane();
+                scrollPane = playerController.getScrollPane();
 
                 if(playerNumber.equals("2")) {
-                  scrollPane.setVvalue(2500-725);
-                  scrollPane.setHvalue(2500-725);
+                    scrollPane.setVvalue(2500-725);
+                    scrollPane.setHvalue(2500-725);
                 }
 
                 GameReceive gameReceive = new GameReceive(socket, this);
@@ -110,11 +117,7 @@ public class Game extends Application {
 
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
-    }
-
-    public static void main(String[] args) {
-        launch(args);
+        }
     }
 
     public void addGameObject(ObjectType objectType, int col, int row) {
@@ -181,7 +184,6 @@ public class Game extends Application {
         if (g1.getCol() == g2.getCol() || g1.getRow() == g2.getRow()) {
             return true;
         }
-
 
         return false;
     }

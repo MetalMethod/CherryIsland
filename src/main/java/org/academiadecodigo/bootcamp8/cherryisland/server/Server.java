@@ -83,7 +83,7 @@ public class Server {
             System.out.println("Server started: " + serverSocket);
 
             ArrayList<PrintWriter> printWriters = new ArrayList<>();
-            ArrayList<BufferedReader> bufferedReaders=new ArrayList<>();
+            ArrayList<BufferedReader> bufferedReaders = new ArrayList<>();
 
             while (connectionCount < 2) {
 
@@ -109,57 +109,57 @@ public class Server {
 
 
             //initialize global game variables
-            String[] positionContents=new String[U.GRID_COLS*U.GRID_COLS];
-            for(int i=0;i<positionContents.length;i++){
-                positionContents[i]="empty";
+            String[] positionContents = new String[U.GRID_COLS * U.GRID_COLS];
+            for (int i = 0; i < positionContents.length; i++){
+                positionContents[i] = "empty";
             }
             int numberOfTrees = 250;
-            int numberOfCherries=50;
+            int numberOfCherries = 50;
             //int numberOfLakes=3;
             ArrayList<String> gameObjectInit=new ArrayList<>();
 
 
             //set lake location
-            int targetRow=(int)((Math.random())*(U.GREEN_COLS -1-U.LAKEROWSPAN))+U.BEACH_WIDTH+U.P1_STARTING_ROW;
-            int targetCol=(int)((Math.random())*(U.GREEN_COLS -1-U.LAKECOLSPAN))+U.BEACH_WIDTH+U.P1_STARTING_COL;
-            gameObjectInit.add("lake "+"add "+targetCol+" "+targetRow);
-            for(int i=0;i<U.LAKECOLSPAN;i++){
-                for(int j=-1;j<2;j++){
-                    positionContents[(j*U.GRID_COLS)+U.GRID_COLS*targetRow+targetCol+i]="lake";
+            int targetRow = (int)((Math.random()) * (U.GREEN_COLS - U.LAKEROWSPAN - 1)) + U.BEACH_WIDTH + U.P1_STARTING_ROW;
+            int targetCol = (int)((Math.random()) * (U.GREEN_COLS - U.LAKEROWSPAN - 1)) + U.BEACH_WIDTH + U.P1_STARTING_COL;
+            gameObjectInit.add("lake " + "add " + targetCol + " " + targetRow);
+            for (int i = 0; i < U.LAKECOLSPAN; i++){
+                for(int j = -1; j < 2; j++){
+                    positionContents[(j * U.GRID_COLS) + U.GRID_COLS * targetRow + targetCol + i] = "lake";
                 }
             }
 
 
             //set tree locations
-            for(int i=0;i<numberOfTrees;i++){
-                targetRow=(int)((Math.random())*U.GREEN_COLS)+U.BEACH_WIDTH+U.P1_STARTING_ROW;
-                targetCol=(int)((Math.random())*U.GREEN_COLS)+U.BEACH_WIDTH+U.P1_STARTING_COL;
-                while(!positionContents[U.GRID_COLS*targetRow+targetCol].equals("empty") ){
-                    targetRow=(int)((Math.random())*U.GREEN_COLS)+U.BEACH_WIDTH+U.P1_STARTING_ROW;
-                    targetCol=(int)((Math.random())*U.GREEN_COLS)+U.BEACH_WIDTH+U.P1_STARTING_COL;
+            for (int i = 0; i < numberOfTrees; i++){
+                targetRow = (int)((Math.random()) * U.GREEN_COLS) + U.BEACH_WIDTH + U.P1_STARTING_ROW;
+                targetCol = (int)((Math.random()) * U.GREEN_COLS) + U.BEACH_WIDTH + U.P1_STARTING_COL;
+                while (!positionContents[U.GRID_COLS * targetRow+targetCol].equals("empty") ){
+                    targetRow = (int)((Math.random()) * U.GREEN_COLS) + U.BEACH_WIDTH + U.P1_STARTING_ROW;
+                    targetCol = (int)((Math.random()) * U.GREEN_COLS) + U.BEACH_WIDTH + U.P1_STARTING_COL;
                 }
-                gameObjectInit.add("tree "+"add "+targetCol+" "+targetRow);
-                positionContents[U.GRID_COLS*targetRow+targetCol]="tree";
+                gameObjectInit.add("tree " + "add " + targetCol + " " + targetRow);
+                positionContents[U.GRID_COLS * targetRow + targetCol] = "tree";
             }
 
             //set cherry locations
-            for(int i=0;i<numberOfCherries;i++){
-                targetRow=(int)((Math.random())*U.GREEN_COLS)+U.BEACH_WIDTH+U.P1_STARTING_ROW;
-                targetCol=(int)((Math.random())*U.GREEN_COLS)+U.BEACH_WIDTH+U.P1_STARTING_COL;
-                while(!positionContents[U.GRID_COLS*targetRow+targetCol].equals("empty") ){
-                    targetRow=(int)((Math.random())*U.GREEN_COLS)+U.BEACH_WIDTH+U.P1_STARTING_ROW;
-                    targetCol=(int)((Math.random())*U.GREEN_COLS)+U.BEACH_WIDTH+U.P1_STARTING_COL;
+            for (int i = 0; i < numberOfCherries; i++){
+                targetRow = (int)((Math.random()) * U.GREEN_COLS) + U.BEACH_WIDTH + U.P1_STARTING_ROW;
+                targetCol = (int)((Math.random()) * U.GREEN_COLS) + U.BEACH_WIDTH + U.P1_STARTING_COL;
+                while (!positionContents[U.GRID_COLS * targetRow+targetCol].equals("empty") ){
+                    targetRow = (int)((Math.random()) * U.GREEN_COLS) + U.BEACH_WIDTH + U.P1_STARTING_ROW;
+                    targetCol = (int)((Math.random()) * U.GREEN_COLS) + U.BEACH_WIDTH + U.P1_STARTING_COL;
                 }
-                gameObjectInit.add("cherries "+"add "+targetCol+" "+targetRow);
-                positionContents[U.GRID_COLS*targetRow+targetCol]="cherries";
+                gameObjectInit.add("cherries " + "add " + targetCol + " " + targetRow);
+                positionContents[U.GRID_COLS * targetRow + targetCol] = "cherries";
             }
 
             //tell all players to start game and send them information about global game variables (tree positions, etc)
-            for (int i=1;i<printWriters.size()+1;i++) {
-                printWriters.get(i-1).println(i);
-                printWriters.get(i-1).println("start");
+            for (int i = 0; i < printWriters.size(); i++){
+                printWriters.get(i - 1).println(i);
+                printWriters.get(i - 1).println("start");
                 //send strings with global game variables
-                String str=bufferedReaders.get(i-1).readLine();
+                String str = bufferedReaders.get(i - 1).readLine();
                 if(str.equals("start")) {
                     for (String s : gameObjectInit) {
                         printWriters.get(i - 1).println(s);
@@ -174,7 +174,7 @@ public class Server {
                 thread.start();
             }
             // Serve the client connection with a new Thread
-            for(String s:gameObjectInit){
+            for(String s : gameObjectInit){
                 System.out.println(s);
             }
 

@@ -51,7 +51,7 @@
             <Font name="Avenir Heavy" size="20.0" />
          </font>
       </Label>
-      <Button fx:id="readyButton" mnemonicParsing="false" onAction="#onRegisterButtonClick" prefHeight="27.0" prefWidth="73.2" style="-fx-background-color: red;" text="Ready" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+      <Button fx:id="readyButton" mnemonicParsing="false" onAction="#onReadyButtonClick" prefHeight="27.0" prefWidth="73.2" style="-fx-background-color: red;" text="Ready" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="4">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
