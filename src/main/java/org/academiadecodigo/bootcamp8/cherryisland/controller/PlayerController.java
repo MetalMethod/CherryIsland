@@ -2,8 +2,9 @@ package org.academiadecodigo.bootcamp8.cherryisland.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -11,7 +12,6 @@ import org.academiadecodigo.bootcamp8.cherryisland.model.Player;
 import org.academiadecodigo.bootcamp8.cherryisland.service.Game;
 import org.academiadecodigo.bootcamp8.cherryisland.util.U;
 
-import javax.swing.text.html.ImageView;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -29,6 +29,15 @@ public class PlayerController implements Initializable {
 
     @FXML
     private Pane pane;
+
+    @FXML
+    private Label logCounter;
+
+    @FXML
+    private Label cherryCounter;
+
+    @FXML
+    private ProgressBar hpBar;
 
     private Player player1;
 
