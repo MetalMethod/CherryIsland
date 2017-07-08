@@ -1,6 +1,7 @@
 package org.academiadecodigo.bootcamp8.cherryisland.service;
 
 import javafx.application.Platform;
+import org.academiadecodigo.bootcamp8.cherryisland.Navigation;
 import org.academiadecodigo.bootcamp8.cherryisland.gameObjects.ObjectType;
 import org.academiadecodigo.bootcamp8.cherryisland.util.U;
 
@@ -95,9 +96,9 @@ public class GameReceive implements Runnable {
 
                     if (msg2.split(" ")[1].equals("wins")) {
                         if (msg2.split(" ")[0].equals(game.getPlayerNumber())) {
-                            //load "You Win!" screen
+                            Navigation.getInstance().loadScreen("youwin");
                         } else {
-                            //load "You lose!" screen
+                            Navigation.getInstance().loadScreen("youlose");
                         }
                     }
                 }

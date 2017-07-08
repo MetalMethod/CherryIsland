@@ -62,6 +62,7 @@ public class PlayerController implements Initializable {
                 game.gameSend(game.getPlayerNumber()+" move "+
                         player1.getPosition().getCol()+" "+player1.getPosition().getRow());
                 player1.loseHealth();
+
                 break;
 
             case DOWN:
@@ -130,18 +131,15 @@ public class PlayerController implements Initializable {
             case Z:
                 System.out.println("Trying to take action");
 
-                takeAction();
+                game.takeAction();
 
                 break;
         }
+        updateSprite(player1.getDirection());
+        game.checkPlayerHealth();
     }
 
-    private void takeAction(){
-        //1-check player direction
-        //2- check if there is a lake, cherries, tree or beach in the position player is facing
-        //3-take corresponding action if there is something (get health from lake, cut tree to get wood, take cherries, build boat)
-        //4-send corresponding message to server:"tree (re)move col row", "cherries (re)move col row", or "player_ wins"
-    }
+
 
 
     public void setGame(Game game) {
@@ -180,6 +178,10 @@ public class PlayerController implements Initializable {
         enemy.setY( row + 8);//magic number is vertical padding
     }
     */
+
+    private void updateSprite(Direction dir){
+
+    }
 
 }
 

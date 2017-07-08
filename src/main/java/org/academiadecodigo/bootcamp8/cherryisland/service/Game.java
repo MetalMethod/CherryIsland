@@ -3,6 +3,7 @@ package org.academiadecodigo.bootcamp8.cherryisland.service;
 import javafx.application.Application;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -12,6 +13,7 @@ import org.academiadecodigo.bootcamp8.cherryisland.controller.PlayerController;
 import org.academiadecodigo.bootcamp8.cherryisland.gameObjects.GameObject;
 import org.academiadecodigo.bootcamp8.cherryisland.gameObjects.GameObjectFactory;
 import org.academiadecodigo.bootcamp8.cherryisland.gameObjects.ObjectType;
+import org.academiadecodigo.bootcamp8.cherryisland.model.Direction;
 import org.academiadecodigo.bootcamp8.cherryisland.model.GridPosition;
 import org.academiadecodigo.bootcamp8.cherryisland.model.Player;
 import org.academiadecodigo.bootcamp8.cherryisland.util.U;
@@ -165,18 +167,21 @@ public class Game extends Application {
 
     public void removeGameObject(int col, int row) {
 
-        gridPane.getChildren().remove(gameObjectHashMap.get(String.valueOf(col)+String.valueOf(row)));
+        for(Node n:gridPane.getChildren()){
+            if(GridPane.getRowIndex(n)==row && GridPane.getColumnIndex(n)==col){
+                ((ImageView)n).setImage(null);
+            }
+        }
+        gridPane.getChildren().remove(gameObjectHashMap.get(String.valueOf(col) + String.valueOf(row)));
         //stackoverflow says row and col(cont col and row)
         String key = String.valueOf(col) + String.valueOf(row);
         gameObjectHashMap.remove(key);
-        System.out.println("hbouhbi");
         positionContents[U.GRID_COLS * row + col] = "empty";
     }
 
     public synchronized void moveGameObject(GameObject gameObject, int col, int row) {
         int currentcol = gameObject.getGridPosition().getCol();
         int currentrow = gameObject.getGridPosition().getRow();
-
 
 
         System.out.println(col + " " + row + " " + currentcol + " " + currentrow);
@@ -207,6 +212,64 @@ public class Game extends Application {
 
     }
 
+    public void takeAction() {
+        Direction dir = player.getDirection();
+        int playerpos = U.GRID_COLS * player.getPosition().getRow() + player.getPosition().getCol();
+        int facingpos = 0;
+        switch (dir) {
+            case UP:
+                facingpos = playerpos - U.GRID_COLS;
+                break;
+            case LEFT:
+                facingpos = playerpos - 1;
+                break;
+            case RIGHT:
+                facingpos = playerpos + 1;
+                break;
+            case DOWN:
+                facingpos = playerpos + U.GRID_COLS;
+                break;
+        }
+        int facingCol = facingpos % U.GRID_COLS;
+        int facingRow = (facingpos / U.GRID_COLS);
+        switch (positionContents[facingpos]) {
+            case "lake":
+                player.raiseHealth(U.LAKE_HEAL_AMOUNT);
+                break;
+            case "cherries":
+                removeGameObject(facingCol, facingRow);
+                player.raiseHealth(U.CHERRY_HEAL_AMOUNT);
+                gameSend("cherries remove " + facingCol + " " + facingRow);
+                break;
+            case "tree":
+                removeGameObject(facingCol, facingRow);
+                player.getWood();
+                gameSend("tree remove " + facingCol + " " + facingRow);
+                break;
+            default:
+                if (player.getPosition().getCol() == 14 ||
+                        player.getPosition().getCol() == 85 || player.getPosition().getRow() == 14
+                        || player.getPosition().getRow() == 85) {
+                    boolean hasBuilt = player.buildBoat();
+                    if (hasBuilt) {
+                        gameSend(playerNumber + " wins");
+                    }
+                }
+                break;
+
+        }
+        //1-check player direction
+        //2- check if there is a lake, cherries, tree or beach in the position player is facing
+        //3-take corresponding action if there is something (get health from lake, cut tree to get wood, take cherries, build boat)
+        //4-send corresponding message to server:"tree (re)move col row", "cherries (re)move col row", or "player_ wins"
+    }
+
+    public void checkPlayerHealth(){
+        if(player.getHealth() <=0){
+            Navigation.getInstance().loadScreen("youlose");
+        }
+    }
+
     public String[] getPositionContents() {
         return positionContents;
     }
@@ -231,4 +294,6 @@ public class Game extends Application {
         }
         return false;
     }
+
+
 }

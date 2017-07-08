@@ -17,8 +17,8 @@ public class Player {
         return health;
     }
 
-    public void raiseHealth() {
-        health++;
+    public void raiseHealth(int amount) {
+        health=health+amount;
     }
 
     public void loseHealth(){
@@ -55,5 +55,18 @@ public class Player {
         position.setRow(row);
     }
 
+    public void getWood(){
+        woodcount++;
+    }
 
+    public int getWoodcount(){
+        return woodcount;
+    }
+
+    public boolean buildBoat(){
+        if(woodcount >= U.WOODFORBOAT){
+            return true;
+        }
+        return false;
+    }
 }
