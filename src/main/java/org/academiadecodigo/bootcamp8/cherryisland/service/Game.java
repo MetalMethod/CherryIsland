@@ -7,6 +7,9 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import org.academiadecodigo.bootcamp8.cherryisland.Navigation;
 import org.academiadecodigo.bootcamp8.cherryisland.controller.GameController;
@@ -16,12 +19,10 @@ import org.academiadecodigo.bootcamp8.cherryisland.gameObjects.ObjectType;
 import org.academiadecodigo.bootcamp8.cherryisland.model.Direction;
 import org.academiadecodigo.bootcamp8.cherryisland.model.GridPosition;
 import org.academiadecodigo.bootcamp8.cherryisland.model.Player;
+import org.academiadecodigo.bootcamp8.cherryisland.sound.Sound;
 import org.academiadecodigo.bootcamp8.cherryisland.util.U;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
 import java.util.HashMap;
 
@@ -43,6 +44,7 @@ public class Game extends Application {
     private GameObject enemy;
     private ImageView enemyImg;
     private Label woodUpdate;
+    private Sound sound;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -84,6 +86,7 @@ public class Game extends Application {
 
 
                 Navigation.getInstance().loadScreen(U.INITIAL_VIEW);
+
                 GameController gameController = (GameController) Navigation.getInstance().getController(U.INITIAL_VIEW);
                 gameController.setGame(this);
                 gameController.scrollPaneRequest();
@@ -163,6 +166,17 @@ public class Game extends Application {
                     }
                 }
                 break;
+
+            case BOAT:
+                GameObject boat = GameObjectFactory.getObject(ObjectType.BOAT, new GridPosition(col, row));
+                gameObjectHashMap.put(String.valueOf(col) + String.valueOf(row), boat);
+                gridPane.add(new ImageView("/gameobjects/boat.png"), col, row);
+                for (int i = 0; i < U.BOAT_COLSPAN; i++) {
+                    for (int j = -1; j < 2; j++) {
+                        positionContents[(j * U.GRID_COLS) + U.GRID_COLS * row + col + i] = "boat";
+                    }
+                }
+                break;
         }
 
     }
@@ -211,7 +225,6 @@ public class Game extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public void takeAction() {
@@ -239,7 +252,6 @@ public class Game extends Application {
                 player.raiseHealth(U.LAKE_HEAL_AMOUNT);
                 break;
             case "cherries":
-                removeGameObject(facingCol, facingRow);
                 player.raiseHealth(U.CHERRY_HEAL_AMOUNT);
                 gameSend("cherries remove " + facingCol + " " + facingRow);
                 break;
@@ -247,11 +259,17 @@ public class Game extends Application {
                 if (!player.carryMoreWood()) {
                     break;
                 }
-                removeGameObject(facingCol, facingRow);
                 player.pickWood();
                 gameSend("tree remove " + facingCol + " " + facingRow);
                 break;
+            case "boat":
+                player.depositWood();
+                if(player.buildBoat()){
+                    gameSend(playerNumber+" wins");
+                }
+                break;
             default:
+                /*
                 if (player.getPosition().getCol() == 14 ||
                         player.getPosition().getCol() == 85 || player.getPosition().getRow() == 14
                         || player.getPosition().getRow() == 85) {
@@ -260,6 +278,7 @@ public class Game extends Application {
                         gameSend(playerNumber + " wins");
                     }
                 }
+                */
                 break;
 
         }
