@@ -3,7 +3,6 @@ package org.academiadecodigo.bootcamp8.cherryisland.service;
 import javafx.application.Platform;
 import org.academiadecodigo.bootcamp8.cherryisland.Navigation;
 import org.academiadecodigo.bootcamp8.cherryisland.gameObjects.ObjectType;
-import org.academiadecodigo.bootcamp8.cherryisland.util.U;
 
 import java.io.BufferedReader;
 import java.io.IOException;

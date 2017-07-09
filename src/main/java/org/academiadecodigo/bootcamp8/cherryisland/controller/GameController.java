@@ -13,7 +13,7 @@ import javafx.scene.layout.Pane;
 import org.academiadecodigo.bootcamp8.cherryisland.model.Direction;
 import org.academiadecodigo.bootcamp8.cherryisland.model.Player;
 import org.academiadecodigo.bootcamp8.cherryisland.service.Game;
-import org.academiadecodigo.bootcamp8.cherryisland.util.U;
+import org.academiadecodigo.bootcamp8.cherryisland.util.Utils;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -72,7 +72,7 @@ public class GameController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        woodCounterMax.setText("/ " + U.MAX_WOOD_CARRY);
+        woodCounterMax.setText("/ " + Utils.MAX_WOOD_CARRY);
 
         scrollPane.setVmax(2500-725);
         scrollPane.setHmax(2500-725);
@@ -99,16 +99,16 @@ public class GameController implements Initializable {
                 System.out.println("UP");
 
                 if (player.getPosition().getRow() == 14 ||
-                        (!game.getPositionContents()[U.GRID_COLS*(player.getPosition().getRow()-1)
+                        (!game.getPositionContents()[Utils.GRID_COLS*(player.getPosition().getRow()-1)
                                 + player.getPosition().getCol()].equals("empty")&&
-                                !game.getPositionContents()[U.GRID_COLS*(player.getPosition().getRow()-1)
+                                !game.getPositionContents()[Utils.GRID_COLS*(player.getPosition().getRow()-1)
                                         + player.getPosition().getCol()].equals("boat"))){
                     updateSprite(player.getDirection());
                     return;
                 }
 
                 player.setPosition(player.getPosition().getCol(), player.getPosition().getRow() - 1);
-                scrollPane.setVvalue(scrollPane.getVvalue() - U.COL_ROW_SIZE);
+                scrollPane.setVvalue(scrollPane.getVvalue() - Utils.COL_ROW_SIZE);
 
                 System.out.println("COL: " + player.getPosition().getCol());
                 System.out.println("ROW: " + player.getPosition().getRow());
@@ -124,16 +124,16 @@ public class GameController implements Initializable {
                 System.out.println("DOWN");
 
                 if (player.getPosition().getRow() == 85 ||
-                        (!game.getPositionContents()[U.GRID_COLS*(player.getPosition().getRow()+1)
+                        (!game.getPositionContents()[Utils.GRID_COLS*(player.getPosition().getRow()+1)
                                 + player.getPosition().getCol()].equals("empty")&&
-                                !game.getPositionContents()[U.GRID_COLS*(player.getPosition().getRow()+1)
+                                !game.getPositionContents()[Utils.GRID_COLS*(player.getPosition().getRow()+1)
                                         + player.getPosition().getCol()].equals("boat"))){
                     updateSprite(player.getDirection());
                     return;
                 }
 
                 player.setPosition(player.getPosition().getCol(), player.getPosition().getRow() +1);
-                scrollPane.setVvalue(scrollPane.getVvalue() + U.COL_ROW_SIZE);
+                scrollPane.setVvalue(scrollPane.getVvalue() + Utils.COL_ROW_SIZE);
 
                 System.out.println("COL: " + player.getPosition().getCol());
                 System.out.println("ROW: " + player.getPosition().getRow());
@@ -149,16 +149,16 @@ public class GameController implements Initializable {
                 System.out.println("LEFT");
 
                 if (player.getPosition().getCol() == 14 ||
-                        (!game.getPositionContents()[U.GRID_COLS*(player.getPosition().getRow())
+                        (!game.getPositionContents()[Utils.GRID_COLS*(player.getPosition().getRow())
                                 + player.getPosition().getCol()-1].equals("empty")&&
-                                !game.getPositionContents()[U.GRID_COLS*(player.getPosition().getRow())
+                                !game.getPositionContents()[Utils.GRID_COLS*(player.getPosition().getRow())
                                         + player.getPosition().getCol()-1].equals("boat"))){
                     updateSprite(player.getDirection());
                     return;
                 }
 
                 player.setPosition(player.getPosition().getCol() - 1, player.getPosition().getRow());
-                scrollPane.setHvalue(scrollPane.getHvalue() - U.COL_ROW_SIZE);
+                scrollPane.setHvalue(scrollPane.getHvalue() - Utils.COL_ROW_SIZE);
 
                 System.out.println("COL: " + player.getPosition().getCol());
                 System.out.println("ROW: " + player.getPosition().getRow());
@@ -174,16 +174,16 @@ public class GameController implements Initializable {
                 System.out.println("RIGHT");
 
                 if (player.getPosition().getCol() == 85 ||
-                        (!game.getPositionContents()[U.GRID_COLS*(player.getPosition().getRow())
+                        (!game.getPositionContents()[Utils.GRID_COLS*(player.getPosition().getRow())
                                 + player.getPosition().getCol()+1].equals("empty")&&
-                                !game.getPositionContents()[U.GRID_COLS*(player.getPosition().getRow())
+                                !game.getPositionContents()[Utils.GRID_COLS*(player.getPosition().getRow())
                                         + player.getPosition().getCol()+1].equals("boat"))){
                     updateSprite(player.getDirection());
                     return;
                 }
 
                 player.setPosition(player.getPosition().getCol() + 1 , player.getPosition().getRow());
-                scrollPane.setHvalue(scrollPane.getHvalue() + U.COL_ROW_SIZE);
+                scrollPane.setHvalue(scrollPane.getHvalue() + Utils.COL_ROW_SIZE);
 
                 System.out.println("COL: " + player.getPosition().getCol());
                 System.out.println("ROW: " + player.getPosition().getRow());
@@ -209,7 +209,7 @@ public class GameController implements Initializable {
                 break;
         }
         game.checkPlayerHealth();
-        hpBar.setProgress((double) player.getHealth()/U.PLAYER_INIT_HEALTH);
+        hpBar.setProgress((double) player.getHealth()/Utils.PLAYER_INIT_HEALTH);
         System.out.println("Player health: -------- " + player.getHealth());
     }
 

@@ -1,6 +1,6 @@
 package org.academiadecodigo.bootcamp8.cherryisland.model;
 
-import org.academiadecodigo.bootcamp8.cherryisland.util.U;
+import org.academiadecodigo.bootcamp8.cherryisland.util.Utils;
 
 /**
  * Created by dgcst on 30/06/17.
@@ -19,7 +19,7 @@ public class Player {
         //this.username=username;
         position = new GridPosition(col, row);
         setPosition(col, row);
-        health = U.PLAYER_INIT_HEALTH;
+        health = Utils.PLAYER_INIT_HEALTH;
         woodCount = 0;
         woodInBoat=0;
 
@@ -30,10 +30,10 @@ public class Player {
     }
 
     public void raiseHealth(int amount) {
-        if (health < U.PLAYER_INIT_HEALTH) {
+        if (health < Utils.PLAYER_INIT_HEALTH) {
             health = health + amount;
-            if (health > U.PLAYER_INIT_HEALTH) {
-                health = U.PLAYER_INIT_HEALTH;
+            if (health > Utils.PLAYER_INIT_HEALTH) {
+                health = Utils.PLAYER_INIT_HEALTH;
             }
         }
         System.out.println("Player health: "+health);
@@ -75,15 +75,11 @@ public class Player {
     }
 
     public boolean carryMoreWood() {
-        return woodCount < U.MAX_WOOD_CARRY;
-    }
-
-    public int getWoodCount(){
-        return woodCount;
+        return woodCount < Utils.MAX_WOOD_CARRY;
     }
 
     public boolean buildBoat() {
-        return woodInBoat >= U.WOOD_FOR_BOAT;
+        return woodInBoat >= Utils.WOOD_FOR_BOAT;
     }
 
     public void depositWood(){

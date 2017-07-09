@@ -12,7 +12,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import org.academiadecodigo.bootcamp8.cherryisland.util.U;
+import org.academiadecodigo.bootcamp8.cherryisland.util.Utils;
 
 import java.io.*;
 
@@ -21,27 +21,9 @@ import java.io.*;
  */
 public class Server {
 
-    /**
-     * Default port to run the server on
-     */
     public final static int DEFAULT_PORT = 6666;
+    private List<ServerWorker> workers;
 
-    /**
-     * Graphical field
-     */
-
-
-    /**
-     * Synchronized List of worker threads, locked by itself
-     */
-    private List<ServerWorker> workers = Collections.synchronizedList(new ArrayList<ServerWorker>());
-
-
-    /**
-     * Bootstraps the chat server
-     *
-     * @param args Optional port number as command line argument
-     */
     public static void main(String[] args) {
 
         int port = DEFAULT_PORT;
@@ -66,12 +48,9 @@ public class Server {
 
     }
 
-    /**
-     * Starts the server on a specified port
-     *
-     * @param port the tcp port to bind to
-     */
     public void start(int port) {
+
+        workers = Collections.synchronizedList(new ArrayList<ServerWorker>());
 
         System.out.println("DEBUG: Server instance is : " + this);
 
@@ -111,71 +90,72 @@ public class Server {
 
 
             //initialize global game variables
-            String[] positionContents=new String[U.GRID_COLS*U.GRID_COLS];
-            for(int i=0;i<positionContents.length;i++){
-                positionContents[i]="empty";
+            String[] positionContents = new String[Utils.GRID_COLS * Utils.GRID_COLS];
+            for(int i = 0; i < positionContents.length;i ++){
+                positionContents[i] = "empty";
             }
             //int numberOfLakes=3;
-            ArrayList<String> gameObjectInit=new ArrayList<>();
+            ArrayList<String> gameObjectInit = new ArrayList<>();
 
 
             //set lake location
-            int targetRow=(int)((Math.random())*(U.GREEN_COLS -1-U.LAKE_ROW_SPAN))+U.BEACH_WIDTH+U.P1_STARTING_ROW;
-            int targetCol=(int)((Math.random())*(U.GREEN_COLS -1-U.LAKE_COL_SPAN))+U.BEACH_WIDTH+U.P1_STARTING_COL;
-            gameObjectInit.add("lake "+"add "+targetCol+" "+targetRow);
-            for(int i = 0; i<U.LAKE_COL_SPAN; i++){
+            int targetRow=(int)((Math.random())*(Utils.GREEN_COLS -1- Utils.LAKE_ROW_SPAN))+ Utils.BEACH_WIDTH+ Utils.P1_STARTING_ROW;
+            int targetCol=(int)((Math.random())*(Utils.GREEN_COLS -1- Utils.LAKE_COL_SPAN))+ Utils.BEACH_WIDTH+ Utils.P1_STARTING_COL;
+            gameObjectInit.add("lake " + "add " + targetCol + " " + targetRow);
+            for(int i = 0; i< Utils.LAKE_COL_SPAN; i++){
                 for(int j=-1;j<2;j++){
-                    positionContents[(j*U.GRID_COLS)+U.GRID_COLS*targetRow+targetCol+i]="lake";
+                    positionContents[(j* Utils.GRID_COLS)+ Utils.GRID_COLS*targetRow+targetCol+i]="lake";
                 }
             }
 
             //set boat location
-            targetRow=(int)((Math.random())*(U.GREEN_COLS+2*U.BEACH_WIDTH-1-U.BOAT_ROWSPAN)) +U.P1_STARTING_ROW;
-            targetCol=(int)((Math.random())*(U.GREEN_COLS+2*U.BEACH_WIDTH-1-U.BOAT_COLSPAN)) +U.P1_STARTING_COL;
-            int maxRow=U.P1_STARTING_ROW + U.GREEN_COLS+2*U.BEACH_WIDTH-U.BOAT_ROWSPAN-2;
-            int maxCol=U.P1_STARTING_COL + U.GREEN_COLS+2*U.BEACH_WIDTH-U.BOAT_COLSPAN-2;
-            while(targetRow != U.P1_STARTING_ROW && targetRow !=maxRow && targetCol != U.P1_STARTING_COL && targetCol !=maxCol){
-                targetRow=(int)((Math.random())*(U.GREEN_COLS+2*U.BEACH_WIDTH-1-U.BOAT_ROWSPAN)) +U.P1_STARTING_ROW;
-                targetCol=(int)((Math.random())*(U.GREEN_COLS+2*U.BEACH_WIDTH-1-U.BOAT_COLSPAN)) +U.P1_STARTING_COL;
+            targetRow=(int)((Math.random())*(Utils.GREEN_COLS+2*Utils.BEACH_WIDTH-1-Utils.BOAT_ROWSPAN)) +Utils.P1_STARTING_ROW;
+            targetCol=(int)((Math.random())*(Utils.GREEN_COLS+2*Utils.BEACH_WIDTH-1-Utils.BOAT_COLSPAN)) +Utils.P1_STARTING_COL;
+            int maxRow=Utils.P1_STARTING_ROW + Utils.GREEN_COLS+2*Utils.BEACH_WIDTH-Utils.BOAT_ROWSPAN-2;
+            int maxCol=Utils.P1_STARTING_COL + Utils.GREEN_COLS+2*Utils.BEACH_WIDTH-Utils.BOAT_COLSPAN-2;
+            while(targetRow != Utils.P1_STARTING_ROW && targetRow !=maxRow && targetCol != Utils.P1_STARTING_COL && targetCol !=maxCol){
+                targetRow=(int)((Math.random())*(Utils.GREEN_COLS+2*Utils.BEACH_WIDTH-1-Utils.BOAT_ROWSPAN)) +Utils.P1_STARTING_ROW;
+                targetCol=(int)((Math.random())*(Utils.GREEN_COLS+2*Utils.BEACH_WIDTH-1-Utils.BOAT_COLSPAN)) +Utils.P1_STARTING_COL;
             }
             gameObjectInit.add("boat "+"add "+targetCol+" "+targetRow);
-            for(int i = 0; i<U.BOAT_COLSPAN; i++){
+            for(int i = 0; i<Utils.BOAT_COLSPAN; i++){
                 for(int j=-1;j<2;j++){
-                    positionContents[(j*U.GRID_COLS)+U.GRID_COLS*targetRow+targetCol+i]="boat";
+                    positionContents[(j*Utils.GRID_COLS)+Utils.GRID_COLS*targetRow+targetCol+i]="boat";
                 }
             }
             System.out.println("boat col: "+targetCol+" boat row: "+targetRow);
 
+
             //set tree locations
-            for(int i=0;i<U.NUMBER_OF_TREES;i++){
-                targetRow=(int)((Math.random())*U.GREEN_COLS)+U.BEACH_WIDTH+U.P1_STARTING_ROW;
-                targetCol=(int)((Math.random())*U.GREEN_COLS)+U.BEACH_WIDTH+U.P1_STARTING_COL;
-                while(!positionContents[U.GRID_COLS*targetRow+targetCol].equals("empty") ){
-                    targetRow=(int)((Math.random())*U.GREEN_COLS)+U.BEACH_WIDTH+U.P1_STARTING_ROW;
-                    targetCol=(int)((Math.random())*U.GREEN_COLS)+U.BEACH_WIDTH+U.P1_STARTING_COL;
+            for(int i = 0; i< Utils.NUMBER_OF_TREES; i++){
+                targetRow=(int)((Math.random())* Utils.GREEN_COLS)+ Utils.BEACH_WIDTH+ Utils.P1_STARTING_ROW;
+                targetCol=(int)((Math.random())* Utils.GREEN_COLS)+ Utils.BEACH_WIDTH+ Utils.P1_STARTING_COL;
+                while(!positionContents[Utils.GRID_COLS*targetRow+targetCol].equals("empty") ){
+                    targetRow=(int)((Math.random())* Utils.GREEN_COLS)+ Utils.BEACH_WIDTH+ Utils.P1_STARTING_ROW;
+                    targetCol=(int)((Math.random())* Utils.GREEN_COLS)+ Utils.BEACH_WIDTH+ Utils.P1_STARTING_COL;
                 }
                 gameObjectInit.add("tree "+"add "+targetCol+" "+targetRow);
-                positionContents[U.GRID_COLS*targetRow+targetCol]="tree";
+                positionContents[Utils.GRID_COLS*targetRow+targetCol]="tree";
             }
 
+
             //set cherry locations
-            for(int i=0;i<U.NUMBER_OF_CHERRIES;i++){
-                targetRow=(int)((Math.random())*U.GREEN_COLS)+U.BEACH_WIDTH+U.P1_STARTING_ROW;
-                targetCol=(int)((Math.random())*U.GREEN_COLS)+U.BEACH_WIDTH+U.P1_STARTING_COL;
-                while(!positionContents[U.GRID_COLS*targetRow+targetCol].equals("empty") ){
-                    targetRow=(int)((Math.random())*U.GREEN_COLS)+U.BEACH_WIDTH+U.P1_STARTING_ROW;
-                    targetCol=(int)((Math.random())*U.GREEN_COLS)+U.BEACH_WIDTH+U.P1_STARTING_COL;
+            for(int i = 0; i < Utils.NUMBER_OF_CHERRIES; i++){
+                targetRow=(int)((Math.random())* Utils.GREEN_COLS)+ Utils.BEACH_WIDTH+ Utils.P1_STARTING_ROW;
+                targetCol=(int)((Math.random())* Utils.GREEN_COLS)+ Utils.BEACH_WIDTH+ Utils.P1_STARTING_COL;
+                while(!positionContents[Utils.GRID_COLS*targetRow+targetCol].equals("empty") ){
+                    targetRow=(int)((Math.random())* Utils.GREEN_COLS)+ Utils.BEACH_WIDTH+ Utils.P1_STARTING_ROW;
+                    targetCol=(int)((Math.random())* Utils.GREEN_COLS)+ Utils.BEACH_WIDTH+ Utils.P1_STARTING_COL;
                 }
                 gameObjectInit.add("cherries "+"add "+targetCol+" "+targetRow);
-                positionContents[U.GRID_COLS*targetRow+targetCol]="cherries";
+                positionContents[Utils.GRID_COLS*targetRow+targetCol]="cherries";
             }
 
             //tell all players to start game and send them information about global game variables (tree positions, etc)
-            for (int i=1;i<printWriters.size()+1;i++) {
-                printWriters.get(i-1).println(i);
-                printWriters.get(i-1).println("start");
-                //send strings with global game variables
-                String str=bufferedReaders.get(i-1).readLine();
+            for (int i = 1; i < printWriters.size() + 1; i++) {
+                printWriters.get(i - 1).println(i);
+                printWriters.get(i - 1).println("start");
+                String str = bufferedReaders.get(i - 1).readLine();
                 if(str.equals("start")) {
                     for (String s : gameObjectInit) {
                         printWriters.get(i - 1).println(s);

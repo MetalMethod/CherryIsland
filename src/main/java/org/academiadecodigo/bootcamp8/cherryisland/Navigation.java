@@ -1,5 +1,6 @@
 package org.academiadecodigo.bootcamp8.cherryisland;
 
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
