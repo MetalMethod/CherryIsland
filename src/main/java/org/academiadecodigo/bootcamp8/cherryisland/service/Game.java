@@ -21,10 +21,7 @@ import org.academiadecodigo.bootcamp8.cherryisland.util.Utils;
 import org.academiadecodigo.bootcamp8.cherryisland.sound.Sound;
 import org.academiadecodigo.bootcamp8.cherryisland.sound.SoundEnum;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
 import java.util.HashMap;
 
@@ -216,6 +213,17 @@ public class Game extends Application {
                     }
                 }
                 break;
+
+            case BOAT:
+                GameObject boat = GameObjectFactory.getObject(ObjectType.BOAT, new GridPosition(col, row));
+                gameObjectHashMap.put(String.valueOf(col) + String.valueOf(row), boat);
+                gridPane.add(new ImageView("/gameobjects/boat.png"), col, row);
+                for (int i = 0; i < Utils.BOAT_COLSPAN; i++) {
+                    for (int j = -1; j < 2; j++) {
+                        positionContents[(j * Utils.GRID_COLS) + Utils.GRID_COLS * row + col + i] = "boat";
+                    }
+                }
+                break;
         }
 
     }
@@ -296,7 +304,6 @@ public class Game extends Application {
 
             case "cherries":
                 cherries.play(true);
-                removeGameObject(facingCol, facingRow);
                 player.raiseHealth(Utils.CHERRY_HEAL_AMOUNT);
                 gameSend("cherries remove " + facingCol + " " + facingRow);
                 break;
@@ -306,12 +313,19 @@ public class Game extends Application {
                 if (!player.carryMoreWood()) {
                     break;
                 }
-                removeGameObject(facingCol, facingRow);
                 player.pickWood();
                 gameSend("tree remove " + facingCol + " " + facingRow);
                 break;
 
+            case "boat":
+                player.depositWood();
+                if(player.buildBoat()){
+                    gameSend(playerNumber+" wins");
+                }
+                break;
+
             default:
+                /*
                 if (player.getPosition().getCol() == 14 ||
                         player.getPosition().getCol() == 85 || player.getPosition().getRow() == 14
                         || player.getPosition().getRow() == 85) {
@@ -320,6 +334,7 @@ public class Game extends Application {
                         gameSend(playerNumber + " wins");
                     }
                 }
+                */
                 break;
 
         }

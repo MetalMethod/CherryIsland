@@ -108,6 +108,23 @@ public class Server {
                 }
             }
 
+            //set boat location
+            targetRow=(int)((Math.random())*(Utils.GREEN_COLS+2*Utils.BEACH_WIDTH-1-Utils.BOAT_ROWSPAN)) +Utils.P1_STARTING_ROW;
+            targetCol=(int)((Math.random())*(Utils.GREEN_COLS+2*Utils.BEACH_WIDTH-1-Utils.BOAT_COLSPAN)) +Utils.P1_STARTING_COL;
+            int maxRow=Utils.P1_STARTING_ROW + Utils.GREEN_COLS+2*Utils.BEACH_WIDTH-Utils.BOAT_ROWSPAN-2;
+            int maxCol=Utils.P1_STARTING_COL + Utils.GREEN_COLS+2*Utils.BEACH_WIDTH-Utils.BOAT_COLSPAN-2;
+            while(targetRow != Utils.P1_STARTING_ROW && targetRow !=maxRow && targetCol != Utils.P1_STARTING_COL && targetCol !=maxCol){
+                targetRow=(int)((Math.random())*(Utils.GREEN_COLS+2*Utils.BEACH_WIDTH-1-Utils.BOAT_ROWSPAN)) +Utils.P1_STARTING_ROW;
+                targetCol=(int)((Math.random())*(Utils.GREEN_COLS+2*Utils.BEACH_WIDTH-1-Utils.BOAT_COLSPAN)) +Utils.P1_STARTING_COL;
+            }
+            gameObjectInit.add("boat "+"add "+targetCol+" "+targetRow);
+            for(int i = 0; i<Utils.BOAT_COLSPAN; i++){
+                for(int j=-1;j<2;j++){
+                    positionContents[(j*Utils.GRID_COLS)+Utils.GRID_COLS*targetRow+targetCol+i]="boat";
+                }
+            }
+            System.out.println("boat col: "+targetCol+" boat row: "+targetRow);
+
 
             //set tree locations
             for(int i = 0; i< Utils.NUMBER_OF_TREES; i++){
@@ -120,6 +137,7 @@ public class Server {
                 gameObjectInit.add("tree "+"add "+targetCol+" "+targetRow);
                 positionContents[Utils.GRID_COLS*targetRow+targetCol]="tree";
             }
+
 
             //set cherry locations
             for(int i = 0; i < Utils.NUMBER_OF_CHERRIES; i++){

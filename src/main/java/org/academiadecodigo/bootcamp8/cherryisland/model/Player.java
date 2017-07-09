@@ -11,6 +11,7 @@ public class Player {
     private String username;
     private int woodCount;
     private Direction direction;
+    private int woodInBoat;
 
     private int health;
 
@@ -20,6 +21,7 @@ public class Player {
         setPosition(col, row);
         health = Utils.PLAYER_INIT_HEALTH;
         woodCount = 0;
+        woodInBoat=0;
 
     } // Instanciation -> Player player = new Player(new GridPosition(col, row));
 
@@ -77,6 +79,11 @@ public class Player {
     }
 
     public boolean buildBoat() {
-        return woodCount >= Utils.WOOD_FOR_BOAT;
+        return woodInBoat >= Utils.WOOD_FOR_BOAT;
+    }
+
+    public void depositWood(){
+        woodInBoat=woodInBoat+woodCount;
+        woodCount=0;
     }
 }

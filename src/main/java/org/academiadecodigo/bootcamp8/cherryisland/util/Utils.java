@@ -18,11 +18,13 @@ public class Utils {
     public static final int GRID_COLS = 100;
     public static final int LAKE_COL_SPAN = 3;
     public static final int LAKE_ROW_SPAN = 3;
-    public static final int PLAYER_INIT_HEALTH = 100;
+    public static final int PLAYER_INIT_HEALTH = 1000;
     public static final int MAX_WOOD_CARRY = 10;
     public static final int WOOD_FOR_BOAT = 40;
     public static final int LAKE_HEAL_AMOUNT = 5;
     public static final int CHERRY_HEAL_AMOUNT = 15;
     public static final int NUMBER_OF_CHERRIES = 50;
     public static final int NUMBER_OF_TREES = 150;
+    public static final int BOAT_COLSPAN=4;
+    public static final int BOAT_ROWSPAN=3;
 }

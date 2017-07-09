@@ -33,6 +33,10 @@ public class GameObjectFactory {
             case ENEMY:
                 gameObject = new Enemy(gridPosition);
                 break;
+
+            case BOAT:
+                gameObject=new Boat(gridPosition);
+                break;
         }
 
         return gameObject;

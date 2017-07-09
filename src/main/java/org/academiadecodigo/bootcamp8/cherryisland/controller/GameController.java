@@ -99,8 +99,10 @@ public class GameController implements Initializable {
                 System.out.println("UP");
 
                 if (player.getPosition().getRow() == 14 ||
-                        !game.getPositionContents()[Utils.GRID_COLS*(player.getPosition().getRow()-1)
-                                + player.getPosition().getCol()].equals("empty")){
+                        (!game.getPositionContents()[Utils.GRID_COLS*(player.getPosition().getRow()-1)
+                                + player.getPosition().getCol()].equals("empty")&&
+                                !game.getPositionContents()[Utils.GRID_COLS*(player.getPosition().getRow()-1)
+                                        + player.getPosition().getCol()].equals("boat"))){
                     updateSprite(player.getDirection());
                     return;
                 }
@@ -122,8 +124,10 @@ public class GameController implements Initializable {
                 System.out.println("DOWN");
 
                 if (player.getPosition().getRow() == 85 ||
-                        !game.getPositionContents()[Utils.GRID_COLS*(player.getPosition().getRow()+1)
-                                + player.getPosition().getCol()].equals("empty")){
+                        (!game.getPositionContents()[Utils.GRID_COLS*(player.getPosition().getRow()+1)
+                                + player.getPosition().getCol()].equals("empty")&&
+                                !game.getPositionContents()[Utils.GRID_COLS*(player.getPosition().getRow()+1)
+                                        + player.getPosition().getCol()].equals("boat"))){
                     updateSprite(player.getDirection());
                     return;
                 }
@@ -145,8 +149,10 @@ public class GameController implements Initializable {
                 System.out.println("LEFT");
 
                 if (player.getPosition().getCol() == 14 ||
-                        !game.getPositionContents()[Utils.GRID_COLS*(player.getPosition().getRow())
-                                + player.getPosition().getCol()-1].equals("empty")){
+                        (!game.getPositionContents()[Utils.GRID_COLS*(player.getPosition().getRow())
+                                + player.getPosition().getCol()-1].equals("empty")&&
+                                !game.getPositionContents()[Utils.GRID_COLS*(player.getPosition().getRow())
+                                        + player.getPosition().getCol()-1].equals("boat"))){
                     updateSprite(player.getDirection());
                     return;
                 }
@@ -168,8 +174,10 @@ public class GameController implements Initializable {
                 System.out.println("RIGHT");
 
                 if (player.getPosition().getCol() == 85 ||
-                        !game.getPositionContents()[Utils.GRID_COLS*(player.getPosition().getRow())
-                                + player.getPosition().getCol()+1].equals("empty")){
+                        (!game.getPositionContents()[Utils.GRID_COLS*(player.getPosition().getRow())
+                                + player.getPosition().getCol()+1].equals("empty")&&
+                                !game.getPositionContents()[Utils.GRID_COLS*(player.getPosition().getRow())
+                                        + player.getPosition().getCol()+1].equals("boat"))){
                     updateSprite(player.getDirection());
                     return;
                 }
@@ -201,7 +209,7 @@ public class GameController implements Initializable {
                 break;
         }
         game.checkPlayerHealth();
-        hpBar.setProgress(player.getHealth() * 0.01);
+        hpBar.setProgress((double) player.getHealth()/Utils.PLAYER_INIT_HEALTH);
         System.out.println("Player health: -------- " + player.getHealth());
     }
 
