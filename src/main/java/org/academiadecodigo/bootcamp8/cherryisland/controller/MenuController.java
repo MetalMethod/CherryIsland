@@ -9,8 +9,6 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import org.academiadecodigo.bootcamp8.cherryisland.Navigation;
 import org.academiadecodigo.bootcamp8.cherryisland.service.PlayerService;
-import org.academiadecodigo.bootcamp8.cherryisland.service.ServiceRegistry;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -40,7 +38,7 @@ public class MenuController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        playerService = (PlayerService) ServiceRegistry.getInstance().getService(PlayerService.class.getSimpleName());
+        playerService = PlayerService.getInstance();
     }
 
     public void onRegisterButtonClick() {

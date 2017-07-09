@@ -9,10 +9,16 @@ import java.util.List;
 
 public class PlayerService {
 
-    private List<String> players;
+    private static PlayerService instance = null;
+    private List<String> players = new ArrayList<>();
 
-    public PlayerService() {
-        players = new ArrayList<>();
+    public PlayerService() {}
+
+    public static synchronized PlayerService getInstance() {
+        if(instance == null) {
+            instance = new PlayerService();
+        }
+        return instance;
     }
 
     public void addPlayer(String nickname) {
@@ -29,6 +35,10 @@ public class PlayerService {
 
     public String getName() {
         return getClass().getSimpleName();
+    }
+
+    public int numPlayers() {
+        return players.size();
     }
 
 }
