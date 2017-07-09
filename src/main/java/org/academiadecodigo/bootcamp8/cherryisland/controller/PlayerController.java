@@ -2,7 +2,10 @@ package org.academiadecodigo.bootcamp8.cherryisland.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -36,6 +39,21 @@ public class PlayerController implements Initializable {
     private Pane pane;
 
     //private Rectangle enemy;
+
+    @FXML
+    private ImageView playerAvatar;
+
+    @FXML
+    private Label logCounter;
+
+    @FXML
+    private Label cherryCounter;
+
+    @FXML
+    private ProgressBar hpBar;
+
+    @FXML
+    private ImageView howToPlay;
 
     @FXML
     void scrollPaneKeyPressed(KeyEvent event) {
@@ -133,6 +151,13 @@ public class PlayerController implements Initializable {
 
                 game.takeAction();
 
+                break;
+            case I:
+                if (howToPlay.isVisible()) {
+                    howToPlay.setVisible(false);
+                    return;
+                }
+                howToPlay.setVisible(true);
                 break;
         }
         updateSprite(player1.getDirection());
