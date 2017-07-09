@@ -5,7 +5,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.academiadecodigo.bootcamp8.cherryisland.controller.PlayerController;
 
 import java.io.IOException;
 import java.util.HashMap;

@@ -13,7 +13,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="725.0" prefWidth="725.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.academiadecodigo.bootcamp8.cherryisland.controller.PlayerController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="725.0" prefWidth="725.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.academiadecodigo.bootcamp8.cherryisland.controller.GameController">
    <children>
       <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" onKeyPressed="#scrollPaneKeyPressed" prefHeight="725.0" prefWidth="725.0" vbarPolicy="NEVER">
          <content>
@@ -127,7 +127,7 @@
                         <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
                         <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
                         
-                    </columnConstraints>
+                                </columnConstraints>
                     <rowConstraints>
                       <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
                         <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
@@ -229,7 +229,7 @@
                         <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
                         <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
                         <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
-
+            
                     </rowConstraints>
                   </GridPane>
                </children>
@@ -257,24 +257,19 @@
             <Image url="@../interface/howtoplay.png" />
          </image>
       </ImageView>
-      <Label fx:id="logCounter" layoutX="141.0" layoutY="48.0" style="-fx-stroke: black; -fx-stroke-width: 10;" text="0">
+      <Label fx:id="woodCounter" layoutX="105.0" layoutY="48.0" style="-fx-stroke: black; -fx-stroke-width: 10;" text="0">
          <font>
             <Font name="Arial Black" size="16.0" />
          </font>
       </Label>
-      <ImageView fitHeight="20.0" fitWidth="24.0" layoutX="113.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+      <Label fx:id="woodCounterMax" layoutX="133.0" layoutY="48.0" style="-fx-stroke: black; -fx-stroke-width: 10;" text="/ 10">
+         <font>
+            <Font name="Arial Black" size="16.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="20.0" fitWidth="24.0" layoutX="76.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../interface/log.png" />
-         </image>
-      </ImageView>
-      <Label fx:id="cherryCounter" layoutX="97.0" layoutY="48.0" style="-fx-stroke: black; -fx-stroke-width: 10;" text="0">
-         <font>
-            <Font name="Arial Black" size="16.0" />
-         </font>
-      </Label>
-      <ImageView fitHeight="20.0" fitWidth="26.0" layoutX="73.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../interface/cherry.png" />
          </image>
       </ImageView>
       <Label layoutX="277.0" layoutY="27.0" style="-fx-stroke: black; -fx-stroke-width: 10;" text="HP">
