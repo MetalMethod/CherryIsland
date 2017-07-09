@@ -11,10 +11,10 @@ import javafx.stage.Stage;
 import org.academiadecodigo.bootcamp8.cherryisland.Navigation;
 import org.academiadecodigo.bootcamp8.cherryisland.service.Game;
 import org.academiadecodigo.bootcamp8.cherryisland.service.PlayerService;
-import org.academiadecodigo.bootcamp8.cherryisland.service.ServiceRegistry;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.Executors;
 
 /**
  * Created by dgcst on 01/07/2017.
@@ -46,8 +46,7 @@ public class MenuController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        playerService = (PlayerService) ServiceRegistry.getInstance().getService(PlayerService.class.getSimpleName());
-        ServiceRegistry.getInstance().addService("PlayerService", playerService); //TODO fix this
+        playerService = PlayerService.getInstance();
     }
 
     public void onReadyButtonClick() {
@@ -62,12 +61,15 @@ public class MenuController implements Initializable {
         }
         playerService.addPlayer(nickname);
         waitForGame();
-        Platform.runLater(new Runnable() {
+        Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
                 game.connection();
             }
         });
+        thread.run();
+        System.out.println("done");
+        //game.connection();
     }
 
     public void onCloseButtonClick() {

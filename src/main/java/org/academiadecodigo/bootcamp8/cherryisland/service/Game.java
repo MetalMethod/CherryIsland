@@ -1,11 +1,9 @@
 package org.academiadecodigo.bootcamp8.cherryisland.service;
 
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.academiadecodigo.bootcamp8.cherryisland.Navigation;
 import org.academiadecodigo.bootcamp8.cherryisland.controller.MenuController;
@@ -32,12 +30,13 @@ public class Game extends Application {
 
     private Player player;
     private HashMap<String, GameObject> gameObjectHashMap;
-    private Pane pane;
     private GridPane gridPane;
     private ScrollPane scrollPane;
     private Socket socket;
     private String[] positionContents;
     private Navigation navigation;
+    String playerNumber;
+    String start;
 
     public static void main(String[] args) {
         launch(args);
@@ -45,13 +44,11 @@ public class Game extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        System.out.println("1: " + Thread.currentThread());
         navigation = Navigation.getInstance();
 
         primaryStage.setTitle("Cherry Island");
         navigation.setStage(primaryStage);
-
-        PlayerService playerService = new PlayerService();
-        ServiceRegistry.getInstance().addService(playerService.getName(), playerService);
 
         navigation.loadScreen(U.INITIAL_VIEW);
 
@@ -60,11 +57,12 @@ public class Game extends Application {
     }
 
     public void connection() {
+        System.out.println("2: " + Thread.currentThread());
+
         try {
             socket = new Socket("127.0.0.1", 6666);
             BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            String playerNumber;
-            String start;
+
 
             gameObjectHashMap = new HashMap<>();
             positionContents = new String[U.GRID_COLS*U.GRID_COLS];
@@ -72,12 +70,8 @@ public class Game extends Application {
                 positionContents[i] = "empty";
             }
 
-            System.out.println("aqui");
-
             playerNumber = reader.readLine();
             start = reader.readLine();
-
-            System.out.println("here");
 
             if (playerNumber.equals("1")) {
                 player = new Player(U.P1_STARTING_COL, U.P1_STARTING_ROW);
@@ -88,14 +82,15 @@ public class Game extends Application {
             }
 
             if (start.equals("start") ) {
+                Thread.currentThread().interrupt();
                 navigation.loadScreen(U.GAME_VIEW);
                 PlayerController playerController = (PlayerController) navigation.getController(U.GAME_VIEW);
                 playerController.setGame(this);
                 playerController.scrollPaneRequest();
-                playerController.setPlayer1(player);
+                playerController.setPlayer(player);
 
                 gridPane = playerController.getGridPane();
-                pane = playerController.getPane();
+                //Pane pane = playerController.getPane();
                 scrollPane = playerController.getScrollPane();
 
                 if(playerNumber.equals("2")) {
@@ -110,6 +105,7 @@ public class Game extends Application {
                 receive.start();
 
                 gameSend("start");
+                System.out.println("aqui");
             }
 
             System.out.println("EERRRROOOOORRRRRR");
@@ -154,7 +150,7 @@ public class Game extends Application {
 
     public void removeGameObject(int col, int row){
 
-        gridPane.getChildren().remove(col,row); //stackoverflow says row and col(cont col and row)
+        gridPane.getChildren().remove(col, row); //stackoverflow says row and col(cont col and row)
         String key = String.valueOf(col)+String.valueOf(row);
         gameObjectHashMap.remove(key);
 

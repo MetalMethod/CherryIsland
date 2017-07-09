@@ -96,7 +96,6 @@ public class Server {
                     printWriters.add(new PrintWriter(clientSocket.getOutputStream(), true));
                     bufferedReaders.add(new BufferedReader(new InputStreamReader(clientSocket.getInputStream())));
 
-
                     // Create a new Server Worker
                     connectionCount++;
                     String name = "Client-" + connectionCount;
@@ -155,7 +154,7 @@ public class Server {
             }
 
             //tell all players to start game and send them information about global game variables (tree positions, etc)
-            for (int i = 0; i < printWriters.size(); i++){
+            for (int i = 1; i < printWriters.size(); i++){
                 printWriters.get(i - 1).println(i);
                 printWriters.get(i - 1).println("start");
                 //send strings with global game variables

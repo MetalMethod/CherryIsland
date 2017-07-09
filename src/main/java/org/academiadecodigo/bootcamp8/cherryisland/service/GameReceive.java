@@ -14,13 +14,12 @@ import java.net.Socket;
  */
 public class GameReceive implements Runnable {
 
-    Socket socket;
-    BufferedReader buffer;
-    Game game;
+    private Socket socket;
+    private Game game;
 
     public GameReceive(Socket socket, Game game) {
         this.socket = socket;
-        this.game=game;
+        this.game = game;
     }
 
     @Override
@@ -28,15 +27,12 @@ public class GameReceive implements Runnable {
         try {
 
             while (!socket.isClosed()) {
+                BufferedReader buffer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                String msgReceived;
 
-                buffer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                String msgRecieved;
-
-                while ((msgRecieved = buffer.readLine()) != null) {
-
-                    System.out.println(msgRecieved);
-                    final String msg2=msgRecieved;
-
+                while ((msgReceived = buffer.readLine()) != null) {
+                    System.out.println(msgReceived);
+                    final String msg2 = msgReceived;
                     if (msg2.split(" ")[1].equals("add")) {
                         Platform.runLater(new Runnable() {
                             @Override

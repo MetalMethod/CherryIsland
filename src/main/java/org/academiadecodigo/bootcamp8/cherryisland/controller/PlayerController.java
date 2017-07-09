@@ -9,16 +9,13 @@ import javafx.scene.layout.Pane;
 import org.academiadecodigo.bootcamp8.cherryisland.model.Player;
 import org.academiadecodigo.bootcamp8.cherryisland.service.Game;
 import org.academiadecodigo.bootcamp8.cherryisland.util.U;
-import org.academiadecodigo.bootcamp8.cherryisland.service.PlayerService;
-import org.academiadecodigo.bootcamp8.cherryisland.service.ServiceRegistry;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class PlayerController implements Initializable {
 
-    private PlayerService playerService;
-    private Player player1;
+    private Player player;
     private Game game;
 
     @FXML
@@ -45,68 +42,68 @@ public class PlayerController implements Initializable {
             case UP:
                 System.out.println("UP");
 
-                if (player1.getPosition().getRow() == 14 ||
-                        !game.getPositionContents()[U.GRID_COLS*(player1.getPosition().getRow()-1)
-                                +player1.getPosition().getCol()].equals("empty")){
+                if (player.getPosition().getRow() == 14 ||
+                        !game.getPositionContents()[U.GRID_COLS*(player.getPosition().getRow()-1)
+                                + player.getPosition().getCol()].equals("empty")){
                     return;
                 }
 
-                player1.setPosition(player1.getPosition().getCol(), player1.getPosition().getRow() - 1);
+                player.setPosition(player.getPosition().getCol(), player.getPosition().getRow() - 1);
                 scrollPane.setVvalue(scrollPane.getVvalue() - U.COL_ROW_SIZE);
 
-                System.out.println("COL: " + player1.getPosition().getCol());
-                System.out.println("ROW: " + player1.getPosition().getRow());
+                System.out.println("COL: " + player.getPosition().getCol());
+                System.out.println("ROW: " + player.getPosition().getRow());
 
                 break;
 
             case DOWN:
                 System.out.println("DOWN");
 
-                if (player1.getPosition().getRow() == 85 ||
-                        !game.getPositionContents()[U.GRID_COLS*(player1.getPosition().getRow()+1)
-                                +player1.getPosition().getCol()].equals("empty")){
+                if (player.getPosition().getRow() == 85 ||
+                        !game.getPositionContents()[U.GRID_COLS*(player.getPosition().getRow()+1)
+                                + player.getPosition().getCol()].equals("empty")){
                     return;
                 }
 
-                player1.setPosition(player1.getPosition().getCol(), player1.getPosition().getRow() +1);
+                player.setPosition(player.getPosition().getCol(), player.getPosition().getRow() +1);
                 scrollPane.setVvalue(scrollPane.getVvalue() + U.COL_ROW_SIZE);
 
-                System.out.println("COL: " + player1.getPosition().getCol());
-                System.out.println("ROW: " + player1.getPosition().getRow());
+                System.out.println("COL: " + player.getPosition().getCol());
+                System.out.println("ROW: " + player.getPosition().getRow());
 
                 break;
 
             case LEFT:
                 System.out.println("LEFT");
 
-                if (player1.getPosition().getCol() == 14 ||
-                        !game.getPositionContents()[U.GRID_COLS*(player1.getPosition().getRow())
-                                +player1.getPosition().getCol()-1].equals("empty")){
+                if (player.getPosition().getCol() == 14 ||
+                        !game.getPositionContents()[U.GRID_COLS*(player.getPosition().getRow())
+                                + player.getPosition().getCol()-1].equals("empty")){
                     return;
                 }
 
-                player1.setPosition(player1.getPosition().getCol() - 1, player1.getPosition().getRow());
+                player.setPosition(player.getPosition().getCol() - 1, player.getPosition().getRow());
                 scrollPane.setHvalue(scrollPane.getHvalue() - U.COL_ROW_SIZE);
 
-                System.out.println("COL: " + player1.getPosition().getCol());
-                System.out.println("ROW: " + player1.getPosition().getRow());
+                System.out.println("COL: " + player.getPosition().getCol());
+                System.out.println("ROW: " + player.getPosition().getRow());
 
                 break;
 
             case RIGHT:
                 System.out.println("RIGHT");
 
-                if (player1.getPosition().getCol() == 85 ||
-                        !game.getPositionContents()[U.GRID_COLS*(player1.getPosition().getRow())
-                                +player1.getPosition().getCol()+1].equals("empty")){
+                if (player.getPosition().getCol() == 85 ||
+                        !game.getPositionContents()[U.GRID_COLS*(player.getPosition().getRow())
+                                + player.getPosition().getCol()+1].equals("empty")){
                     return;
                 }
 
-                player1.setPosition(player1.getPosition().getCol() + 1 , player1.getPosition().getRow());
+                player.setPosition(player.getPosition().getCol() + 1 , player.getPosition().getRow());
                 scrollPane.setHvalue(scrollPane.getHvalue() + U.COL_ROW_SIZE);
 
-                System.out.println("COL: " + player1.getPosition().getCol());
-                System.out.println("ROW: " + player1.getPosition().getRow());
+                System.out.println("COL: " + player.getPosition().getCol());
+                System.out.println("ROW: " + player.getPosition().getRow());
 
                 break;
         }
@@ -125,8 +122,8 @@ public class PlayerController implements Initializable {
         return gridPane;
     }
 
-    public void setPlayer1(Player player1){
-        this.player1 = player1;
+    public void setPlayer(Player player){
+        this.player = player;
     }
 
     public ScrollPane getScrollPane() {
@@ -135,8 +132,6 @@ public class PlayerController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        playerService = (PlayerService) ServiceRegistry.getInstance().getService(PlayerService.class.getSimpleName());
-
         scrollPane.setVmax(2500-725);
         scrollPane.setHmax(2500-725);
         scrollPane.setPannable(false);
