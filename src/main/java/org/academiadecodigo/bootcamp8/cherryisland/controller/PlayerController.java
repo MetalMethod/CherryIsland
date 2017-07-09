@@ -5,6 +5,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
@@ -51,6 +52,18 @@ public class PlayerController implements Initializable {
 
     private Game game;
 
+    @FXML
+    private ImageView playerImage;
+
+    private Image up0;
+    private Image up1;
+    private Image down0;
+    private Image down1;
+    private Image left0;
+    private Image left1;
+    private Image right0;
+    private Image right1;
+
     //private Rectangle enemy;
 
     @FXML
@@ -78,7 +91,7 @@ public class PlayerController implements Initializable {
                 game.gameSend(game.getPlayerNumber()+" move "+
                         player1.getPosition().getCol()+" "+player1.getPosition().getRow());
                 player1.loseHealth();
-
+                updateSprite(player1.getDirection());
                 break;
 
             case DOWN:
@@ -100,6 +113,7 @@ public class PlayerController implements Initializable {
                 game.gameSend(game.getPlayerNumber()+" move "+
                         player1.getPosition().getCol()+" "+player1.getPosition().getRow());
                 player1.loseHealth();
+                updateSprite(player1.getDirection());
                 break;
 
             case LEFT:
@@ -121,6 +135,7 @@ public class PlayerController implements Initializable {
                 game.gameSend(game.getPlayerNumber()+" move "+
                         player1.getPosition().getCol()+" "+player1.getPosition().getRow());
                 player1.loseHealth();
+                updateSprite(player1.getDirection());
                 break;
 
             case RIGHT:
@@ -142,6 +157,7 @@ public class PlayerController implements Initializable {
                 game.gameSend(game.getPlayerNumber()+" move "+
                         player1.getPosition().getCol()+" "+player1.getPosition().getRow());
                 player1.loseHealth();
+                updateSprite(player1.getDirection());
                 break;
 
             case Z:
@@ -158,7 +174,6 @@ public class PlayerController implements Initializable {
                 howToPlay.setVisible(true);
                 break;
         }
-        updateSprite(player1.getDirection());
         game.checkPlayerHealth();
         hpBar.setProgress(player1.getHealth() * 0.01);
     }
@@ -197,6 +212,14 @@ public class PlayerController implements Initializable {
         scrollPane.setHmax(2500-725);
         scrollPane.setPannable(false);
 
+        up0=new Image("/characters/rambo/player_up0.png");
+        up1=new Image("/characters/rambo/player_up1.png");
+        down0=new Image("/characters/rambo/player_front0.png");
+        down1=new Image("/characters/rambo/player_front1.png");
+        left0=new Image("/characters/rambo/player_left0.png");
+        left1=new Image("/characters/rambo/player_left1.png");
+        right0=new Image("/characters/rambo/player_right0.png");
+        right1=new Image("/characters/rambo/player_right1.png");
     }
 
     /* Minimap
@@ -207,8 +230,36 @@ public class PlayerController implements Initializable {
     */
 
     private void updateSprite(Direction dir){
-
+        switch (dir){
+            case DOWN:
+                if(playerImage.getImage().equals(down0)){
+                    playerImage.setImage(down1);
+                } else {
+                    playerImage.setImage(down0);
+                }
+                break;
+            case UP:
+                if(playerImage.getImage().equals(up0)){
+                    playerImage.setImage(up1);
+                } else {
+                    playerImage.setImage(up0);
+                }
+                break;
+            case LEFT:
+                if(playerImage.getImage().equals(left0)){
+                    playerImage.setImage(left1);
+                } else {
+                    playerImage.setImage(left0);
+                }
+                break;
+            case RIGHT:
+                if(playerImage.getImage().equals(right0)){
+                    playerImage.setImage(right1);
+                } else {
+                    playerImage.setImage(right0);
+                }
+                break;
+        }
     }
-
 }
 

@@ -115,8 +115,6 @@ public class Server {
             for(int i=0;i<positionContents.length;i++){
                 positionContents[i]="empty";
             }
-            int numberOfTrees = 200;
-            int numberOfCherries=50;
             //int numberOfLakes=3;
             ArrayList<String> gameObjectInit=new ArrayList<>();
 
@@ -133,7 +131,7 @@ public class Server {
 
 
             //set tree locations
-            for(int i=0;i<numberOfTrees;i++){
+            for(int i=0;i<U.NUMBER_OF_TREES;i++){
                 targetRow=(int)((Math.random())*U.GREEN_COLS)+U.BEACH_WIDTH+U.P1_STARTING_ROW;
                 targetCol=(int)((Math.random())*U.GREEN_COLS)+U.BEACH_WIDTH+U.P1_STARTING_COL;
                 while(!positionContents[U.GRID_COLS*targetRow+targetCol].equals("empty") ){
@@ -145,7 +143,7 @@ public class Server {
             }
 
             //set cherry locations
-            for(int i=0;i<numberOfCherries;i++){
+            for(int i=0;i<U.NUMBER_OF_CHERRIES;i++){
                 targetRow=(int)((Math.random())*U.GREEN_COLS)+U.BEACH_WIDTH+U.P1_STARTING_ROW;
                 targetCol=(int)((Math.random())*U.GREEN_COLS)+U.BEACH_WIDTH+U.P1_STARTING_COL;
                 while(!positionContents[U.GRID_COLS*targetRow+targetCol].equals("empty") ){

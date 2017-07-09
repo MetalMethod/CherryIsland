@@ -20,4 +20,6 @@ public class U {
     public static final int WOODFORBOAT=40;
     public static final int LAKE_HEAL_AMOUNT=5;
     public static final int CHERRY_HEAL_AMOUNT=15;
+    public static final int NUMBER_OF_CHERRIES=50;
+    public static final int NUMBER_OF_TREES=150;
 }

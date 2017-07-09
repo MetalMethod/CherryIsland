@@ -164,7 +164,6 @@ public class Game extends Application {
                     }
                 }
                 break;
-
         }
 
     }
@@ -264,7 +263,7 @@ public class Game extends Application {
         }
 
         woodUpdate.setText(String.valueOf(player.getWood2()));
-        System.out.println(String.valueOf(player.getWood2()));
+        System.out.println(String.valueOf(player.getWood2()));git
         //1-check player direction
         //2- check if there is a lake, cherries, tree or beach in the position player is facing
         //3-take corresponding action if there is something (get health from lake, cut tree to get wood, take cherries, build boat)
