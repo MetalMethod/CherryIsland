@@ -18,11 +18,18 @@ public class Player {
     }
 
     public void raiseHealth(int amount) {
-        health=health+amount;
+        if (health < U.PLAYER_INITHEALTH) {
+            health = health + amount;
+            if (health > U.PLAYER_INITHEALTH) {
+                health = U.PLAYER_INITHEALTH;
+            }
+        }
+        System.out.println("Player health: "+health);
     }
 
-    public void loseHealth(){
+    public void loseHealth() {
         health--;
+        System.out.println("Player health: "+health);
     }
 
     private int health;
@@ -39,10 +46,10 @@ public class Player {
 
     public Player(int col, int row) {
         //this.username=username;
-        position =  new GridPosition(col , row);
-        setPosition(col,row);
-        health= U.PLAYER_INITHEALTH;
-        woodcount=0;
+        position = new GridPosition(col, row);
+        setPosition(col, row);
+        health = U.PLAYER_INITHEALTH;
+        woodcount = 0;
 
     } // Instanciation -> Player player = new Player(new GridPosition(col, row));
 
@@ -55,16 +62,17 @@ public class Player {
         position.setRow(row);
     }
 
-    public void getWood(){
+    public void getWood() {
         woodcount++;
+        System.out.println("Wood count: "+woodcount);
     }
 
-    public int getWoodcount(){
+    public int getWoodcount() {
         return woodcount;
     }
 
-    public boolean buildBoat(){
-        if(woodcount >= U.WOODFORBOAT){
+    public boolean buildBoat() {
+        if (woodcount >= U.WOODFORBOAT) {
             return true;
         }
         return false;

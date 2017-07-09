@@ -95,11 +95,16 @@ public class GameReceive implements Runnable {
                     }
 
                     if (msg2.split(" ")[1].equals("wins")) {
-                        if (msg2.split(" ")[0].equals(game.getPlayerNumber())) {
-                            Navigation.getInstance().loadScreen("youwin");
-                        } else {
-                            Navigation.getInstance().loadScreen("youlose");
-                        }
+                        Platform.runLater(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (msg2.split(" ")[0].equals(game.getPlayerNumber())) {
+                                    Navigation.getInstance().loadScreen("youwin");
+                                } else {
+                                    Navigation.getInstance().loadScreen("youlose");
+                                }
+                            }
+                        });
                     }
                 }
             }

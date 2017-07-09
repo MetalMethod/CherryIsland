@@ -161,7 +161,6 @@ public class Game extends Application {
                     }
                 }
                 break;
-
         }
     }
 
