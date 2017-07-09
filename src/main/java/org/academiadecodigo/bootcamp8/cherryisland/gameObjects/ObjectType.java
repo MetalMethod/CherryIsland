@@ -4,9 +4,9 @@ package org.academiadecodigo.bootcamp8.cherryisland.gameObjects;
  * Created by joelalmeida on 04/07/17.
  */
 public enum ObjectType {
-    TREE("/gameobjects/tree1.png","tree"),
-    LAKE("/gameobjects/lake1.png","lake"),
-    CHERRIES("/gameobjects/cherrytree1.png","cherries"),
+    TREE("/game_objects/tree1.png","tree"),
+    LAKE("/game_objects/lake1.png","lake"),
+    CHERRIES("/game_objects/cherrytree1.png","cherries"),
     ENEMY("/characters/castaway/player_front0.png","enemy");
 
     private String path;

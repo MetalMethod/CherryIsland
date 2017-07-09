@@ -269,7 +269,7 @@
       </Label>
       <ImageView fitHeight="20.0" fitWidth="24.0" layoutX="160.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../gameobjects/rope.png" />
+            <Image url="@../game_objects/rope.png" />
          </image>
       </ImageView>
       <Label fx:id="woodCounter" layoutX="103.0" layoutY="48.0" style="-fx-stroke: black; -fx-stroke-width: 10;" text="0">

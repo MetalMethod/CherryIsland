@@ -1,22 +1,23 @@
 package org.academiadecodigo.bootcamp8.cherryisland.service;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.academiadecodigo.bootcamp8.cherryisland.Navigation;
 import org.academiadecodigo.bootcamp8.cherryisland.controller.GameController;
+import org.academiadecodigo.bootcamp8.cherryisland.controller.MenuController;
 import org.academiadecodigo.bootcamp8.cherryisland.gameObjects.GameObject;
 import org.academiadecodigo.bootcamp8.cherryisland.gameObjects.GameObjectFactory;
 import org.academiadecodigo.bootcamp8.cherryisland.gameObjects.ObjectType;
 import org.academiadecodigo.bootcamp8.cherryisland.model.Direction;
 import org.academiadecodigo.bootcamp8.cherryisland.model.GridPosition;
 import org.academiadecodigo.bootcamp8.cherryisland.model.Player;
-import org.academiadecodigo.bootcamp8.cherryisland.util.U;
+import org.academiadecodigo.bootcamp8.cherryisland.util.Utils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -34,9 +35,9 @@ public class Game extends Application {
     private Player player;
     private GridPane gridPane;
     private HashMap<String, GameObject> gameObjectHashMap;
-    private Pane pane;
     private ScrollPane scrollPane;
     private Socket socket;
+    private Navigation navigation;
     private String[] positionContents;
     public static String hostname;
     private String playerNumber;
@@ -46,6 +47,18 @@ public class Game extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        navigation = Navigation.getInstance();
+        primaryStage.setTitle("Cherry Island");
+        primaryStage.setResizable(false);
+        navigation.setStage(primaryStage);
+
+        navigation.loadScreen(Utils.INITIAL_VIEW);
+
+        MenuController menuController = (MenuController) navigation.getController(Utils.INITIAL_VIEW);
+        menuController.setGame(this);
+    }
+
+    public void connection() {
         try {
             if (hostname != null) {
                 socket = new Socket(hostname, 6666);
@@ -58,56 +71,88 @@ public class Game extends Application {
             String start;
 
             gameObjectHashMap = new HashMap<>();
-            positionContents = new String[U.GRID_COLS * U.GRID_COLS];
+            positionContents = new String[Utils.GRID_COLS * Utils.GRID_COLS];
             for (int i = 0; i < positionContents.length; i++) {
                 positionContents[i] = "empty";
             }
+            System.out.println("T1");
 
             playerNumber = reader.readLine();
             start = reader.readLine();
 
+            System.out.println("T2");
+
             if (playerNumber.equals("1")) {
-                player = new Player(U.P1_STARTING_COL, U.P1_STARTING_ROW);
-                enemy = GameObjectFactory.getObject(ObjectType.ENEMY, new GridPosition(U.P2_STARTING_COL, U.P2_STARTING_ROW));
+                System.out.println("T3");
+                player = new Player(Utils.P1_STARTING_COL, Utils.P1_STARTING_ROW);
+                enemy = GameObjectFactory.getObject(ObjectType.ENEMY, new GridPosition(Utils.P2_STARTING_COL, Utils.P2_STARTING_ROW));
             }
 
             if (playerNumber.equals("2")) {
-                player = new Player(U.P2_STARTING_COL, U.P2_STARTING_ROW);
-                enemy = GameObjectFactory.getObject(ObjectType.ENEMY, new GridPosition(U.P1_STARTING_COL, U.P1_STARTING_ROW));
+                System.out.println("T4");
+                player = new Player(Utils.P2_STARTING_COL, Utils.P2_STARTING_ROW);
+                enemy = GameObjectFactory.getObject(ObjectType.ENEMY, new GridPosition(Utils.P1_STARTING_COL, Utils.P1_STARTING_ROW));
             }
 
 
             if (start.equals("start")) {
+                System.out.println("T5");
 
-                Navigation.getInstance().setStage(primaryStage);
-                primaryStage.setTitle("Cherry Island");
+                final Game game = this; //TODO improve
+                Runnable runnable = new Runnable() {
+                    @Override
+                    public void run() {
+                        synchronized (this) {
+                            navigation.loadScreen(Utils.GAME_VIEW);
 
+                            GameController gameController = (GameController) navigation.getController(Utils.GAME_VIEW);
+                            gameController.setGame(game);
+                            gameController.scrollPaneRequest();
+                            gameController.setPlayer(player);
 
-                Navigation.getInstance().loadScreen(U.INITIAL_VIEW);
-                GameController gameController = (GameController) Navigation.getInstance().getController(U.INITIAL_VIEW);
-                gameController.setGame(this);
-                gameController.scrollPaneRequest();
-                gameController.setPlayer(player);
+                            gridPane = gameController.getGridPane();
+                            scrollPane = gameController.getScrollPane();
+                            notifyAll();
+                        }
+                    }
+                };
 
-                gridPane = gameController.getGridPane();
-                pane = gameController.getPane();
-                scrollPane = gameController.getScrollPane();
-                woodUpdate = gameController.getWoodCounter();
+                Platform.runLater(runnable);
+
+                synchronized (runnable) {
+                    while(gridPane == null) {
+                        try {
+                            runnable.wait();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
 
                 if (playerNumber.equals("1")) {
-                    gameObjectHashMap.put(String.valueOf(U.P2_STARTING_COL) + String.valueOf(U.P2_STARTING_ROW), enemy);
+                    gameObjectHashMap.put(String.valueOf(Utils.P2_STARTING_COL) + String.valueOf(Utils.P2_STARTING_ROW), enemy);
                     enemyImg = new ImageView(ObjectType.ENEMY.getPath());
-                    gridPane.add(enemyImg, U.P2_STARTING_COL, U.P2_STARTING_ROW);
-                    positionContents[U.GRID_COLS * U.P2_STARTING_ROW + U.P2_STARTING_COL] = "enemy";
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            gridPane.add(enemyImg, Utils.P2_STARTING_COL, Utils.P2_STARTING_ROW);
+                        }
+                    });
+                    positionContents[Utils.GRID_COLS * Utils.P2_STARTING_ROW + Utils.P2_STARTING_COL] = "enemy";
                 }
 
                 if (playerNumber.equals("2")) {
                     scrollPane.setVvalue(2500 - 725);
                     scrollPane.setHvalue(2500 - 725);
-                    gameObjectHashMap.put(String.valueOf(U.P1_STARTING_COL) + String.valueOf(U.P1_STARTING_ROW), enemy);
+                    gameObjectHashMap.put(String.valueOf(Utils.P1_STARTING_COL) + String.valueOf(Utils.P1_STARTING_ROW), enemy);
                     enemyImg = new ImageView(ObjectType.ENEMY.getPath());
-                    gridPane.add(enemyImg, U.P1_STARTING_COL, U.P1_STARTING_ROW);
-                    positionContents[U.GRID_COLS * U.P1_STARTING_ROW + U.P1_STARTING_COL] = "enemy";
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            gridPane.add(enemyImg, Utils.P1_STARTING_COL, Utils.P1_STARTING_ROW);
+                        }
+                    });
+                    positionContents[Utils.GRID_COLS * Utils.P1_STARTING_ROW + Utils.P1_STARTING_COL] = "enemy";
                 }
 
                 GameReceive gameReceive = new GameReceive(socket, this);
@@ -117,6 +162,7 @@ public class Game extends Application {
                 receive.start();
 
                 gameSend("start");
+                System.out.println("GAME START!");
             }
 
             System.out.println("EERRRROOOOORRRRRR");
@@ -128,9 +174,9 @@ public class Game extends Application {
     }
 
     public static void main(String[] args) {
-        Game.hostname=null;
+        Game.hostname = null;
         if(args.length > 0){
-            Game.hostname=args[0];
+            Game.hostname = args[0];
         }
         launch(args);
     }
@@ -142,24 +188,24 @@ public class Game extends Application {
             case CHERRIES:
                 GameObject cherries = GameObjectFactory.getObject(ObjectType.CHERRIES, new GridPosition(col, row));
                 gameObjectHashMap.put(String.valueOf(col) + String.valueOf(row), cherries);
-                gridPane.add(new ImageView("/gameobjects/cherrytree1.png"), col, row);
-                positionContents[U.GRID_COLS * row + col] = "cherries";
+                gridPane.add(new ImageView("/game_objects/cherrytree1.png"), col, row);
+                positionContents[Utils.GRID_COLS * row + col] = "cherries";
                 break;
 
             case TREE:
                 GameObject tree = GameObjectFactory.getObject(ObjectType.TREE, new GridPosition(col, row));
                 gameObjectHashMap.put(String.valueOf(col) + String.valueOf(row), tree);
-                gridPane.add(new ImageView("/gameobjects/tree1.png"), col, row);
-                positionContents[U.GRID_COLS * row + col] = "tree";
+                gridPane.add(new ImageView("/game_objects/tree1.png"), col, row);
+                positionContents[Utils.GRID_COLS * row + col] = "tree";
                 break;
 
             case LAKE:
                 GameObject lake = GameObjectFactory.getObject(ObjectType.LAKE, new GridPosition(col, row));
                 gameObjectHashMap.put(String.valueOf(col) + String.valueOf(row), lake);
-                gridPane.add(new ImageView("/gameobjects/lake1.png"), col, row);
-                for (int i = 0; i < U.LAKE_COL_SPAN; i++) {
+                gridPane.add(new ImageView("/game_objects/lake1.png"), col, row);
+                for (int i = 0; i < Utils.LAKE_COL_SPAN; i++) {
                     for (int j = -1; j < 2; j++) {
-                        positionContents[(j * U.GRID_COLS) + U.GRID_COLS * row + col + i] = "lake";
+                        positionContents[(j * Utils.GRID_COLS) + Utils.GRID_COLS * row + col + i] = "lake";
                     }
                 }
                 break;
@@ -169,24 +215,24 @@ public class Game extends Application {
 
     public void removeGameObject(int col, int row) {
 
-        for(Node n:gridPane.getChildren()){
-            if(GridPane.getRowIndex(n)==row && GridPane.getColumnIndex(n)==col){
-                ((ImageView)n).setImage(null);
+        for(Node node : gridPane.getChildren()){
+            if((GridPane.getRowIndex(node) == row) && (GridPane.getColumnIndex(node) == col)) {
+                ((ImageView)node).setImage(null);
             }
         }
         gridPane.getChildren().remove(gameObjectHashMap.get(String.valueOf(col) + String.valueOf(row)));
         //stackoverflow says row and col(cont col and row)
         String key = String.valueOf(col) + String.valueOf(row);
         gameObjectHashMap.remove(key);
-        positionContents[U.GRID_COLS * row + col] = "empty";
+        positionContents[Utils.GRID_COLS * row + col] = "empty";
     }
 
     public synchronized void moveGameObject(GameObject gameObject, int col, int row) {
-        int currentcol = gameObject.getGridPosition().getCol();
-        int currentrow = gameObject.getGridPosition().getRow();
+        int currentCol = gameObject.getGridPosition().getCol();
+        int currentRow = gameObject.getGridPosition().getRow();
 
 
-        System.out.println(col + " " + row + " " + currentcol + " " + currentrow);
+        System.out.println(col + " " + row + " " + currentCol + " " + currentRow);
 
         gridPane.getChildren().remove(enemyImg);
         gridPane.add(enemyImg, col, row);
@@ -194,12 +240,12 @@ public class Game extends Application {
         enemy.getGridPosition().setCol(col);
         enemy.getGridPosition().setRow(row);
         //stackoverflow says row and col(cont col and row)
-        String key = String.valueOf(currentcol) + String.valueOf(currentrow);
+        String key = String.valueOf(currentCol) + String.valueOf(currentRow);
         String keynew = String.valueOf(col) + String.valueOf(row);
         gameObjectHashMap.remove(key);
         gameObjectHashMap.put(keynew, gameObject);
-        positionContents[U.GRID_COLS * currentrow + currentcol] = "empty";
-        positionContents[U.GRID_COLS * row + col] = gameObject.getObjectType().getName();
+        positionContents[Utils.GRID_COLS * currentRow + currentCol] = "empty";
+        positionContents[Utils.GRID_COLS * row + col] = gameObject.getObjectType().getName();
     }
 
     public void gameSend(String msgToSend) {
@@ -216,11 +262,11 @@ public class Game extends Application {
 
     public void takeAction() {
         Direction dir = player.getDirection();
-        int playerPos = U.GRID_COLS * player.getPosition().getRow() + player.getPosition().getCol();
+        int playerPos = Utils.GRID_COLS * player.getPosition().getRow() + player.getPosition().getCol();
         int facingPos = 0;
         switch (dir) {
             case UP:
-                facingPos = playerPos - U.GRID_COLS;
+                facingPos = playerPos - Utils.GRID_COLS;
                 break;
             case LEFT:
                 facingPos = playerPos - 1;
@@ -229,18 +275,18 @@ public class Game extends Application {
                 facingPos = playerPos + 1;
                 break;
             case DOWN:
-                facingPos = playerPos + U.GRID_COLS;
+                facingPos = playerPos + Utils.GRID_COLS;
                 break;
         }
-        int facingCol = facingPos % U.GRID_COLS;
-        int facingRow = (facingPos / U.GRID_COLS);
+        int facingCol = facingPos % Utils.GRID_COLS;
+        int facingRow = (facingPos / Utils.GRID_COLS);
         switch (positionContents[facingPos]) {
             case "lake":
-                player.raiseHealth(U.LAKE_HEAL_AMOUNT);
+                player.raiseHealth(Utils.LAKE_HEAL_AMOUNT);
                 break;
             case "cherries":
                 removeGameObject(facingCol, facingRow);
-                player.raiseHealth(U.CHERRY_HEAL_AMOUNT);
+                player.raiseHealth(Utils.CHERRY_HEAL_AMOUNT);
                 gameSend("cherries remove " + facingCol + " " + facingRow);
                 break;
             case "tree":
@@ -302,6 +348,4 @@ public class Game extends Application {
         }
         return false;
     }
-
-
 }

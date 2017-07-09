@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import org.academiadecodigo.bootcamp8.cherryisland.Navigation;
+import org.academiadecodigo.bootcamp8.cherryisland.service.Game;
 import org.academiadecodigo.bootcamp8.cherryisland.service.PlayerService;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,6 +21,10 @@ public class MenuController implements Initializable {
 
     private PlayerService playerService;
     private String nickname;
+    private Game game;
+
+    @FXML
+    ImageView imageViewSplash;
 
     @FXML
     TextField textFieldNickname;
@@ -31,29 +36,35 @@ public class MenuController implements Initializable {
     Label labelNickname;
 
     @FXML
-    Button readyButton;
+    Button buttonReady;
 
     @FXML
-    ImageView imageWaiting;
+    ImageView imageViewWaiting;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         playerService = PlayerService.getInstance();
     }
 
-    public void onRegisterButtonClick() {
+    public void onReadyButtonClick() {
         if (labelNickname.isVisible()) {
             return;
         }
         nickname = textFieldNickname.getText();
         if (nickname.equals("") || playerService.playerExists(nickname)) {
             labelInfo.setStyle("-fx-text-fill: red;");
-            labelInfo.setText("Nickname invalid or already in use, please choose a different one.");
+            labelInfo.setText("Invalid nickname, choose another.");
             return;
         }
-        waitForGame();
-
         playerService.addPlayer(nickname);
+        waitForGame();
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                game.connection();
+            }
+        });
+        thread.start();
     }
 
     public void onCloseButtonClick() {
@@ -62,12 +73,20 @@ public class MenuController implements Initializable {
     }
 
     private void waitForGame() {
-        readyButton.setStyle("-fx-background-color: green;");
+        buttonReady.setStyle("-fx-background-color: green;");
         labelInfo.setStyle("-fx-text-fill: black;");
         labelInfo.setText("Please wait for the game to start...");
         textFieldNickname.setVisible(false);
         labelNickname.setText(nickname);
         labelNickname.setVisible(true);
-        imageWaiting.setVisible(true);
+        imageViewWaiting.setVisible(true);
+    }
+
+    public ImageView getImageViewSplash() {
+        return imageViewSplash;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
     }
 }
