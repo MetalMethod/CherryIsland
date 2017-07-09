@@ -79,6 +79,7 @@ public class PlayerController implements Initializable {
                 if (player1.getPosition().getRow() == 14 ||
                         !game.getPositionContents()[U.GRID_COLS*(player1.getPosition().getRow()-1)
                                 +player1.getPosition().getCol()].equals("empty")){
+                    updateSprite(player1.getDirection());
                     return;
                 }
 
@@ -101,6 +102,7 @@ public class PlayerController implements Initializable {
                 if (player1.getPosition().getRow() == 85 ||
                         !game.getPositionContents()[U.GRID_COLS*(player1.getPosition().getRow()+1)
                                 +player1.getPosition().getCol()].equals("empty")){
+                    updateSprite(player1.getDirection());
                     return;
                 }
 
@@ -123,6 +125,7 @@ public class PlayerController implements Initializable {
                 if (player1.getPosition().getCol() == 14 ||
                         !game.getPositionContents()[U.GRID_COLS*(player1.getPosition().getRow())
                                 +player1.getPosition().getCol()-1].equals("empty")){
+                    updateSprite(player1.getDirection());
                     return;
                 }
 
@@ -145,6 +148,7 @@ public class PlayerController implements Initializable {
                 if (player1.getPosition().getCol() == 85 ||
                         !game.getPositionContents()[U.GRID_COLS*(player1.getPosition().getRow())
                                 +player1.getPosition().getCol()+1].equals("empty")){
+                    updateSprite(player1.getDirection());
                     return;
                 }
 
@@ -176,6 +180,7 @@ public class PlayerController implements Initializable {
         }
         game.checkPlayerHealth();
         hpBar.setProgress(player1.getHealth() * 0.01);
+        System.out.println("Player healt: -------- " + player1.getHealth());
     }
 
 
