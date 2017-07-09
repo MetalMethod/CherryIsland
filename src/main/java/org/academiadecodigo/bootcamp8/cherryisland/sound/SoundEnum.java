@@ -5,11 +5,11 @@ package org.academiadecodigo.bootcamp8.cherryisland.sound;
  */
 public enum SoundEnum {
 
-    WAITING("resources/sound/waiting.wav"),
-    PUNCH("resources/sound/punch.wav"),
-    WOOD("resources/sound/wood.wav"),
-    PICKING("resources/sound/bust rustling.wav"),
-    SOUNDTRACK("resources/sound/Im Gonna Be (500 Miles).wav");
+    WAITING("/src/main/resources/sound/waiting.wav"),
+    PUNCH("/src/main/resources/sound/punch.wav"),
+    WOOD("/src/main/resources/sound/wood.wav"),
+    PICKING("/src/main/resources/sound/bust rustling.wav"),
+    SOUNDTRACK("/src/main/resources/sound/Im Gonna Be (500 Miles).wav");
 
     private String path;
 

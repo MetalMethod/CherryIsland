@@ -16,6 +16,8 @@ import org.academiadecodigo.bootcamp8.cherryisland.gameObjects.ObjectType;
 import org.academiadecodigo.bootcamp8.cherryisland.model.Direction;
 import org.academiadecodigo.bootcamp8.cherryisland.model.GridPosition;
 import org.academiadecodigo.bootcamp8.cherryisland.model.Player;
+import org.academiadecodigo.bootcamp8.cherryisland.sound.Sound;
+import org.academiadecodigo.bootcamp8.cherryisland.sound.SoundEnum;
 import org.academiadecodigo.bootcamp8.cherryisland.util.U;
 
 import java.io.BufferedReader;
@@ -43,6 +45,7 @@ public class Game extends Application {
     private GameObject enemy;
     private ImageView enemyImg;
     private Label woodUpdate;
+    private Sound sound = new Sound(SoundEnum.SOUNDTRACK.getPath());
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -81,7 +84,7 @@ public class Game extends Application {
 
                 Navigation.getInstance().setStage(primaryStage);
                 primaryStage.setTitle("Cherry Island");
-
+                sound.play(true);
 
                 Navigation.getInstance().loadScreen(U.INITIAL_VIEW);
                 GameController gameController = (GameController) Navigation.getInstance().getController(U.INITIAL_VIEW);

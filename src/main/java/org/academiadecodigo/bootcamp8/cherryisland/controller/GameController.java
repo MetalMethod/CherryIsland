@@ -13,6 +13,8 @@ import javafx.scene.layout.Pane;
 import org.academiadecodigo.bootcamp8.cherryisland.model.Direction;
 import org.academiadecodigo.bootcamp8.cherryisland.model.Player;
 import org.academiadecodigo.bootcamp8.cherryisland.service.Game;
+import org.academiadecodigo.bootcamp8.cherryisland.sound.Sound;
+import org.academiadecodigo.bootcamp8.cherryisland.sound.SoundEnum;
 import org.academiadecodigo.bootcamp8.cherryisland.util.U;
 
 import java.net.URL;
@@ -72,7 +74,7 @@ public class GameController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        woodCounterMax.setText("/ " + U.MAX_WOOD_CARRY);
+        woodCounterMax.setText("/" + U.MAX_WOOD_CARRY);
 
         scrollPane.setVmax(2500-725);
         scrollPane.setHmax(2500-725);
@@ -86,6 +88,7 @@ public class GameController implements Initializable {
         left1 = new Image("/characters/rambo/player_left1.png");
         right0 = new Image("/characters/rambo/player_right0.png");
         right1 = new Image("/characters/rambo/player_right1.png");
+
     }
 
     @FXML
