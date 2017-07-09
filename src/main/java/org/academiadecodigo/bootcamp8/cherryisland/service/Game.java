@@ -46,7 +46,13 @@ public class Game extends Application {
     private GameObject enemy;
     private ImageView enemyImg;
     private Label woodUpdate;
-    private Sound sound = new Sound(SoundEnum.SOUNDTRACK.getPath());
+
+    private Sound gameSound = new Sound(SoundEnum.SOUNDTRACK.getPath());
+    private Sound lake = new Sound(SoundEnum.DRINK.getPath());
+    private Sound cherries = new Sound(SoundEnum.PICKING.getPath());
+    private Sound tree = new Sound(SoundEnum.WOOD.getPath());
+    private Sound punch = new Sound(SoundEnum.PUNCH.getPath());
+
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -97,13 +103,14 @@ public class Game extends Application {
 
             if (start.equals("start")) {
 
+                //gameSound.play(true);
+
                 final Game game = this; //TODO improve
                 Runnable runnable = new Runnable() {
                     @Override
                     public void run() {
                         synchronized (this) {
                             navigation.loadScreen(Utils.GAME_VIEW);
-                            sound.play(true);
 
                             GameController gameController = (GameController) navigation.getController(Utils.GAME_VIEW);
                             gameController.setGame(game);
@@ -280,16 +287,22 @@ public class Game extends Application {
         }
         int facingCol = facingPos % Utils.GRID_COLS;
         int facingRow = (facingPos / Utils.GRID_COLS);
+
         switch (positionContents[facingPos]) {
             case "lake":
+                lake.play(true);
                 player.raiseHealth(Utils.LAKE_HEAL_AMOUNT);
                 break;
+
             case "cherries":
+                cherries.play(true);
                 removeGameObject(facingCol, facingRow);
                 player.raiseHealth(Utils.CHERRY_HEAL_AMOUNT);
                 gameSend("cherries remove " + facingCol + " " + facingRow);
                 break;
+
             case "tree":
+                tree.play(true);
                 if (!player.carryMoreWood()) {
                     break;
                 }
@@ -297,6 +310,7 @@ public class Game extends Application {
                 player.pickWood();
                 gameSend("tree remove " + facingCol + " " + facingRow);
                 break;
+
             default:
                 if (player.getPosition().getCol() == 14 ||
                         player.getPosition().getCol() == 85 || player.getPosition().getRow() == 14

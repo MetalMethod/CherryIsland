@@ -10,6 +10,9 @@ import javafx.stage.Stage;
 import org.academiadecodigo.bootcamp8.cherryisland.Navigation;
 import org.academiadecodigo.bootcamp8.cherryisland.service.Game;
 import org.academiadecodigo.bootcamp8.cherryisland.service.PlayerService;
+import org.academiadecodigo.bootcamp8.cherryisland.sound.Sound;
+import org.academiadecodigo.bootcamp8.cherryisland.sound.SoundEnum;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -22,6 +25,8 @@ public class MenuController implements Initializable {
     private PlayerService playerService;
     private String nickname;
     private Game game;
+    private Sound waiting = new Sound(SoundEnum.WAITING.getPath());
+    private Sound menu = new Sound(SoundEnum.MENU.getPath());
 
     @FXML
     ImageView imageViewSplash;
@@ -44,9 +49,16 @@ public class MenuController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         playerService = PlayerService.getInstance();
+        menu.setLoop(10);
+        menu.play(true);
     }
 
     public void onReadyButtonClick() {
+
+        menu.stop();
+        waiting.setLoop(10);
+        waiting.play(true);
+
         if (labelNickname.isVisible()) {
             return;
         }
@@ -62,6 +74,7 @@ public class MenuController implements Initializable {
             @Override
             public void run() {
                 game.connection();
+                waiting.stop();
             }
         });
         thread.start();
@@ -70,6 +83,7 @@ public class MenuController implements Initializable {
     public void onCloseButtonClick() {
         Stage stage = (Stage) Navigation.getInstance().getScene().getWindow();
         stage.close();
+        System.exit(0);
     }
 
     private void waitForGame() {

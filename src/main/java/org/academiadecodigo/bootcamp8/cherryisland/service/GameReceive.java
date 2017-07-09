@@ -3,6 +3,8 @@ package org.academiadecodigo.bootcamp8.cherryisland.service;
 import javafx.application.Platform;
 import org.academiadecodigo.bootcamp8.cherryisland.Navigation;
 import org.academiadecodigo.bootcamp8.cherryisland.gameObjects.ObjectType;
+import org.academiadecodigo.bootcamp8.cherryisland.sound.Sound;
+import org.academiadecodigo.bootcamp8.cherryisland.sound.SoundEnum;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,6 +19,7 @@ public class GameReceive implements Runnable {
     Socket socket;
     BufferedReader buffer;
     Game game;
+    Sound sound;
 
     public GameReceive(Socket socket, Game game) {
         this.socket = socket;
@@ -99,8 +102,17 @@ public class GameReceive implements Runnable {
                             public void run() {
                                 if (msg2.split(" ")[0].equals(game.getPlayerNumber())) {
                                     Navigation.getInstance().loadScreen("youwin");
+
+                                    sound = new Sound(SoundEnum.WIN.getPath());
+                                    sound.setLoop(5);
+                                    sound.play(true);
+
                                 } else {
                                     Navigation.getInstance().loadScreen("youlose");
+
+                                    sound = new Sound(SoundEnum.LOSE.getPath());
+                                    sound.setLoop(5);
+                                    sound.play(true);
                                 }
                             }
                         });
