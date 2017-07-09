@@ -12,6 +12,7 @@ public class Player {
     private GridPosition position;
     private String username;
     private int woodcount;
+    private int health;
 
     public int getHealth() {
         return health;
@@ -25,7 +26,6 @@ public class Player {
         health--;
     }
 
-    private int health;
 
     public Direction getDirection() {
         return direction;
@@ -55,7 +55,11 @@ public class Player {
         position.setRow(row);
     }
 
-    public void getWood(){
+    public int getWood2(){//TODO rename
+        return woodcount;
+    }
+
+    public void getWood(){//TODO rename
         woodcount++;
     }
 

@@ -2,6 +2,7 @@ package org.academiadecodigo.bootcamp8.cherryisland.service;
 
 import javafx.application.Application;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -42,6 +43,7 @@ public class Game extends Application {
     private String playerNumber;
     private GameObject enemy;
     private ImageView enemyImg;
+    private Label woodUpdate;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -91,6 +93,7 @@ public class Game extends Application {
                 gridPane = playerController.getGridPane();
                 pane = playerController.getPane();
                 scrollPane = playerController.getScrollPane();
+                woodUpdate = playerController.getLogCounter();
 
                 if (playerNumber.equals("1")) {
                     gameObjectHashMap.put(String.valueOf(U.P2_STARTING_COL) + String.valueOf(U.P2_STARTING_ROW), enemy);
@@ -163,6 +166,7 @@ public class Game extends Application {
                 break;
 
         }
+
     }
 
     public void removeGameObject(int col, int row) {
@@ -258,6 +262,9 @@ public class Game extends Application {
                 break;
 
         }
+
+        woodUpdate.setText(String.valueOf(player.getWood2()));
+        System.out.println(String.valueOf(player.getWood2()));
         //1-check player direction
         //2- check if there is a lake, cherries, tree or beach in the position player is facing
         //3-take corresponding action if there is something (get health from lake, cut tree to get wood, take cherries, build boat)

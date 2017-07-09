@@ -160,6 +160,7 @@ public class PlayerController implements Initializable {
         }
         updateSprite(player1.getDirection());
         game.checkPlayerHealth();
+        hpBar.setProgress(player1.getHealth() * 0.01);
     }
 
 
@@ -183,6 +184,10 @@ public class PlayerController implements Initializable {
 
     public ScrollPane getScrollPane() {
         return scrollPane;
+    }
+
+    public Label getLogCounter() {
+        return logCounter;
     }
 
     @Override
