@@ -76,10 +76,6 @@ public class Player {
         return woodCount < Utils.MAX_WOOD_CARRY;
     }
 
-    public int getWoodCount(){
-        return woodCount;
-    }
-
     public boolean buildBoat() {
         return woodCount >= Utils.WOOD_FOR_BOAT;
     }

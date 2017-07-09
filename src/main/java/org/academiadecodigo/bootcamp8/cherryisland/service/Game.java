@@ -18,6 +18,8 @@ import org.academiadecodigo.bootcamp8.cherryisland.model.Direction;
 import org.academiadecodigo.bootcamp8.cherryisland.model.GridPosition;
 import org.academiadecodigo.bootcamp8.cherryisland.model.Player;
 import org.academiadecodigo.bootcamp8.cherryisland.util.Utils;
+import org.academiadecodigo.bootcamp8.cherryisland.sound.Sound;
+import org.academiadecodigo.bootcamp8.cherryisland.sound.SoundEnum;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -44,6 +46,7 @@ public class Game extends Application {
     private GameObject enemy;
     private ImageView enemyImg;
     private Label woodUpdate;
+    private Sound sound = new Sound(SoundEnum.SOUNDTRACK.getPath());
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -75,12 +78,9 @@ public class Game extends Application {
             for (int i = 0; i < positionContents.length; i++) {
                 positionContents[i] = "empty";
             }
-            System.out.println("T1");
 
             playerNumber = reader.readLine();
             start = reader.readLine();
-
-            System.out.println("T2");
 
             if (playerNumber.equals("1")) {
                 System.out.println("T3");
@@ -96,7 +96,6 @@ public class Game extends Application {
 
 
             if (start.equals("start")) {
-                System.out.println("T5");
 
                 final Game game = this; //TODO improve
                 Runnable runnable = new Runnable() {
@@ -104,6 +103,7 @@ public class Game extends Application {
                     public void run() {
                         synchronized (this) {
                             navigation.loadScreen(Utils.GAME_VIEW);
+                            sound.play(true);
 
                             GameController gameController = (GameController) navigation.getController(Utils.GAME_VIEW);
                             gameController.setGame(game);
@@ -112,6 +112,7 @@ public class Game extends Application {
 
                             gridPane = gameController.getGridPane();
                             scrollPane = gameController.getScrollPane();
+                            woodUpdate = gameController.getWoodCounter();
                             notifyAll();
                         }
                     }
@@ -162,7 +163,6 @@ public class Game extends Application {
                 receive.start();
 
                 gameSend("start");
-                System.out.println("GAME START!");
             }
 
             System.out.println("EERRRROOOOORRRRRR");
@@ -348,4 +348,6 @@ public class Game extends Application {
         }
         return false;
     }
+
+
 }

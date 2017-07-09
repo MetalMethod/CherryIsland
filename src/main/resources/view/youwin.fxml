@@ -8,10 +8,10 @@
    <children>
       <ImageView fitHeight="725.0" fitWidth="725.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../ending/ending.png" />
+            <Image url="@../ending/playerwin.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="152.0" fitWidth="380.0" layoutX="300.0" layoutY="525.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="152.0" fitWidth="380.0" layoutX="180.0" layoutY="525.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../ending/youwin.png" />
          </image>
