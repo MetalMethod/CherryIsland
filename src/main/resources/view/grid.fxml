@@ -272,12 +272,12 @@
             <Image url="@../gameobjects/rope.png" />
          </image>
       </ImageView>
-      <Label fx:id="woodCounter" layoutX="105.0" layoutY="48.0" style="-fx-stroke: black; -fx-stroke-width: 10;" text="0">
+      <Label fx:id="woodCounter" layoutX="103.0" layoutY="48.0" style="-fx-stroke: black; -fx-stroke-width: 10;" text="0">
          <font>
             <Font name="Arial Black" size="16.0" />
          </font>
       </Label>
-      <Label fx:id="woodCounterMax" layoutX="128.0" layoutY="48.0" style="-fx-stroke: black; -fx-stroke-width: 10;" text="/10">
+      <Label fx:id="woodCounterMax" layoutX="125.0" layoutY="48.0" style="-fx-stroke: black; -fx-stroke-width: 10;" text="/10">
          <font>
             <Font name="Arial Black" size="16.0" />
          </font>

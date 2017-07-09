@@ -202,7 +202,7 @@ public class GameController implements Initializable {
         }
         game.checkPlayerHealth();
         hpBar.setProgress(player.getHealth() * 0.01);
-        System.out.println("Player healt: -------- " + player.getHealth());
+        System.out.println("Player health: -------- " + player.getHealth());
     }
 
     public void setGame(Game game) {
