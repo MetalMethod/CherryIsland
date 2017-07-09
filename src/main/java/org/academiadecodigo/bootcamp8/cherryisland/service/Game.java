@@ -4,13 +4,12 @@ import javafx.application.Application;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.academiadecodigo.bootcamp8.cherryisland.Navigation;
-import org.academiadecodigo.bootcamp8.cherryisland.controller.PlayerController;
+import org.academiadecodigo.bootcamp8.cherryisland.controller.GameController;
 import org.academiadecodigo.bootcamp8.cherryisland.gameObjects.GameObject;
 import org.academiadecodigo.bootcamp8.cherryisland.gameObjects.GameObjectFactory;
 import org.academiadecodigo.bootcamp8.cherryisland.gameObjects.ObjectType;
@@ -85,15 +84,15 @@ public class Game extends Application {
 
 
                 Navigation.getInstance().loadScreen(U.INITIAL_VIEW);
-                PlayerController playerController = (PlayerController) Navigation.getInstance().getController(U.INITIAL_VIEW);
-                playerController.setGame(this);
-                playerController.scrollPaneRequest();
-                playerController.setPlayer1(player);
+                GameController gameController = (GameController) Navigation.getInstance().getController(U.INITIAL_VIEW);
+                gameController.setGame(this);
+                gameController.scrollPaneRequest();
+                gameController.setPlayer(player);
 
-                gridPane = playerController.getGridPane();
-                pane = playerController.getPane();
-                scrollPane = playerController.getScrollPane();
-                woodUpdate = playerController.getLogCounter();
+                gridPane = gameController.getGridPane();
+                pane = gameController.getPane();
+                scrollPane = gameController.getScrollPane();
+                woodUpdate = gameController.getWoodCounter();
 
                 if (playerNumber.equals("1")) {
                     gameObjectHashMap.put(String.valueOf(U.P2_STARTING_COL) + String.valueOf(U.P2_STARTING_ROW), enemy);
@@ -158,7 +157,7 @@ public class Game extends Application {
                 GameObject lake = GameObjectFactory.getObject(ObjectType.LAKE, new GridPosition(col, row));
                 gameObjectHashMap.put(String.valueOf(col) + String.valueOf(row), lake);
                 gridPane.add(new ImageView("/gameobjects/lake1.png"), col, row);
-                for (int i = 0; i < U.LAKECOLSPAN; i++) {
+                for (int i = 0; i < U.LAKE_COL_SPAN; i++) {
                     for (int j = -1; j < 2; j++) {
                         positionContents[(j * U.GRID_COLS) + U.GRID_COLS * row + col + i] = "lake";
                     }
@@ -217,25 +216,25 @@ public class Game extends Application {
 
     public void takeAction() {
         Direction dir = player.getDirection();
-        int playerpos = U.GRID_COLS * player.getPosition().getRow() + player.getPosition().getCol();
-        int facingpos = 0;
+        int playerPos = U.GRID_COLS * player.getPosition().getRow() + player.getPosition().getCol();
+        int facingPos = 0;
         switch (dir) {
             case UP:
-                facingpos = playerpos - U.GRID_COLS;
+                facingPos = playerPos - U.GRID_COLS;
                 break;
             case LEFT:
-                facingpos = playerpos - 1;
+                facingPos = playerPos - 1;
                 break;
             case RIGHT:
-                facingpos = playerpos + 1;
+                facingPos = playerPos + 1;
                 break;
             case DOWN:
-                facingpos = playerpos + U.GRID_COLS;
+                facingPos = playerPos + U.GRID_COLS;
                 break;
         }
-        int facingCol = facingpos % U.GRID_COLS;
-        int facingRow = (facingpos / U.GRID_COLS);
-        switch (positionContents[facingpos]) {
+        int facingCol = facingPos % U.GRID_COLS;
+        int facingRow = (facingPos / U.GRID_COLS);
+        switch (positionContents[facingPos]) {
             case "lake":
                 player.raiseHealth(U.LAKE_HEAL_AMOUNT);
                 break;
@@ -245,8 +244,11 @@ public class Game extends Application {
                 gameSend("cherries remove " + facingCol + " " + facingRow);
                 break;
             case "tree":
+                if (!player.carryMoreWood()) {
+                    break;
+                }
                 removeGameObject(facingCol, facingRow);
-                player.getWood();
+                player.pickWood();
                 gameSend("tree remove " + facingCol + " " + facingRow);
                 break;
             default:
@@ -262,8 +264,8 @@ public class Game extends Application {
 
         }
 
-        woodUpdate.setText(String.valueOf(player.getWood2()));
-        System.out.println(String.valueOf(player.getWood2()));
+        woodUpdate.setText(String.valueOf(player.getWoodCounter()));
+        System.out.println(String.valueOf(player.getWoodCounter()));
         //1-check player direction
         //2- check if there is a lake, cherries, tree or beach in the position player is facing
         //3-take corresponding action if there is something (get health from lake, cut tree to get wood, take cherries, build boat)

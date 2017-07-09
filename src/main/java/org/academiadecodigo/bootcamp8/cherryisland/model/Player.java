@@ -2,8 +2,6 @@ package org.academiadecodigo.bootcamp8.cherryisland.model;
 
 import org.academiadecodigo.bootcamp8.cherryisland.util.U;
 
-import java.awt.image.DirectColorModel;
-
 /**
  * Created by dgcst on 30/06/17.
  */
@@ -11,18 +9,29 @@ public class Player {
 
     private GridPosition position;
     private String username;
-    private int woodcount;
+    private int woodCount;
+    private Direction direction;
+
     private int health;
+
+    public Player(int col, int row) {
+        //this.username=username;
+        position = new GridPosition(col, row);
+        setPosition(col, row);
+        health = U.PLAYER_INIT_HEALTH;
+        woodCount = 0;
+
+    } // Instanciation -> Player player = new Player(new GridPosition(col, row));
 
     public int getHealth() {
         return health;
     }
 
     public void raiseHealth(int amount) {
-        if (health < U.PLAYER_INITHEALTH) {
+        if (health < U.PLAYER_INIT_HEALTH) {
             health = health + amount;
-            if (health > U.PLAYER_INITHEALTH) {
-                health = U.PLAYER_INITHEALTH;
+            if (health > U.PLAYER_INIT_HEALTH) {
+                health = U.PLAYER_INIT_HEALTH;
             }
         }
         System.out.println("Player health: "+health);
@@ -41,16 +50,6 @@ public class Player {
         this.direction = direction;
     }
 
-    private Direction direction;
-
-    public Player(int col, int row) {
-        //this.username=username;
-        position = new GridPosition(col, row);
-        setPosition(col, row);
-        health = U.PLAYER_INITHEALTH;
-        woodcount = 0;
-
-    } // Instanciation -> Player player = new Player(new GridPosition(col, row));
 
     public GridPosition getPosition() {
         return position;
@@ -61,23 +60,27 @@ public class Player {
         position.setRow(row);
     }
 
-    public int getWood2(){//TODO rename
-        return woodcount;
+    public int getWoodCounter() {
+        return woodCount;
     }
 
-    public void getWood(){//TODO rename
-        woodcount++;
-        System.out.println("Wood count: "+woodcount);
+    public void pickWood() {
+        if (!carryMoreWood()) {
+            return;
+        }
+        woodCount++;
+        System.out.println("Wood count: " + woodCount);
     }
 
-    public int getWoodcount(){
-        return woodcount;
+    public boolean carryMoreWood() {
+        return woodCount < U.MAX_WOOD_CARRY;
+    }
+
+    public int getWoodCount(){
+        return woodCount;
     }
 
     public boolean buildBoat() {
-        if (woodcount >= U.WOODFORBOAT) {
-            return true;
-        }
-        return false;
+        return woodCount >= U.WOOD_FOR_BOAT;
     }
 }

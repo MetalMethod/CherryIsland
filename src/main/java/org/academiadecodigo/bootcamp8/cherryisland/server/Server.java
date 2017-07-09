@@ -120,10 +120,10 @@ public class Server {
 
 
             //set lake location
-            int targetRow=(int)((Math.random())*(U.GREEN_COLS -1-U.LAKEROWSPAN))+U.BEACH_WIDTH+U.P1_STARTING_ROW;
-            int targetCol=(int)((Math.random())*(U.GREEN_COLS -1-U.LAKECOLSPAN))+U.BEACH_WIDTH+U.P1_STARTING_COL;
+            int targetRow=(int)((Math.random())*(U.GREEN_COLS -1-U.LAKE_ROW_SPAN))+U.BEACH_WIDTH+U.P1_STARTING_ROW;
+            int targetCol=(int)((Math.random())*(U.GREEN_COLS -1-U.LAKE_COL_SPAN))+U.BEACH_WIDTH+U.P1_STARTING_COL;
             gameObjectInit.add("lake "+"add "+targetCol+" "+targetRow);
-            for(int i=0;i<U.LAKECOLSPAN;i++){
+            for(int i = 0; i<U.LAKE_COL_SPAN; i++){
                 for(int j=-1;j<2;j++){
                     positionContents[(j*U.GRID_COLS)+U.GRID_COLS*targetRow+targetCol+i]="lake";
                 }
