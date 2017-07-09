@@ -126,6 +126,7 @@
                         <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
                         <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
                         <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
                         
                                 </columnConstraints>
                     <rowConstraints>
@@ -229,8 +230,56 @@
                         <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
                         <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
                         <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
             
                     </rowConstraints>
+                     <children>
+                        <ImageView GridPane.columnIndex="8" GridPane.rowIndex="2">
+                           <image>
+                              <Image url="@../interface/boat_icon.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="20.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                           <image>
+                              <Image url="@../game_objects/rope.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="ropeCounter" style="-fx-stroke: black; -fx-stroke-width: 10;" text="0" GridPane.columnIndex="4" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="Arial Black" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="ropeCounterMax" style="-fx-stroke: black; -fx-stroke-width: 10;" text="/2" GridPane.columnIndex="5" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="Arial Black" size="16.0" />
+                           </font>
+                        </Label>
+                        <ImageView GridPane.columnIndex="8" GridPane.rowIndex="3">
+                           <image>
+                              <Image url="@../interface/boat_icon2.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="woodCounter1" style="-fx-stroke: black; -fx-stroke-width: 10;" text="0" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="Arial Black" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="woodCounter11" style="-fx-stroke: black; -fx-stroke-width: 10;" text="/ 0" GridPane.columnIndex="10" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="Arial Black" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="woodCounter12" style="-fx-stroke: black; -fx-stroke-width: 10;" text="0" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="Arial Black" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="woodCounter111" style="-fx-stroke: black; -fx-stroke-width: 10;" text="/ 0" GridPane.columnIndex="10" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="Arial Black" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
                   </GridPane>
                </children>
             </Pane>
@@ -255,21 +304,6 @@
       <ImageView fx:id="howToPlay" fitHeight="93.0" fitWidth="678.0" pickOnBounds="true" visible="false" x="25.0" y="600.0">
          <image>
             <Image url="@../interface/howtoplay.png" />
-         </image>
-      </ImageView>
-      <Label fx:id="ropeCounter" layoutX="184.0" layoutY="48.0" style="-fx-stroke: black; -fx-stroke-width: 10;" text="0">
-         <font>
-            <Font name="Arial Black" size="16.0" />
-         </font>
-      </Label>
-      <Label fx:id="ropeCounterMax" layoutX="198.0" layoutY="48.0" style="-fx-stroke: black; -fx-stroke-width: 10;" text="/2">
-         <font>
-            <Font name="Arial Black" size="16.0" />
-         </font>
-      </Label>
-      <ImageView fitHeight="20.0" fitWidth="24.0" layoutX="160.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../game_objects/rope.png" />
          </image>
       </ImageView>
       <Label fx:id="woodCounter" layoutX="103.0" layoutY="48.0" style="-fx-stroke: black; -fx-stroke-width: 10;" text="0">
