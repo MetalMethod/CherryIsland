@@ -50,6 +50,12 @@ public class GameController implements Initializable {
     private Label woodCounterMax;
 
     @FXML
+    private Label ropeCounter;
+
+    @FXML
+    private Label ropeCounterMax;
+
+    @FXML
     private Label cherryCounter;
 
     @FXML
