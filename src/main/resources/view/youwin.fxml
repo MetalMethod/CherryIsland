@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="725.0" prefWidth="725.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="221.0" layoutY="124.0" prefHeight="153.0" prefWidth="159.0" text="You win!" />
+      <ImageView fitHeight="725.0" fitWidth="725.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../ending/ending.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="152.0" fitWidth="380.0" layoutX="300.0" layoutY="525.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../ending/youwin.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>
