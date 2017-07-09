@@ -126,9 +126,9 @@ public class Game extends Application {
     }
 
     public static void main(String[] args) {
-        Game.hostname = null;
-        if (args.length > 0) {
-            Game.hostname = args[0];
+        Game.hostname=null;
+        if(args.length > 0){
+            Game.hostname=args[0];
         }
         launch(args);
     }

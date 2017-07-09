@@ -1,7 +1,5 @@
 package org.academiadecodigo.bootcamp8.cherryisland.gameObjects;
 
-import javax.swing.text.html.ImageView;
-
 /**
  * Created by joelalmeida on 04/07/17.
  */
