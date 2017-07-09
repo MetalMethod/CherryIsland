@@ -100,18 +100,21 @@ public class GameReceive implements Runnable {
                         Platform.runLater(new Runnable() {
                             @Override
                             public void run() {
+
+                                game.getGameSound().stop();
+
                                 if (msg2.split(" ")[0].equals(game.getPlayerNumber())) {
                                     Navigation.getInstance().loadScreen("youwin");
 
                                     sound = new Sound(SoundEnum.WIN.getPath());
-                                    sound.setLoop(5);
+                                    sound.setLoop(2);
                                     sound.play(true);
 
                                 } else {
                                     Navigation.getInstance().loadScreen("youlose");
 
                                     sound = new Sound(SoundEnum.LOSE.getPath());
-                                    sound.setLoop(5);
+                                    sound.setLoop(2);
                                     sound.play(true);
                                 }
                             }

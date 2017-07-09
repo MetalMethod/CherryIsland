@@ -103,7 +103,7 @@ public class Game extends Application {
 
             if (start.equals("start")) {
 
-                //gameSound.play(true);
+                gameSound.play(true);
 
                 final Game game = this; //TODO improve
                 Runnable runnable = new Runnable() {
@@ -334,7 +334,14 @@ public class Game extends Application {
 
     public void checkPlayerHealth(){
         if(player.getHealth() <=0){
+
+            gameSound.stop();
+
             Navigation.getInstance().loadScreen("youlose");
+
+            Sound lose = new Sound(SoundEnum.LOSE.getPath());
+            lose.setLoop(2);
+            lose.play(true);
         }
     }
 
@@ -350,6 +357,9 @@ public class Game extends Application {
         return enemy;
     }
 
+    public Sound getGameSound() {
+        return gameSound;
+    }
 
     public void movePlayer(int col, int row) {
         player.setPosition(col, row);
