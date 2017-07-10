@@ -25,7 +25,7 @@
                   </ImageView>
                   <GridPane fx:id="gridPane" layoutX="0.5" layoutY="0.5">
                     <columnConstraints>
-                      <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
+
                         <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
                         <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
                         <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="25.0" />
@@ -129,7 +129,6 @@
                         
                                 </columnConstraints>
                     <rowConstraints>
-                      <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
                         <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
                         <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
                         <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
@@ -270,22 +269,22 @@
             <Image url="@../interface/boat_icon2.png" />
          </image>
       </ImageView>
-      <Label fx:id="woodCounter11" layoutX="250.0" layoutY="80.0" style="-fx-stroke: black; -fx-stroke-width: 10;" text="/ 0">
+      <Label fx:id="boatRopeCounterMax" layoutX="250.0" layoutY="80.0" style="-fx-stroke: black; -fx-stroke-width: 10;" text="/ 0">
          <font>
             <Font name="Arial Black" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="woodCounter12" layoutX="235.0" layoutY="80.0" style="-fx-stroke: black; -fx-stroke-width: 10;" text="0">
+      <Label fx:id="boatRopeCounter" layoutX="235.0" layoutY="80.0" style="-fx-stroke: black; -fx-stroke-width: 10;" text="0">
          <font>
             <Font name="Arial Black" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="woodCounter111" layoutX="250.0" layoutY="50.0" style="-fx-stroke: black; -fx-stroke-width: 10;" text="/ 0">
+      <Label fx:id="boatWoodCounterMax" layoutX="250.0" layoutY="50.0" style="-fx-stroke: black; -fx-stroke-width: 10;" text="/ 0">
          <font>
             <Font name="Arial Black" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="woodCounter1" layoutX="235.0" layoutY="50.0" style="-fx-stroke: black; -fx-stroke-width: 10;" text="0">
+      <Label fx:id="boatWoodCounter" layoutX="235.0" layoutY="50.0" style="-fx-stroke: black; -fx-stroke-width: 10;" text="0">
          <font>
             <Font name="Arial Black" size="12.0" />
          </font>
