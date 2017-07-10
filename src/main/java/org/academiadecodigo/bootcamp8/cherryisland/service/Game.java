@@ -89,6 +89,7 @@ public class Game extends Application {
                 positionContents[i] = "empty";
             }
 
+
             playerNumber = reader.readLine();
             start = reader.readLine();
 
