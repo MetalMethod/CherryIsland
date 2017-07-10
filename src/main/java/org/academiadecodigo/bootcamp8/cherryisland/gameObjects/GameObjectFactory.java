@@ -37,6 +37,10 @@ public class GameObjectFactory {
             case BOAT:
                 gameObject=new Boat(gridPosition);
                 break;
+
+            case ROPE:
+                gameObject= new Rope(gridPosition);
+                break;
         }
 
         return gameObject;

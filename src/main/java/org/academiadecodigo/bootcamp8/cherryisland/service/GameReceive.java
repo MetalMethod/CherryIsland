@@ -3,6 +3,8 @@ package org.academiadecodigo.bootcamp8.cherryisland.service;
 import javafx.application.Platform;
 import org.academiadecodigo.bootcamp8.cherryisland.Navigation;
 import org.academiadecodigo.bootcamp8.cherryisland.gameObjects.ObjectType;
+import org.academiadecodigo.bootcamp8.cherryisland.sound.Sound;
+import org.academiadecodigo.bootcamp8.cherryisland.sound.SoundEnum;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,6 +19,7 @@ public class GameReceive implements Runnable {
     Socket socket;
     BufferedReader buffer;
     Game game;
+    Sound sound;
 
     public GameReceive(Socket socket, Game game) {
         this.socket = socket;
@@ -44,22 +47,25 @@ public class GameReceive implements Runnable {
                                 if (msg2.split(" ")[0].equals("tree")) {
                                     int col = Integer.parseInt(msg2.split(" ")[2]);
                                     int row = Integer.parseInt(msg2.split(" ")[3]);
+                                    int type = Integer.parseInt(msg2.split(" ")[4]);
 
-                                    game.addGameObject(ObjectType.TREE, col, row);
+                                    game.addGameObject(ObjectType.TREE, col, row, type);
                                 }
 
                                 if (msg2.split(" ")[0].equals("cherries")) {
                                     int col = Integer.parseInt(msg2.split(" ")[2]);
                                     int row = Integer.parseInt(msg2.split(" ")[3]);
+                                    int type = Integer.parseInt(msg2.split(" ")[4]);
 
-                                    game.addGameObject(ObjectType.CHERRIES, col, row);
+                                    game.addGameObject(ObjectType.CHERRIES, col, row, type);
                                 }
 
                                 if (msg2.split(" ")[0].equals("lake")) {
                                     int col = Integer.parseInt(msg2.split(" ")[2]);
                                     int row = Integer.parseInt(msg2.split(" ")[3]);
+                                    int type = Integer.parseInt(msg2.split(" ")[4]);
 
-                                    game.addGameObject(ObjectType.LAKE, col, row);
+                                    game.addGameObject(ObjectType.LAKE, col, row, type);
                                 }
 
                                 if (msg2.split(" ")[0].equals("boat")) {
@@ -67,6 +73,20 @@ public class GameReceive implements Runnable {
                                     int row = Integer.parseInt(msg2.split(" ")[3]);
 
                                     game.addGameObject(ObjectType.BOAT, col, row);
+                                }
+
+                                if (msg2.split(" ")[0].equals("rock")){
+                                    int col = Integer.parseInt(msg2.split(" ")[2]);
+                                    int row = Integer.parseInt(msg2.split(" ")[3]);
+
+                                    game.addGameObject(ObjectType.ROCK, col, row);
+                                }
+
+                                if (msg2.split(" ")[0].equals("rope")){
+                                    int col = Integer.parseInt(msg2.split(" ")[2]);
+                                    int row = Integer.parseInt(msg2.split(" ")[3]);
+
+                                    game.addGameObject(ObjectType.ROPE, col, row);
                                 }
                             }
                         });
@@ -104,10 +124,22 @@ public class GameReceive implements Runnable {
                         Platform.runLater(new Runnable() {
                             @Override
                             public void run() {
+
+                                game.getGameSound().stop();
+
                                 if (msg2.split(" ")[0].equals(game.getPlayerNumber())) {
                                     Navigation.getInstance().loadScreen("youwin");
+
+                                    sound = new Sound(SoundEnum.WIN.getPath());
+                                    sound.setLoop(2);
+                                    sound.play(true);
+
                                 } else {
                                     Navigation.getInstance().loadScreen("youlose");
+
+                                    sound = new Sound(SoundEnum.LOSE.getPath());
+                                    sound.setLoop(2);
+                                    sound.play(true);
                                 }
                             }
                         });

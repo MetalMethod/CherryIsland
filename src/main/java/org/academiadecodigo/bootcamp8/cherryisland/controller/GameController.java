@@ -237,6 +237,10 @@ public class GameController implements Initializable {
         return woodCounter;
     }
 
+    public Label getRopeCounter(){
+        return ropeCounter;
+    }
+
     /* Minimap
     public void setEnemyPos(int row, int col) {
         enemy.setX( col + 8);//magic number is horizontal padding
