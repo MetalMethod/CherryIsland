@@ -49,6 +49,7 @@ public class Game extends Application {
     private GameObject enemy;
     private ImageView enemyImg;
     private Label woodUpdate;
+    private Label ropeUpdate;
     private Sound sound = new Sound(SoundEnum.SOUNDTRACK.getPath());
 
     @Override
@@ -116,6 +117,7 @@ public class Game extends Application {
                             gridPane = gameController.getGridPane();
                             scrollPane = gameController.getScrollPane();
                             woodUpdate = gameController.getWoodCounter();
+                            ropeUpdate = gameController.getRopeCounter();
                             notifyAll();
                         }
                     }
@@ -124,7 +126,7 @@ public class Game extends Application {
                 Platform.runLater(runnable);
 
                 synchronized (runnable) {
-                    while(gridPane == null) {
+                    while (gridPane == null) {
                         try {
                             runnable.wait();
                         } catch (InterruptedException e) {
@@ -178,7 +180,7 @@ public class Game extends Application {
 
     public static void main(String[] args) {
         Game.hostname = null;
-        if(args.length > 0){
+        if (args.length > 0) {
             Game.hostname = args[0];
         }
         launch(args);
@@ -191,24 +193,24 @@ public class Game extends Application {
             case CHERRIES:
                 GameObject cherries = GameObjectFactory.getObject(ObjectType.CHERRIES, new GridPosition(col, row));
                 gameObjectHashMap.put(String.valueOf(col) + String.valueOf(row), cherries);
-                gridPane.add(new ImageView("/game_objects/cherrytree1.png"), col, row);
-                positionContents[Utils.GRID_COLS * row + col] = "cherries";
+                gridPane.add(new ImageView(ObjectType.CHERRIES.getPath()), col, row);
+                positionContents[Utils.GRID_COLS * row + col] = ObjectType.CHERRIES.getName();
                 break;
 
             case TREE:
                 GameObject tree = GameObjectFactory.getObject(ObjectType.TREE, new GridPosition(col, row));
                 gameObjectHashMap.put(String.valueOf(col) + String.valueOf(row), tree);
-                gridPane.add(new ImageView("/game_objects/tree1.png"), col, row);
-                positionContents[Utils.GRID_COLS * row + col] = "tree";
+                gridPane.add(new ImageView(ObjectType.TREE.getPath()), col, row);
+                positionContents[Utils.GRID_COLS * row + col] = ObjectType.TREE.getName();
                 break;
 
             case LAKE:
                 GameObject lake = GameObjectFactory.getObject(ObjectType.LAKE, new GridPosition(col, row));
                 gameObjectHashMap.put(String.valueOf(col) + String.valueOf(row), lake);
-                gridPane.add(new ImageView("/game_objects/lake1.png"), col, row);
+                gridPane.add(new ImageView(ObjectType.LAKE.getPath()), col, row);
                 for (int i = 0; i < Utils.LAKE_COL_SPAN; i++) {
                     for (int j = -1; j < 2; j++) {
-                        positionContents[(j * Utils.GRID_COLS) + Utils.GRID_COLS * row + col + i] = "lake";
+                        positionContents[(j * Utils.GRID_COLS) + Utils.GRID_COLS * row + col + i] = ObjectType.LAKE.getName();
                     }
                 }
                 break;
@@ -216,22 +218,38 @@ public class Game extends Application {
             case BOAT:
                 GameObject boat = GameObjectFactory.getObject(ObjectType.BOAT, new GridPosition(col, row));
                 gameObjectHashMap.put(String.valueOf(col) + String.valueOf(row), boat);
-                gridPane.add(new ImageView("/gameobjects/boat.png"), col, row);
+                gridPane.add(new ImageView(ObjectType.BOAT.getPath()), col, row);
                 for (int i = 0; i < Utils.BOAT_COLSPAN; i++) {
                     for (int j = -1; j < 2; j++) {
-                        positionContents[(j * Utils.GRID_COLS) + Utils.GRID_COLS * row + col + i] = "boat";
+                        positionContents[(j * Utils.GRID_COLS) + Utils.GRID_COLS * row + col + i] = ObjectType.BOAT.getName();
                     }
                 }
                 break;
+
+            case ROCK:
+                GameObject rock = GameObjectFactory.getObject(ObjectType.ROCK, new GridPosition(col, row));
+                gameObjectHashMap.put(String.valueOf(col) + String.valueOf(row), rock);
+                gridPane.add(new ImageView(ObjectType.ROCK.getPath()), col, row);
+                positionContents[Utils.GRID_COLS * row + col] = ObjectType.ROCK.getName();
+                break;
+
+            case ROPE:
+                GameObject rope = GameObjectFactory.getObject(ObjectType.ROPE, new GridPosition(col, row));
+                gameObjectHashMap.put(String.valueOf(col) + String.valueOf(row), rope);
+                gridPane.add(new ImageView(ObjectType.ROPE.getPath()), col, row);
+                positionContents[Utils.GRID_COLS * row + col] = ObjectType.ROPE.getName();
+                break;
+
+
         }
 
     }
 
     public void removeGameObject(int col, int row) {
 
-        for(Node node : gridPane.getChildren()){
-            if((GridPane.getRowIndex(node) == row) && (GridPane.getColumnIndex(node) == col)) {
-                ((ImageView)node).setImage(null);
+        for (Node node : gridPane.getChildren()) {
+            if ((GridPane.getRowIndex(node) == row) && (GridPane.getColumnIndex(node) == col)) {
+                ((ImageView) node).setImage(null);
             }
         }
         gridPane.getChildren().remove(gameObjectHashMap.get(String.valueOf(col) + String.valueOf(row)));
@@ -311,10 +329,18 @@ public class Game extends Application {
                 break;
             case "boat":
                 player.depositWood();
-                if(player.buildBoat()){
-                    gameSend(playerNumber+" wins");
+                player.depositRope();
+                if (player.buildBoat()) {
+                    gameSend(playerNumber + " wins");
                 }
                 break;
+
+            case "rope":
+                if (!player.carryMoreRope()) {
+                    break;
+                }
+                player.pickRope();
+                gameSend("rope remove " + facingCol + " " + facingRow);
             default:
                 /*
                 if (player.getPosition().getCol() == 14 ||
@@ -331,6 +357,7 @@ public class Game extends Application {
         }
 
         woodUpdate.setText(String.valueOf(player.getWoodCounter()));
+        ropeUpdate.setText(String.valueOf(player.getRopeCount()));
         System.out.println(String.valueOf(player.getWoodCounter()));
         //1-check player direction
         //2- check if there is a lake, cherries, tree or beach in the position player is facing
@@ -338,8 +365,8 @@ public class Game extends Application {
         //4-send corresponding message to server:"tree (re)move col row", "cherries (re)move col row", or "player_ wins"
     }
 
-    public void checkPlayerHealth(){
-        if(player.getHealth() <=0){
+    public void checkPlayerHealth() {
+        if (player.getHealth() <= 0) {
             Navigation.getInstance().loadScreen("youlose");
         }
     }

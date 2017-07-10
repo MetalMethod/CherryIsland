@@ -68,6 +68,20 @@ public class GameReceive implements Runnable {
 
                                     game.addGameObject(ObjectType.BOAT, col, row);
                                 }
+
+                                if (msg2.split(" ")[0].equals("rock")){
+                                    int col = Integer.parseInt(msg2.split(" ")[2]);
+                                    int row = Integer.parseInt(msg2.split(" ")[3]);
+
+                                    game.addGameObject(ObjectType.ROCK, col, row);
+                                }
+
+                                if (msg2.split(" ")[0].equals("rope")){
+                                    int col = Integer.parseInt(msg2.split(" ")[2]);
+                                    int row = Integer.parseInt(msg2.split(" ")[3]);
+
+                                    game.addGameObject(ObjectType.ROPE, col, row);
+                                }
                             }
                         });
                     }

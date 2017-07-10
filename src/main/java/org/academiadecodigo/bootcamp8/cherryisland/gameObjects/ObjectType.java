@@ -8,7 +8,10 @@ public enum ObjectType {
     TREE("/game_objects/tree1.png","tree"),
     LAKE("/game_objects/lake1.png","lake"),
     CHERRIES("/game_objects/cherrytree1.png","cherries"),
-    ENEMY("/characters/castaway/player_front0.png","enemy");
+    ENEMY("/characters/castaway/player_front0.png","enemy"),
+    ROCK("/game_objects/rock.png","rock"),
+    ROPE("/game_objects/rope.png", "rope");
+
 
     private String path;
     private String name;
