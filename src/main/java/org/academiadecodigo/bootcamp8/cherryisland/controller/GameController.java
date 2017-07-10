@@ -1,5 +1,6 @@
 package org.academiadecodigo.bootcamp8.cherryisland.controller;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -8,6 +9,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import org.academiadecodigo.bootcamp8.cherryisland.model.Direction;
@@ -77,6 +79,7 @@ public class GameController implements Initializable {
         scrollPane.setVmax(2500-725);
         scrollPane.setHmax(2500-725);
         scrollPane.setPannable(false);
+        blockScrolling();
 
         up0 = new Image("/characters/rambo/player_up0.png");
         up1 = new Image("/characters/rambo/player_up1.png");
@@ -213,6 +216,11 @@ public class GameController implements Initializable {
         System.out.println("Player health: -------- " + player.getHealth());
     }
 
+    @FXML
+    public void stopScroll() {
+        return;
+    }
+
     public void setGame(Game game) {
         this.game = game;
     }
@@ -279,6 +287,15 @@ public class GameController implements Initializable {
                 }
                 break;
         }
+    }
+
+    private void blockScrolling() {
+        scrollPane.addEventFilter(ScrollEvent.SCROLL, new EventHandler<ScrollEvent>() {
+            @Override
+            public void handle(ScrollEvent event) {
+                event.consume();
+            }
+        });
     }
 
     public Pane getPane() {
