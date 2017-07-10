@@ -7,10 +7,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.media.AudioClip;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import org.academiadecodigo.bootcamp8.cherryisland.Navigation;
 import org.academiadecodigo.bootcamp8.cherryisland.controller.GameController;
@@ -24,7 +20,6 @@ import org.academiadecodigo.bootcamp8.cherryisland.model.Player;
 import org.academiadecodigo.bootcamp8.cherryisland.util.Utils;
 import org.academiadecodigo.bootcamp8.cherryisland.sound.Sound;
 import org.academiadecodigo.bootcamp8.cherryisland.sound.SoundEnum;
-import org.academiadecodigo.bootcamp8.cherryisland.sound.Sound;
 
 import java.io.*;
 import java.net.Socket;
@@ -39,7 +34,6 @@ public class Game extends Application {
     private Player player;
     private GridPane gridPane;
     private HashMap<String, GameObject> gameObjectHashMap;
-    private Pane pane;
     private ScrollPane scrollPane;
     private Socket socket;
     private Navigation navigation;
@@ -49,6 +43,13 @@ public class Game extends Application {
     private GameObject enemy;
     private ImageView enemyImg;
     private Label woodUpdate;
+
+    private Sound gameSound = new Sound(SoundEnum.SOUNDTRACK.getPath());
+    private Sound lake = new Sound(SoundEnum.DRINK.getPath());
+    private Sound cherries = new Sound(SoundEnum.PICKING.getPath());
+    private Sound tree = new Sound(SoundEnum.WOOD.getPath());
+    private Sound punch = new Sound(SoundEnum.PUNCH.getPath());
+
     private Label ropeUpdate;
     private Sound sound = new Sound(SoundEnum.SOUNDTRACK.getPath());
 
@@ -101,13 +102,14 @@ public class Game extends Application {
 
             if (start.equals("start")) {
 
+                gameSound.play(true);
+
                 final Game game = this; //TODO improve
                 Runnable runnable = new Runnable() {
                     @Override
                     public void run() {
                         synchronized (this) {
                             navigation.loadScreen(Utils.GAME_VIEW);
-                            sound.play(true);
 
                             GameController gameController = (GameController) navigation.getController(Utils.GAME_VIEW);
                             gameController.setGame(game);
@@ -126,7 +128,7 @@ public class Game extends Application {
                 Platform.runLater(runnable);
 
                 synchronized (runnable) {
-                    while (gridPane == null) {
+                    while(gridPane == null) {
                         try {
                             runnable.wait();
                         } catch (InterruptedException e) {
@@ -180,7 +182,7 @@ public class Game extends Application {
 
     public static void main(String[] args) {
         Game.hostname = null;
-        if (args.length > 0) {
+        if(args.length > 0){
             Game.hostname = args[0];
         }
         launch(args);
@@ -312,21 +314,28 @@ public class Game extends Application {
         }
         int facingCol = facingPos % Utils.GRID_COLS;
         int facingRow = (facingPos / Utils.GRID_COLS);
+
         switch (positionContents[facingPos]) {
             case "lake":
+                lake.play(true);
                 player.raiseHealth(Utils.LAKE_HEAL_AMOUNT);
                 break;
+
             case "cherries":
+                cherries.play(true);
                 player.raiseHealth(Utils.CHERRY_HEAL_AMOUNT);
                 gameSend("cherries remove " + facingCol + " " + facingRow);
                 break;
+
             case "tree":
+                tree.play(true);
                 if (!player.carryMoreWood()) {
                     break;
                 }
                 player.pickWood();
                 gameSend("tree remove " + facingCol + " " + facingRow);
                 break;
+
             case "boat":
                 player.depositWood();
                 player.depositRope();
@@ -365,9 +374,16 @@ public class Game extends Application {
         //4-send corresponding message to server:"tree (re)move col row", "cherries (re)move col row", or "player_ wins"
     }
 
-    public void checkPlayerHealth() {
-        if (player.getHealth() <= 0) {
+    public void checkPlayerHealth(){
+        if(player.getHealth() <=0){
+
+            gameSound.stop();
+
             Navigation.getInstance().loadScreen("youlose");
+
+            Sound lose = new Sound(SoundEnum.LOSE.getPath());
+            lose.setLoop(2);
+            lose.play(true);
         }
     }
 
@@ -383,6 +399,9 @@ public class Game extends Application {
         return enemy;
     }
 
+    public Sound getGameSound() {
+        return gameSound;
+    }
 
     public void movePlayer(int col, int row) {
         player.setPosition(col, row);
