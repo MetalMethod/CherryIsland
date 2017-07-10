@@ -151,7 +151,29 @@ public class Server {
                 positionContents[Utils.GRID_COLS*targetRow+targetCol]="cherries";
             }
 
+            //set rocks locations
+            for(int i = 0; i < Utils.NUMBER_OF_ROCKS; i++){
+                targetRow=(int)((Math.random())* Utils.GREEN_COLS)+ Utils.BEACH_WIDTH+ Utils.P1_STARTING_ROW;
+                targetCol=(int)((Math.random())* Utils.GREEN_COLS)+ Utils.BEACH_WIDTH+ Utils.P1_STARTING_COL;
+                while(!positionContents[Utils.GRID_COLS*targetRow+targetCol].equals("empty") ){
+                    targetRow=(int)((Math.random())* Utils.GREEN_COLS)+ Utils.BEACH_WIDTH+ Utils.P1_STARTING_ROW;
+                    targetCol=(int)((Math.random())* Utils.GREEN_COLS)+ Utils.BEACH_WIDTH+ Utils.P1_STARTING_COL;
+                }
+                gameObjectInit.add("rock "+"add "+targetCol+" "+targetRow);
+                positionContents[Utils.GRID_COLS*targetRow+targetCol]="rock";
+            }
 
+            //set ropes location
+            for(int i = 0; i < Utils.NUMBER_OF_ROPES; i++){
+                targetRow=(int)((Math.random())* Utils.GREEN_COLS)+ Utils.BEACH_WIDTH+ Utils.P1_STARTING_ROW;
+                targetCol=(int)((Math.random())* Utils.GREEN_COLS)+ Utils.BEACH_WIDTH+ Utils.P1_STARTING_COL;
+                while(!positionContents[Utils.GRID_COLS*targetRow+targetCol].equals("empty") ){
+                    targetRow=(int)((Math.random())* Utils.GREEN_COLS)+ Utils.BEACH_WIDTH+ Utils.P1_STARTING_ROW;
+                    targetCol=(int)((Math.random())* Utils.GREEN_COLS)+ Utils.BEACH_WIDTH+ Utils.P1_STARTING_COL;
+                }
+                gameObjectInit.add("rope "+"add "+targetCol+" "+targetRow);
+                positionContents[Utils.GRID_COLS*targetRow+targetCol]="rope";
+            }
 
             //tell all players to start game and send them information about global game variables (tree positions, etc)
             for (int i = 1; i < printWriters.size() + 1; i++) {
