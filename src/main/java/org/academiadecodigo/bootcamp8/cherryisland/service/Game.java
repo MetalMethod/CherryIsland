@@ -52,6 +52,8 @@ public class Game extends Application {
     private Sound punch = new Sound(SoundEnum.PUNCH.getPath());
 
     private Label ropeUpdate;
+    private Label boatWoodUpdate;
+    private Label boatRopeUpdate;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -122,6 +124,8 @@ public class Game extends Application {
                             scrollPane = gameController.getScrollPane();
                             woodUpdate = gameController.getWoodCounter();
                             ropeUpdate = gameController.getRopeCounter();
+                            boatRopeUpdate=gameController.getBoatRopeCounter();
+                            boatWoodUpdate=gameController.getBoatWoodCounter();
                             notifyAll();
                         }
                     }
@@ -386,6 +390,8 @@ public class Game extends Application {
 
         woodUpdate.setText(String.valueOf(player.getWoodCounter()));
         ropeUpdate.setText(String.valueOf(player.getRopeCount()));
+        boatWoodUpdate.setText(String.valueOf(player.getWoodInBoat()));
+        boatRopeUpdate.setText(String.valueOf(player.getRopeInBoat()));
         System.out.println(String.valueOf(player.getWoodCounter()));
         //1-check player direction
         //2- check if there is a lake, cherries, tree or beach in the position player is facing

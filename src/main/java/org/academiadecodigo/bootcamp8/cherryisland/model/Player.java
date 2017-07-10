@@ -117,4 +117,11 @@ public class Player {
         ropeInBoat+=ropeCount;
         ropeCount=0;
     }
+
+    public int getWoodInBoat(){
+        return woodInBoat;
+    }
+    public int getRopeInBoat(){
+        return ropeInBoat;
+    }
 }
