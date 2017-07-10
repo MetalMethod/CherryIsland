@@ -47,22 +47,25 @@ public class GameReceive implements Runnable {
                                 if (msg2.split(" ")[0].equals("tree")) {
                                     int col = Integer.parseInt(msg2.split(" ")[2]);
                                     int row = Integer.parseInt(msg2.split(" ")[3]);
+                                    int type = Integer.parseInt(msg2.split(" ") [4]);
 
-                                    game.addGameObject(ObjectType.TREE, col, row);
+                                    game.addGameObject(ObjectType.TREE, col, row, type);
                                 }
 
                                 if (msg2.split(" ")[0].equals("cherries")) {
                                     int col = Integer.parseInt(msg2.split(" ")[2]);
                                     int row = Integer.parseInt(msg2.split(" ")[3]);
+                                    int type = Integer.parseInt(msg2.split(" ") [4]);
 
-                                    game.addGameObject(ObjectType.CHERRIES, col, row);
+                                    game.addGameObject(ObjectType.CHERRIES, col, row, type);
                                 }
 
                                 if (msg2.split(" ")[0].equals("lake")) {
                                     int col = Integer.parseInt(msg2.split(" ")[2]);
                                     int row = Integer.parseInt(msg2.split(" ")[3]);
+                                    int type = Integer.parseInt(msg2.split(" ") [4]);
 
-                                    game.addGameObject(ObjectType.LAKE, col, row);
+                                    game.addGameObject(ObjectType.LAKE, col, row, type);
                                 }
 
                                 if (msg2.split(" ")[0].equals("boat")) {
