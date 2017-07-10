@@ -12,6 +12,8 @@ public class Player {
     private int woodCount;
     private Direction direction;
     private int woodInBoat;
+    private int ropeCount;
+    private int ropeInBoat;
 
     private int health;
 
@@ -22,6 +24,8 @@ public class Player {
         health = Utils.PLAYER_INIT_HEALTH;
         woodCount = 0;
         woodInBoat=0;
+        ropeCount = 0;
+        ropeInBoat = 0;
 
     } // Instanciation -> Player player = new Player(new GridPosition(col, row));
 
@@ -66,6 +70,10 @@ public class Player {
         return woodCount;
     }
 
+    public int getRopeCount() {
+        return ropeCount;
+    }
+
     public void pickWood() {
         if (!carryMoreWood()) {
             return;
@@ -78,12 +86,35 @@ public class Player {
         return woodCount < Utils.MAX_WOOD_CARRY;
     }
 
+    public boolean carryMoreRope(){
+        return ropeCount < Utils.MAX_ROPE_CARRY;
+    }
+
+    public void pickRope(){
+        if (!carryMoreRope()){
+            return;
+        }
+        ropeCount++;
+        System.out.println("Rope count: " + ropeCount);
+    }
+
     public boolean buildBoat() {
-        return woodInBoat >= Utils.WOOD_FOR_BOAT;
+        return ((woodInBoat >= Utils.WOOD_FOR_BOAT) && (ropeInBoat >= Utils.ROPE_FOR_BOAT));
     }
 
     public void depositWood(){
+        if (woodInBoat >= Utils.WOOD_FOR_BOAT){
+            return;
+        }
         woodInBoat=woodInBoat+woodCount;
         woodCount=0;
+    }
+
+    public void depositRope(){
+        if (ropeInBoat >= Utils.ROPE_FOR_BOAT){
+            return;
+        }
+        ropeInBoat+=ropeCount;
+        ropeCount=0;
     }
 }
