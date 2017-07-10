@@ -45,6 +45,7 @@ public class Game extends Application {
     private Navigation navigation;
     private String[] positionContents;
     public static String hostname;
+    public static int port;
     private String playerNumber;
     private GameObject enemy;
     private ImageView enemyImg;
@@ -66,11 +67,13 @@ public class Game extends Application {
 
     public void connection() {
         try {
-            if (hostname != null) {
-                socket = new Socket(hostname, 6666);
-            } else {
-                socket = new Socket("127.0.0.1", 6666);
+            if (hostname == null) {
+                hostname="127.0.0.1";
             }
+            if(port==-1){
+                port=6666;
+            }
+            socket=new Socket(hostname,port);
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
@@ -178,10 +181,20 @@ public class Game extends Application {
 
     public static void main(String[] args) {
         Game.hostname = null;
+        Game.port=-1;
         if(args.length > 0){
             Game.hostname = args[0];
         }
+        if(args.length >1){
+            Game.port=Integer.parseInt(args[1]);
+        }
         launch(args);
+    }
+
+    @Override
+    public void stop() throws Exception{
+        socket.close();
+        System.exit(1);
     }
 
     public void addGameObject(ObjectType objectType, int col, int row) {
@@ -296,7 +309,9 @@ public class Game extends Application {
         int facingRow = (facingPos / Utils.GRID_COLS);
         switch (positionContents[facingPos]) {
             case "lake":
-                player.raiseHealth(Utils.LAKE_HEAL_AMOUNT);
+                if(player.getHealth() < Utils.PLAYER_INIT_HEALTH/2) {
+                    player.raiseHealth(Utils.LAKE_HEAL_AMOUNT);
+                }
                 break;
             case "cherries":
                 player.raiseHealth(Utils.CHERRY_HEAL_AMOUNT);
