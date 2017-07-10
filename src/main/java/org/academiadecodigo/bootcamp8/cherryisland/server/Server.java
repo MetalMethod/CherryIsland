@@ -30,11 +30,11 @@ public class Server {
 
         try {
 
-            /*
+
             if (args.length > 0) {
                 port = Integer.parseInt(args[0]);
             }
-            */
+
 
             Server server = new Server();
             server.start(port);

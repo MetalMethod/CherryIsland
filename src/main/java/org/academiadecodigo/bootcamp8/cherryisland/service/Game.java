@@ -39,6 +39,7 @@ public class Game extends Application {
     private Navigation navigation;
     private String[] positionContents;
     public static String hostname;
+    public static int port;
     private String playerNumber;
     private GameObject enemy;
     private ImageView enemyImg;
@@ -51,7 +52,6 @@ public class Game extends Application {
     private Sound punch = new Sound(SoundEnum.PUNCH.getPath());
 
     private Label ropeUpdate;
-    private Sound sound = new Sound(SoundEnum.SOUNDTRACK.getPath());
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -68,11 +68,13 @@ public class Game extends Application {
 
     public void connection() {
         try {
-            if (hostname != null) {
-                socket = new Socket(hostname, 6666);
-            } else {
-                socket = new Socket("127.0.0.1", 6666);
+            if (hostname == null) {
+                hostname="127.0.0.1";
             }
+            if(port==-1){
+                port=6666;
+            }
+            socket=new Socket(hostname,port);
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
@@ -182,10 +184,20 @@ public class Game extends Application {
 
     public static void main(String[] args) {
         Game.hostname = null;
+        Game.port=-1;
         if(args.length > 0){
             Game.hostname = args[0];
         }
+        if(args.length >1){
+            Game.port=Integer.parseInt(args[1]);
+        }
         launch(args);
+    }
+
+    @Override
+    public void stop() throws Exception{
+        socket.close();
+        System.exit(1);
     }
 
     public void addGameObject(ObjectType objectType, int col, int row) {
@@ -321,8 +333,10 @@ public class Game extends Application {
 
         switch (positionContents[facingPos]) {
             case "lake":
-                lake.play(true);
-                player.raiseHealth(Utils.LAKE_HEAL_AMOUNT);
+                if(player.getHealth() < Utils.PLAYER_INIT_HEALTH/2) {
+                    player.raiseHealth(Utils.LAKE_HEAL_AMOUNT);
+                    lake.play(true);
+                }
                 break;
 
             case "cherries":
