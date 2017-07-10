@@ -63,11 +63,6 @@
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor></Button>
-        <ImageView fx:id="imageViewSplash" fitHeight="725.0" fitWidth="725.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.halignment="CENTER" GridPane.rowSpan="7" GridPane.valignment="CENTER">
-            <image>
-                <Image url="@../splash.png" />
-            </image>
-        </ImageView>
         <Hyperlink text="INSTRUCTIONS" textFill="#ccff00" translateX="20.0" translateY="10.0" GridPane.rowIndex="6">
             <font>
                 <Font name="System Bold" size="13.0" />

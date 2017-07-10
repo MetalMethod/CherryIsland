@@ -11,12 +11,10 @@ public class Sound {
     private URL soundURL;
 
     public Sound(String path) {
-
         initClip(path);
     }
 
     public void play(boolean fromStart) {
-
         if (fromStart) {
            clip.setFramePosition(0);
         }
@@ -24,12 +22,10 @@ public class Sound {
     }
 
     public void stop() {
-
         clip.stop();
     }
 
     public void close() {
-
         clip.close();
     }
 
@@ -38,11 +34,9 @@ public class Sound {
     }
 
     public void reOpen() {
-
         AudioInputStream inputStream = null;
 
         try {
-
             inputStream = AudioSystem.getAudioInputStream(soundURL);
             clip.open(inputStream);
 
@@ -52,18 +46,15 @@ public class Sound {
     }
 
     private void initClip(String path) {
-
-        soundURL = Sound.class.getResource(path); //if loading from jar
+        soundURL = Sound.class.getResource(path);
         AudioInputStream inputStream = null;
 
         try {
-
             if (soundURL == null) {
                 path = path.substring(1);
                 File file = new File(path);
-                soundURL = file.toURI().toURL(); //if executing on intellij
+                soundURL = file.toURI().toURL();
             }
-
             inputStream = AudioSystem.getAudioInputStream(soundURL);
             clip = AudioSystem.getClip();
             clip.open(inputStream);

@@ -249,72 +249,72 @@
             <Image url="@../interface/ibutton.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="20.0" fitWidth="24.0" layoutX="76.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="20.0" fitWidth="24.0" layoutX="76.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../interface/log.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="20.0" fitWidth="24.0" layoutX="76.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="20.0" fitWidth="24.0" layoutX="76.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../game_objects/rope.png" />
          </image>
       </ImageView>
-      <ImageView layoutX="200.0" layoutY="50.0">
+      <ImageView layoutX="200.0" layoutY="45.0">
          <image>
             <Image url="@../interface/boat_icon.png" />
          </image>
       </ImageView>
-      <ImageView layoutX="200.0" layoutY="75.0">
+      <ImageView layoutX="200.0" layoutY="70.0">
          <image>
             <Image url="@../interface/boat_icon2.png" />
          </image>
       </ImageView>
-      <Label fx:id="boatRopeCounterMax" layoutX="250.0" layoutY="80.0" style="-fx-stroke: black; -fx-stroke-width: 10;" text="/ 0">
+      <Label fx:id="boatRopeCounterMax" layoutX="250.0" layoutY="71.0" style="-fx-stroke: black; -fx-stroke-width: 10;" text="/ 0">
          <font>
             <Font name="Arial Black" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="boatRopeCounter" layoutX="235.0" layoutY="80.0" style="-fx-stroke: black; -fx-stroke-width: 10;" text="0">
+      <Label fx:id="boatRopeCounter" layoutX="235.0" layoutY="71.0" style="-fx-stroke: black; -fx-stroke-width: 10;" text="0">
          <font>
             <Font name="Arial Black" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="boatWoodCounterMax" layoutX="250.0" layoutY="50.0" style="-fx-stroke: black; -fx-stroke-width: 10;" text="/ 0">
+      <Label fx:id="boatWoodCounterMax" layoutX="250.0" layoutY="44.0" style="-fx-stroke: black; -fx-stroke-width: 10;" text="/ 0">
          <font>
             <Font name="Arial Black" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="boatWoodCounter" layoutX="235.0" layoutY="50.0" style="-fx-stroke: black; -fx-stroke-width: 10;" text="0">
+      <Label fx:id="boatWoodCounter" layoutX="235.0" layoutY="44.0" style="-fx-stroke: black; -fx-stroke-width: 10;" text="0">
          <font>
             <Font name="Arial Black" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="ropeCounterMax" layoutX="125.0" layoutY="70.0" style="-fx-stroke: black; -fx-stroke-width: 10;" text="/2">
+      <Label fx:id="ropeCounterMax" layoutX="125.0" layoutY="67.0" style="-fx-stroke: black; -fx-stroke-width: 10;" text="/ 2">
          <font>
             <Font name="Arial Black" size="16.0" />
          </font>
       </Label>
-      <Label fx:id="ropeCounter" layoutX="103.0" layoutY="70.0" style="-fx-stroke: black; -fx-stroke-width: 10;" text="0">
+      <Label fx:id="ropeCounter" layoutX="103.0" layoutY="67.0" style="-fx-stroke: black; -fx-stroke-width: 10;" text="0">
          <font>
             <Font name="Arial Black" size="16.0" />
          </font>
       </Label>
-      <Label fx:id="woodCounter" layoutX="103.0" layoutY="48.0" style="-fx-stroke: black; -fx-stroke-width: 10;" text="0">
+      <Label fx:id="woodCounter" layoutX="103.0" layoutY="42.0" style="-fx-stroke: black; -fx-stroke-width: 10;" text="0">
          <font>
             <Font name="Arial Black" size="16.0" />
          </font>
       </Label>
-      <Label fx:id="woodCounterMax" layoutX="125.0" layoutY="48.0" style="-fx-stroke: black; -fx-stroke-width: 10;" text="/10">
+      <Label fx:id="woodCounterMax" layoutX="125.0" layoutY="42.0" style="-fx-stroke: black; -fx-stroke-width: 10;" text="/ 10">
          <font>
             <Font name="Arial Black" size="16.0" />
          </font>
       </Label>
-      <Label layoutX="277.0" layoutY="27.0" style="-fx-stroke: black; -fx-stroke-width: 10;" text="HP">
+      <Label layoutX="277.0" layoutY="22.0" style="-fx-stroke: black; -fx-stroke-width: 10;" text="HP">
          <font>
             <Font name="Arial Black" size="13.0" />
          </font>
       </Label>
-      <ProgressBar fx:id="hpBar" cacheShape="false" centerShape="false" focusTraversable="false" layoutX="74.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="15.0" prefWidth="200.0" progress="1.0" scaleShape="false" style="-fx-control-inner-background: black; -fx-text-box-border: black; -fx-accent: red; -fx-region-border: transparent; -fx-shadow-highlight-color: transparent;">
+      <ProgressBar fx:id="hpBar" cacheShape="false" centerShape="false" focusTraversable="false" layoutX="74.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="15.0" prefWidth="200.0" progress="1.0" scaleShape="false" style="-fx-control-inner-background: black; -fx-text-box-border: black; -fx-accent: red; -fx-region-border: transparent; -fx-shadow-highlight-color: transparent;">
          <cursor>
             <Cursor fx:constant="NONE" />
          </cursor>
@@ -330,6 +330,11 @@
       <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="25.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../characters/rambo/player_front0.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="642.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../interface/ebutton.png" />
          </image>
       </ImageView>
    </children>

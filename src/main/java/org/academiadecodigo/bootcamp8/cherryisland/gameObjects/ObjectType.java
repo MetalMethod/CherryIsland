@@ -6,6 +6,7 @@ import java.util.List;
 /**
  * Created by joelalmeida on 04/07/17.
  */
+
 public enum ObjectType {
     BOAT(Arrays.asList(new String[] {"/game_objects/boat.png"}),"boat"),
     TREE(Arrays.asList(new String[] {"/game_objects/tree1.png", "/game_objects/tree2.png", "/game_objects/tree3.png"}),"tree"),
@@ -27,14 +28,7 @@ public enum ObjectType {
         return path;
     }
 
-    public String getName() {return name;}
-
-    public static ObjectType getObjectType(String path){
-        for (ObjectType type: ObjectType.values()){
-            if (path.equals(type.getPath())){
-                return type;
-            }
-        } return null;
+    public String getName() {
+        return name;
     }
-
 }

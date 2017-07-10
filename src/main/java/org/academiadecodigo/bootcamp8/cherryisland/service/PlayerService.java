@@ -25,20 +25,7 @@ public class PlayerService {
         players.add(nickname);
     }
 
-    public void removePlayer(String nickname) {
-        players.remove(nickname);
-    }
-
     public boolean playerExists(String nickname) {
         return players.contains(nickname);
     }
-
-    public String getName() {
-        return getClass().getSimpleName();
-    }
-
-    public int numPlayers() {
-        return players.size();
-    }
-
 }

@@ -3,6 +3,7 @@ package org.academiadecodigo.bootcamp8.cherryisland.sound;
 /**
  * Created by codecadet on 09/07/2017.
  */
+
 public enum SoundEnum {
 
     MENU("/src/main/resources/sound/menu.wav"),

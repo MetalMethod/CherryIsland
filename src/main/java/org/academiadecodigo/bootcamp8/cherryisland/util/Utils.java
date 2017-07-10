@@ -1,5 +1,7 @@
 package org.academiadecodigo.bootcamp8.cherryisland.util;
 
+import org.academiadecodigo.bootcamp8.cherryisland.Navigation;
+
 /**
  * Created by joelalmeida on 06/07/17.
  */
@@ -8,6 +10,8 @@ public class Utils {
 
     public static final String INITIAL_VIEW = "menu";
     public static final String GAME_VIEW = "game";
+    public static final int GRID_SIZE = 2500;
+    public static final int VIEWPORT_SIZE = 725;
     public static final int P1_STARTING_COL = 14;
     public static final int P1_STARTING_ROW = 14;
     public static final int P2_STARTING_COL = 85;
@@ -18,8 +22,8 @@ public class Utils {
     public static final int GRID_COLS = 100;
     public static final int LAKE_COL_SPAN = 3;
     public static final int LAKE_ROW_SPAN = 3;
-    public static final int BOAT_COLSPAN=4;
-    public static final int BOAT_ROWSPAN=3;
+    public static final int BOAT_COL_SPAN = 4;
+    public static final int BOAT_ROW_SPAN = 3;
 
     public static final int PLAYER_INIT_HEALTH = 350;
     public static final int MAX_WOOD_CARRY = 10;

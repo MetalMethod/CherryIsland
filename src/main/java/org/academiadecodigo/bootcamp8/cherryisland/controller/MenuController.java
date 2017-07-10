@@ -25,11 +25,8 @@ public class MenuController implements Initializable {
     private PlayerService playerService;
     private String nickname;
     private Game game;
-    private Sound waiting = new Sound(SoundEnum.WAITING.getPath());
-    private Sound menu = new Sound(SoundEnum.MENU.getPath());
-
-    @FXML
-    ImageView imageViewSplash;
+    private Sound waiting;
+    private Sound menu;
 
     @FXML
     TextField textFieldNickname;
@@ -49,12 +46,13 @@ public class MenuController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         playerService = PlayerService.getInstance();
+        waiting = new Sound(SoundEnum.WAITING.getPath());
+        menu = new Sound(SoundEnum.MENU.getPath());
         menu.setLoop(10);
         menu.play(true);
     }
 
     public void onReadyButtonClick() {
-
         menu.stop();
         waiting.setLoop(10);
         waiting.play(true);
@@ -62,6 +60,7 @@ public class MenuController implements Initializable {
         if (labelNickname.isVisible()) {
             return;
         }
+
         nickname = textFieldNickname.getText();
         if (nickname.equals("") || playerService.playerExists(nickname)) {
             labelInfo.setStyle("-fx-text-fill: red;");
@@ -70,6 +69,7 @@ public class MenuController implements Initializable {
         }
         playerService.addPlayer(nickname);
         waitForGame();
+
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -94,10 +94,6 @@ public class MenuController implements Initializable {
         labelNickname.setText(nickname);
         labelNickname.setVisible(true);
         imageViewWaiting.setVisible(true);
-    }
-
-    public ImageView getImageViewSplash() {
-        return imageViewSplash;
     }
 
     public void setGame(Game game) {
