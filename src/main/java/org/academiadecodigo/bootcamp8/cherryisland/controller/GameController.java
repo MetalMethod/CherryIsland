@@ -44,6 +44,18 @@ public class GameController implements Initializable {
     private ImageView playerAvatar;
 
     @FXML
+    private Label boatRopeCounterMax;
+
+    @FXML
+    private Label boatRopeCounter;
+
+    @FXML
+    private Label boatWoodCounterMax;
+
+    @FXML
+    private Label boatWoodCounter;
+
+    @FXML
     private Label woodCounter;
 
     @FXML
@@ -73,6 +85,9 @@ public class GameController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         woodCounterMax.setText("/ " + Utils.MAX_WOOD_CARRY);
+        ropeCounterMax.setText("/ "+ Utils.MAX_ROPE_CARRY);
+        boatRopeCounterMax.setText("/ "+Utils.ROPE_FOR_BOAT);
+        boatWoodCounterMax.setText("/ "+Utils.WOOD_FOR_BOAT);
 
         scrollPane.setVmax(2500-725);
         scrollPane.setHmax(2500-725);
@@ -194,7 +209,7 @@ public class GameController implements Initializable {
                 updateSprite(player.getDirection());
                 break;
 
-            case Z:
+            case E:
                 System.out.println("Trying to take action");
 
                 game.takeAction();
@@ -240,6 +255,10 @@ public class GameController implements Initializable {
     public Label getRopeCounter(){
         return ropeCounter;
     }
+
+    public Label getBoatRopeCounter(){return boatRopeCounter;}
+
+    public Label getBoatWoodCounter(){return boatWoodCounter;}
 
     /* Minimap
     public void setEnemyPos(int row, int col) {
