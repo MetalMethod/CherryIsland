@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="725.0" prefWidth="725.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.academiadecodigo.bootcamp8.cherryisland.controller.GameController">
@@ -233,79 +232,74 @@
                         <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
             
                     </rowConstraints>
-                     <children>
-                        <ImageView GridPane.columnIndex="8" GridPane.rowIndex="2">
-                           <image>
-                              <Image url="@../interface/boat_icon.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="20.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="3">
-                           <image>
-                              <Image url="@../game_objects/rope.png" />
-                           </image>
-                        </ImageView>
-                        <Label fx:id="ropeCounter" style="-fx-stroke: black; -fx-stroke-width: 10;" text="0" GridPane.columnIndex="4" GridPane.rowIndex="3">
-                           <font>
-                              <Font name="Arial Black" size="16.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="ropeCounterMax" style="-fx-stroke: black; -fx-stroke-width: 10;" text="/2" GridPane.columnIndex="5" GridPane.rowIndex="3">
-                           <font>
-                              <Font name="Arial Black" size="16.0" />
-                           </font>
-                        </Label>
-                        <ImageView GridPane.columnIndex="8" GridPane.rowIndex="3">
-                           <image>
-                              <Image url="@../interface/boat_icon2.png" />
-                           </image>
-                        </ImageView>
-                        <Label fx:id="woodCounter1" style="-fx-stroke: black; -fx-stroke-width: 10;" text="0" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="2">
-                           <font>
-                              <Font name="Arial Black" size="12.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="woodCounter11" style="-fx-stroke: black; -fx-stroke-width: 10;" text="/ 0" GridPane.columnIndex="10" GridPane.rowIndex="2">
-                           <font>
-                              <Font name="Arial Black" size="12.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="woodCounter12" style="-fx-stroke: black; -fx-stroke-width: 10;" text="0" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="3">
-                           <font>
-                              <Font name="Arial Black" size="12.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="woodCounter111" style="-fx-stroke: black; -fx-stroke-width: 10;" text="/ 0" GridPane.columnIndex="10" GridPane.rowIndex="3">
-                           <font>
-                              <Font name="Arial Black" size="12.0" />
-                           </font>
-                        </Label>
-                     </children>
                   </GridPane>
                </children>
             </Pane>
          </content>
       </ScrollPane>
+
+           <!-- <Rectangle fx:id="player" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="25.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="25.0" x="350.0" y="350.0" /> -->
+
+             <ImageView fx:id="playerImage" x="350.0" y="350.0">
+           <image>
+               <Image url="@../characters/rambo/player_front0.png" />
+           </image>
+       </ImageView>
       <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="675.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../interface/ibutton.png" />
          </image>
       </ImageView>
-
-      <Rectangle fx:id="player" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="25.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="25.0" x="350.0" y="350.0" />
-
-       <ImageView fx:id="playerImage" x="350.0" y="350.0">
-           <image>
-               <Image url="@../characters/rambo/player_front0.png" />
-           </image>
-       </ImageView>
-
-
-
-      <ImageView fx:id="howToPlay" fitHeight="93.0" fitWidth="678.0" pickOnBounds="true" visible="false" x="25.0" y="600.0">
+      <ImageView fitHeight="20.0" fitWidth="24.0" layoutX="76.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../interface/howtoplay.png" />
+            <Image url="@../interface/log.png" />
          </image>
       </ImageView>
+      <ImageView fitHeight="20.0" fitWidth="24.0" layoutX="76.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../game_objects/rope.png" />
+         </image>
+      </ImageView>
+      <ImageView layoutX="200.0" layoutY="50.0">
+         <image>
+            <Image url="@../interface/boat_icon.png" />
+         </image>
+      </ImageView>
+      <ImageView layoutX="200.0" layoutY="75.0">
+         <image>
+            <Image url="@../interface/boat_icon2.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="woodCounter11" layoutX="250.0" layoutY="80.0" style="-fx-stroke: black; -fx-stroke-width: 10;" text="/ 0">
+         <font>
+            <Font name="Arial Black" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="woodCounter12" layoutX="235.0" layoutY="80.0" style="-fx-stroke: black; -fx-stroke-width: 10;" text="0">
+         <font>
+            <Font name="Arial Black" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="woodCounter111" layoutX="250.0" layoutY="50.0" style="-fx-stroke: black; -fx-stroke-width: 10;" text="/ 0">
+         <font>
+            <Font name="Arial Black" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="woodCounter1" layoutX="235.0" layoutY="50.0" style="-fx-stroke: black; -fx-stroke-width: 10;" text="0">
+         <font>
+            <Font name="Arial Black" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="ropeCounterMax" layoutX="125.0" layoutY="70.0" style="-fx-stroke: black; -fx-stroke-width: 10;" text="/2">
+         <font>
+            <Font name="Arial Black" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="ropeCounter" layoutX="103.0" layoutY="70.0" style="-fx-stroke: black; -fx-stroke-width: 10;" text="0">
+         <font>
+            <Font name="Arial Black" size="16.0" />
+         </font>
+      </Label>
       <Label fx:id="woodCounter" layoutX="103.0" layoutY="48.0" style="-fx-stroke: black; -fx-stroke-width: 10;" text="0">
          <font>
             <Font name="Arial Black" size="16.0" />
@@ -316,11 +310,6 @@
             <Font name="Arial Black" size="16.0" />
          </font>
       </Label>
-      <ImageView fitHeight="20.0" fitWidth="24.0" layoutX="76.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../interface/log.png" />
-         </image>
-      </ImageView>
       <Label layoutX="277.0" layoutY="27.0" style="-fx-stroke: black; -fx-stroke-width: 10;" text="HP">
          <font>
             <Font name="Arial Black" size="13.0" />
@@ -331,6 +320,14 @@
             <Cursor fx:constant="NONE" />
          </cursor>
       </ProgressBar>
+
+      
+      
+            <ImageView fx:id="howToPlay" fitHeight="93.0" fitWidth="678.0" pickOnBounds="true" visible="false" x="25.0" y="600.0">
+         <image>
+            <Image url="@../interface/howtoplay.png" />
+         </image>
+      </ImageView>
       <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="25.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../characters/rambo/player_front0.png" />
