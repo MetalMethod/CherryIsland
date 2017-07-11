@@ -7,4 +7,4 @@ Authors: [João Faustino](https://github.com/jfstn), [João Portela](), [Joel Al
 
 More info @ the repo's **[Wiki](https://github.com/MetalMethod/CherryIsland/wiki)**.
 
-Built with Java 1.8, JavaFX && Maven, 11 weeks into the bootcamp (10 of Java Programming).
+Built with Java 1.8, JavaFX, Networking && Maven, 11 weeks into the bootcamp (10 of Java Programming).
