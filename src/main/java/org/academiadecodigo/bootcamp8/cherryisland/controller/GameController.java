@@ -86,8 +86,8 @@ public class GameController implements Initializable {
 
     @FXML
     private void scrollPaneKeyPressed(KeyEvent event) {
-        //TODO possibilidade refactor condições if
-        //TODO ver números mágicos
+        //TODO Could refactor ifs;
+        //TODO See magic number;
         switch (event.getCode()){
             case UP:
                 player.setDirection(Direction.UP);

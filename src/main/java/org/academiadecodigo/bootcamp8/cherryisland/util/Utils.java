@@ -36,4 +36,5 @@ public class Utils {
     public static final int NUMBER_OF_ROPES = 40;
     public static final int MAX_ROPE_CARRY = 2;
     public static final int ROPE_FOR_BOAT = 10;
+
 }

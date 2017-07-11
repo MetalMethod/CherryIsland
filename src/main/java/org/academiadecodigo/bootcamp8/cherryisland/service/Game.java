@@ -5,7 +5,6 @@ import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -62,7 +61,6 @@ public class Game extends Application {
 
         navigation = Navigation.getInstance();
         primaryStage.setTitle("Cherry Island");
-        primaryStage.getIcons().add(new Image("/interface/cherry.png"));
         primaryStage.setResizable(false);
         navigation.setStage(primaryStage);
 
@@ -181,9 +179,14 @@ public class Game extends Application {
     }
 
     @Override
-    public void stop() throws Exception{
-        socket.close();
-        System.exit(1);
+    public void stop() {
+
+        try {
+            socket.close();
+            System.exit(1);
+        } catch (Exception ex) {
+            System.out.println("Cherry Island is sad to see you go!");
+        }
     }
 
     public void addGameObject(ObjectType objectType, int col, int row) {

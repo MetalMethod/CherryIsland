@@ -237,8 +237,6 @@
          </content>
       </ScrollPane>
 
-           <!-- <Rectangle fx:id="player" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="25.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="25.0" x="350.0" y="350.0" /> -->
-
              <ImageView fx:id="playerImage" x="350.0" y="350.0">
            <image>
                <Image url="@../characters/rambo/player_front0.png" />
@@ -314,7 +312,7 @@
             <Font name="Arial Black" size="13.0" />
          </font>
       </Label>
-      <ProgressBar fx:id="hpBar" cacheShape="false" centerShape="false" focusTraversable="false" layoutX="74.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="15.0" prefWidth="200.0" progress="1.0" scaleShape="false" style="-fx-control-inner-background: black; -fx-text-box-border: black; -fx-accent: red; -fx-region-border: transparent; -fx-shadow-highlight-color: transparent;">
+      <ProgressBar fx:id="hpBar" cacheShape="false" centerShape="false" focusTraversable="false" layoutX="74.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="15.0" prefWidth="200.0" progress="1.0" scaleShape="false" style="-fx-control-inner-background: black; -fx-text-box-border: black; -fx-accent: red; -fx-shadow-highlight-color: transparent;">
          <cursor>
             <Cursor fx:constant="NONE" />
          </cursor>

@@ -130,7 +130,7 @@ public class GameReceive implements Runnable {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Socket connection is now closed.");
         }
 
     }

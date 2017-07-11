@@ -4,8 +4,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -19,16 +21,18 @@ public final class Navigation {
 
     private final int MIN_WIDTH = 725;
     private final int MIN_HEIGHT = 725;
+    private final String ICON = "/interface/cherry.png";
     private final String VIEW_PATH = "/view/";
     private static Navigation instance = null;
     private Stage stage;
     private LinkedList<Scene> scenes = new LinkedList<Scene>();
     private Map<String, Initializable> controllers = new HashMap<>();
 
-    private Navigation() {}
+    private Navigation() {
+    }
 
     public static synchronized Navigation getInstance() {
-        if(instance == null) {
+        if (instance == null) {
             instance = new Navigation();
         }
         return instance;
@@ -36,6 +40,16 @@ public final class Navigation {
 
     public void setStage(Stage stage) {
         this.stage = stage;
+        setIcons();
+    }
+
+    private void setIcons() {
+        stage.getIcons().add(new Image(ICON));
+
+        try {
+            com.apple.eawt.Application.getApplication().setDockIconImage(new ImageIcon(ICON).getImage());
+        } catch (Exception e) {
+        }
     }
 
     public void loadScreen(String view) {
