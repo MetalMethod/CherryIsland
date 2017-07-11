@@ -5,6 +5,7 @@ import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -61,6 +62,7 @@ public class Game extends Application {
 
         navigation = Navigation.getInstance();
         primaryStage.setTitle("Cherry Island");
+        primaryStage.getIcons().add(new Image("/interface/cherry.png"));
         primaryStage.setResizable(false);
         navigation.setStage(primaryStage);
 
