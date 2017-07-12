@@ -44,12 +44,13 @@ public final class Navigation {
     }
 
     private void setIcons() {
-        stage.getIcons().add(new Image(ICON));
 
         try {
-            com.apple.eawt.Application.getApplication().setDockIconImage(new ImageIcon(ICON).getImage());
+            com.apple.eawt.Application.getApplication().setDockIconImage(new ImageIcon(getClass().getResource(ICON)).getImage());
         } catch (Exception e) {
         }
+
+        stage.getIcons().add(new Image(ICON));
     }
 
     public void loadScreen(String view) {
