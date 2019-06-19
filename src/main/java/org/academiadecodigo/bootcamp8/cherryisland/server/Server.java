@@ -1,6 +1,5 @@
 package org.academiadecodigo.bootcamp8.cherryisland.server;
 
-
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -67,15 +66,14 @@ public class Server {
                     workers.add(worker);
 
 
-
                     if (connectionCount % 2 == 0) {
                         ArrayList<String> gameObjectInit = new ArrayList<>();
                         initGameVars(gameObjectInit);
                         for (int i = printWriters.size() - 1; i < printWriters.size() + 1; i++) {
                             printWriters.get(i - 1).println(i - (printWriters.size() - 2));
                             printWriters.get(i - 1).println("start");
-                            String str="";
-                            if(bufferedReaders.get(i-1) != null) {
+                            String str = "";
+                            if (bufferedReaders.get(i - 1) != null) {
                                 str = bufferedReaders.get(i - 1).readLine();
                             }
                             if (str != null) {
@@ -99,7 +97,7 @@ public class Server {
                     ex.printStackTrace();
                 }
             }
-        } catch (IOException ex){
+        } catch (IOException ex) {
             System.out.println("Unable to start server");
         }
     }
@@ -115,30 +113,30 @@ public class Server {
 
         int targetRow = (int) ((Math.random()) * (Utils.GREEN_COLS - Utils.LAKE_ROW_SPAN - 1)) + Utils.BEACH_WIDTH + Utils.P1_STARTING_ROW;
         int targetCol = (int) ((Math.random()) * (Utils.GREEN_COLS - Utils.LAKE_COL_SPAN - 1)) + Utils.BEACH_WIDTH + Utils.P1_STARTING_COL;
-        gameObjectInit.add("lake "+"add "+targetCol +" "+targetRow +" "+(int)Math.floor(Math.random()*3));
-        for(int i = 0;i<Utils.LAKE_COL_SPAN;i++){
+        gameObjectInit.add("lake " + "add " + targetCol + " " + targetRow + " " + (int) Math.floor(Math.random() * 3));
+        for (int i = 0; i < Utils.LAKE_COL_SPAN; i++) {
             for (int j = -1; j < 2; j++) {
                 positionContents[(j * Utils.GRID_COLS) + Utils.GRID_COLS * targetRow + targetCol + i] = "lake";
             }
         }
 
         //TODO perceber isto
-        targetRow=(int)((Math.random())*(Utils.GREEN_COLS+2*Utils.BEACH_WIDTH-1-Utils.BOAT_ROW_SPAN))+Utils.P1_STARTING_ROW;
-        targetCol=(int)((Math.random())*(Utils.GREEN_COLS+2*Utils.BEACH_WIDTH-1-Utils.BOAT_COL_SPAN))+Utils.P1_STARTING_COL;
+        targetRow = (int) ((Math.random()) * (Utils.GREEN_COLS + 2 * Utils.BEACH_WIDTH - 1 - Utils.BOAT_ROW_SPAN)) + Utils.P1_STARTING_ROW;
+        targetCol = (int) ((Math.random()) * (Utils.GREEN_COLS + 2 * Utils.BEACH_WIDTH - 1 - Utils.BOAT_COL_SPAN)) + Utils.P1_STARTING_COL;
         int maxRow = Utils.P1_STARTING_ROW + Utils.GREEN_COLS + 2 * Utils.BEACH_WIDTH - Utils.BOAT_ROW_SPAN - 2;
         int maxCol = Utils.P1_STARTING_COL + Utils.GREEN_COLS + 2 * Utils.BEACH_WIDTH - Utils.BOAT_COL_SPAN - 2;
-        while(targetRow !=Utils.P1_STARTING_ROW &&targetRow !=maxRow &&targetCol !=Utils.P1_STARTING_COL &&targetCol !=maxCol) {
+        while (targetRow != Utils.P1_STARTING_ROW && targetRow != maxRow && targetCol != Utils.P1_STARTING_COL && targetCol != maxCol) {
             targetRow = (int) ((Math.random()) * (Utils.GREEN_COLS + 2 * Utils.BEACH_WIDTH - 1 - Utils.BOAT_ROW_SPAN)) + Utils.P1_STARTING_ROW;
             targetCol = (int) ((Math.random()) * (Utils.GREEN_COLS + 2 * Utils.BEACH_WIDTH - 1 - Utils.BOAT_COL_SPAN)) + Utils.P1_STARTING_COL;
         }
-        gameObjectInit.add("boat "+"add "+targetCol +" "+targetRow);
-        for(int i = 0; i<Utils.BOAT_COL_SPAN;i++) {
+        gameObjectInit.add("boat " + "add " + targetCol + " " + targetRow);
+        for (int i = 0; i < Utils.BOAT_COL_SPAN; i++) {
             for (int j = -1; j < 2; j++) {
                 positionContents[(j * Utils.GRID_COLS) + Utils.GRID_COLS * targetRow + targetCol + i] = "boat";
             }
         }
 
-        for(int i = 0; i<Utils.NUMBER_OF_TREES;i++) {
+        for (int i = 0; i < Utils.NUMBER_OF_TREES; i++) {
             targetRow = getRandomRow();
             targetCol = getRandomCol();
             while (!positionContents[Utils.GRID_COLS * targetRow + targetCol].equals("empty")) {
@@ -149,7 +147,7 @@ public class Server {
             positionContents[Utils.GRID_COLS * targetRow + targetCol] = "tree";
         }
 
-        for(int i = 0; i<Utils.NUMBER_OF_CHERRIES;i++) {
+        for (int i = 0; i < Utils.NUMBER_OF_CHERRIES; i++) {
             targetRow = getRandomRow();
             targetCol = getRandomCol();
             while (!positionContents[Utils.GRID_COLS * targetRow + targetCol].equals("empty")) {
@@ -160,7 +158,7 @@ public class Server {
             positionContents[Utils.GRID_COLS * targetRow + targetCol] = "cherries";
         }
 
-        for(int i = 0; i<Utils.NUMBER_OF_ROCKS;i++) {
+        for (int i = 0; i < Utils.NUMBER_OF_ROCKS; i++) {
             targetRow = getRandomRow();
             targetCol = getRandomCol();
             while (!positionContents[Utils.GRID_COLS * targetRow + targetCol].equals("empty")) {
@@ -171,7 +169,7 @@ public class Server {
             positionContents[Utils.GRID_COLS * targetRow + targetCol] = "rock";
         }
 
-        for(int i = 0; i<Utils.NUMBER_OF_ROPES;i++) {
+        for (int i = 0; i < Utils.NUMBER_OF_ROPES; i++) {
             targetRow = getRandomRow();
             targetCol = getRandomCol();
             while (!positionContents[Utils.GRID_COLS * targetRow + targetCol].equals("empty")) {
@@ -184,74 +182,74 @@ public class Server {
 
     }
 
-private void sendAll(String s,ServerWorker serverWorker) {
+    private void sendAll(String s, ServerWorker serverWorker) {
 
-    synchronized (workers) {
-        for (int i = 0; i < workers.size(); i++) {
-            if (workers.get(i).equals(serverWorker) && i % 2 == 0) {
-                workers.get(i).send(s);
-                workers.get(i + 1).send(s);
-            }
-            if (workers.get(i).equals(serverWorker) && i % 2 != 0) {
-                workers.get(i).send(s);
-                workers.get(i -1).send(s);
-            }
-        }
-    }
-}
-
-private int getRandomCol(){
-        return(int)((Math.random())*Utils.GREEN_COLS)+Utils.BEACH_WIDTH+Utils.P1_STARTING_COL;
-        }
-
-private int getRandomRow(){
-        return(int)((Math.random())*Utils.GREEN_COLS)+Utils.BEACH_WIDTH+Utils.P1_STARTING_ROW;
-        }
-
-private class ServerWorker implements Runnable {
-
-    final private String name;
-    final private Socket clientSocket;
-    final private BufferedReader in;
-    final private PrintWriter out;
-
-    private ServerWorker(String name, Socket clientSocket) throws IOException {
-        this.name = name;
-        this.clientSocket = clientSocket;
-        in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-        out = new PrintWriter(clientSocket.getOutputStream(), true);
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public void run() {
-        System.out.println("Thread " + name + " started");
-        try {
-            String message;
-
-            while (!clientSocket.isClosed()) {
-                message = in.readLine();
-
-                if (message == null) {
-                    in.close();
-                    clientSocket.close();
-                    continue;
-                } else {
-                    sendAll(message, this);
+        synchronized (workers) {
+            for (int i = 0; i < workers.size(); i++) {
+                if (workers.get(i).equals(serverWorker) && i % 2 == 0) {
+                    workers.get(i).send(s);
+                    workers.get(i + 1).send(s);
+                }
+                if (workers.get(i).equals(serverWorker) && i % 2 != 0) {
+                    workers.get(i).send(s);
+                    workers.get(i - 1).send(s);
                 }
             }
-            //workers.remove(this);
-        } catch (Exception ex) {
-            System.out.println("Receiving error on " + name + " : " + ex.getMessage());
         }
     }
 
-    private void send(String s) {
-        out.println(s);
+    private int getRandomCol() {
+        return (int) ((Math.random()) * Utils.GREEN_COLS) + Utils.BEACH_WIDTH + Utils.P1_STARTING_COL;
     }
-}
+
+    private int getRandomRow() {
+        return (int) ((Math.random()) * Utils.GREEN_COLS) + Utils.BEACH_WIDTH + Utils.P1_STARTING_ROW;
+    }
+
+    private class ServerWorker implements Runnable {
+
+        final private String name;
+        final private Socket clientSocket;
+        final private BufferedReader in;
+        final private PrintWriter out;
+
+        private ServerWorker(String name, Socket clientSocket) throws IOException {
+            this.name = name;
+            this.clientSocket = clientSocket;
+            in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            out = new PrintWriter(clientSocket.getOutputStream(), true);
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        @Override
+        public void run() {
+            System.out.println("Thread " + name + " started");
+            try {
+                String message;
+
+                while (!clientSocket.isClosed()) {
+                    message = in.readLine();
+
+                    if (message == null) {
+                        in.close();
+                        clientSocket.close();
+                        continue;
+                    } else {
+                        sendAll(message, this);
+                    }
+                }
+                //workers.remove(this);
+            } catch (Exception ex) {
+                System.out.println("Receiving error on " + name + " : " + ex.getMessage());
+            }
+        }
+
+        private void send(String s) {
+            out.println(s);
+        }
+    }
 
 }

@@ -8,7 +8,6 @@ import org.academiadecodigo.bootcamp8.cherryisland.model.GridPosition;
 
 public class Lake extends GameObject {
 
-
     public Lake(GridPosition gridPosition){
         super(gridPosition, ObjectType.LAKE);
     }

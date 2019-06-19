@@ -68,8 +68,8 @@ public class Player {
         woodCount++;
     }
 
-    public void pickRope(){
-        if (!carryMoreRope()){
+    public void pickRope() {
+        if (!carryMoreRope()) {
             return;
         }
         ropeCount++;
@@ -79,16 +79,16 @@ public class Player {
         return ((woodInBoat >= Utils.WOOD_FOR_BOAT) && (ropeInBoat >= Utils.ROPE_FOR_BOAT));
     }
 
-    public void depositWood(){
-        if (woodInBoat >= Utils.WOOD_FOR_BOAT){
+    public void depositWood() {
+        if (woodInBoat >= Utils.WOOD_FOR_BOAT) {
             return;
         }
         woodInBoat = woodInBoat + woodCount;
         woodCount = 0;
     }
 
-    public void depositRope(){
-        if (ropeInBoat >= Utils.ROPE_FOR_BOAT){
+    public void depositRope() {
+        if (ropeInBoat >= Utils.ROPE_FOR_BOAT) {
             return;
         }
         ropeInBoat += ropeCount;
@@ -99,7 +99,7 @@ public class Player {
         return woodCount < Utils.MAX_WOOD_CARRY;
     }
 
-    public boolean carryMoreRope(){
+    public boolean carryMoreRope() {
         return ropeCount < Utils.MAX_ROPE_CARRY;
     }
 

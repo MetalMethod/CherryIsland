@@ -88,7 +88,7 @@ public class GameController implements Initializable {
     private void scrollPaneKeyPressed(KeyEvent event) {
         //TODO Could refactor ifs;
         //TODO See magic number;
-        switch (event.getCode()){
+        switch (event.getCode()) {
             case UP:
                 player.setDirection(Direction.UP);
                 if (player.getPosition().getRow() == 14 ||
@@ -156,7 +156,7 @@ public class GameController implements Initializable {
                     updateSprite(player.getDirection());
                     return;
                 }
-                player.setPosition(player.getPosition().getCol() + 1 , player.getPosition().getRow());
+                player.setPosition(player.getPosition().getCol() + 1, player.getPosition().getRow());
                 scrollPane.setHvalue(scrollPane.getHvalue() + Utils.COL_ROW_SIZE);
                 game.gameSend(game.getPlayerNumber() + " move " +
                         player.getPosition().getCol() + " " + player.getPosition().getRow());
@@ -208,31 +208,31 @@ public class GameController implements Initializable {
         return ropeCounter;
     }
 
-    private void updateSprite(Direction dir){
+    private void updateSprite(Direction dir) {
         switch (dir) {
             case DOWN:
-                if (playerImage.getImage().equals(down0)){
+                if (playerImage.getImage().equals(down0)) {
                     playerImage.setImage(down1);
                     break;
                 }
                 playerImage.setImage(down0);
                 break;
             case UP:
-                if(playerImage.getImage().equals(up0)){
+                if (playerImage.getImage().equals(up0)) {
                     playerImage.setImage(up1);
                     break;
                 }
                 playerImage.setImage(up0);
                 break;
             case LEFT:
-                if(playerImage.getImage().equals(left0)){
+                if (playerImage.getImage().equals(left0)) {
                     playerImage.setImage(left1);
                     break;
                 }
                 playerImage.setImage(left0);
                 break;
             case RIGHT:
-                if(playerImage.getImage().equals(right0)){
+                if (playerImage.getImage().equals(right0)) {
                     playerImage.setImage(right1);
                     break;
                 }

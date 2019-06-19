@@ -75,10 +75,10 @@ public class Game extends Application {
             if (hostname == null) {
                 hostname = "127.0.0.1";
             }
-            if(port == -1){
+            if (port == -1) {
                 port = 6666;
             }
-            socket = new Socket(hostname,port);
+            socket = new Socket(hostname, port);
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             String start;
@@ -131,7 +131,7 @@ public class Game extends Application {
 
                 Platform.runLater(runnable);
                 synchronized (runnable) {
-                    while(gridPane == null) {
+                    while (gridPane == null) {
                         try {
                             runnable.wait();
                         } catch (InterruptedException e) {
@@ -313,7 +313,7 @@ public class Game extends Application {
 
         switch (positionContents[facingPos]) {
             case "lake":
-                if(player.getHealth() < Utils.PLAYER_INIT_HEALTH / 2) {
+                if (player.getHealth() < Utils.PLAYER_INIT_HEALTH / 2) {
                     player.raiseHealth(Utils.LAKE_HEAL_AMOUNT);
                     lake.play(true);
                 }
@@ -355,8 +355,8 @@ public class Game extends Application {
         boatRopeUpdate.setText(String.valueOf(player.getRopeInBoat()));
     }
 
-    public void checkPlayerHealth(){
-        if(player.getHealth() <= 0){
+    public void checkPlayerHealth() {
+        if (player.getHealth() <= 0) {
             gameSound.stop();
 
             Navigation.getInstance().loadScreen("lose");
@@ -390,10 +390,10 @@ public class Game extends Application {
     public static void main(String[] args) {
         Game.hostname = null;
         Game.port = -1;
-        if (args.length > 0){
+        if (args.length > 0) {
             Game.hostname = args[0];
         }
-        if (args.length >1){
+        if (args.length > 1) {
             Game.port = Integer.parseInt(args[1]);
         }
         launch(args);

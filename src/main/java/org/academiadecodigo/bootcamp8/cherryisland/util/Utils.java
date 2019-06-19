@@ -1,7 +1,5 @@
 package org.academiadecodigo.bootcamp8.cherryisland.util;
 
-import org.academiadecodigo.bootcamp8.cherryisland.Navigation;
-
 /**
  * Created by joelalmeida on 06/07/17.
  */

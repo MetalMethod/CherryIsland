@@ -7,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -25,7 +24,7 @@ public final class Navigation {
     private final String VIEW_PATH = "/view/";
     private static Navigation instance = null;
     private Stage stage;
-    private LinkedList<Scene> scenes = new LinkedList<Scene>();
+    private LinkedList<Scene> scenes = new LinkedList<>();
     private Map<String, Initializable> controllers = new HashMap<>();
 
     private Navigation() {
@@ -44,12 +43,6 @@ public final class Navigation {
     }
 
     private void setIcons() {
-
-        try {
-            com.apple.eawt.Application.getApplication().setDockIconImage(new ImageIcon(getClass().getResource(ICON)).getImage());
-        } catch (Exception e) {
-        }
-
         stage.getIcons().add(new Image(ICON));
     }
 
