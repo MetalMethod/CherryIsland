@@ -4,9 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.academiadecodigo.bootcamp.cherry_island</groupId>
-    <artifactId>cherry_island</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <groupId>org.academiadecodigo.bootcamp.cherry-island</groupId>
+    <artifactId>cherry-island</artifactId>
+    <version>0.90-SNAPSHOT</version>
 
     <dependencies>
         <dependency>
@@ -14,85 +14,16 @@
             <artifactId>javafx-controls</artifactId>
             <version>12.0.1</version>
         </dependency>
-
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
             <version>12.0.1</version>
         </dependency>
-
     </dependencies>
 
 
     <build>
         <plugins>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>2.4</version>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <mainClass>org.academiadecodigo.bootcamp8.cherryisland.server.Server</mainClass>
-                        </manifest>
-                    </archive>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <version>2.6</version>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <mainClass>org.academiadecodigo.bootcamp8.cherryisland.server.Server</mainClass>
-                        </manifest>
-                    </archive>
-                    <descriptorRefs>server-jar</descriptorRefs>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <version>2.6</version>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <mainClass>org.academiadecodigo.bootcamp8.cherryisland.service.Game</mainClass>
-                        </manifest>
-                    </archive>
-                    <descriptorRefs>game-jar</descriptorRefs>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
-                <configuration>
-                    <source>1.11</source>
-                    <target>1.11</target>
-                </configuration>
-            </plugin>
 
             <plugin>
                 <groupId>org.openjfx</groupId>
@@ -101,6 +32,75 @@
                 <configuration>
                     <mainClass>org.academiadecodigo.bootcamp8.cherryisland.service.Game</mainClass>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.3.1</version>
+                <executions>
+                    <execution>
+                        <!-- do not package a default-jar -->
+                        <id>default-jar</id>
+                        <phase>none</phase>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.7.0</version>
+                <configuration>
+                    <source>11</source>
+                    <target>11</target>
+                </configuration>
+            </plugin>
+
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.1.1</version>
+                <configuration>
+                    <finalName>cherry-island</finalName>
+                    <appendAssemblyId>false</appendAssemblyId>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>server</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <finalName>cherry-island-server</finalName>
+                            <archive>
+                                <manifest>
+                                    <mainClass>org.academiadecodigo.bootcamp8.cherryisland.server.Server</mainClass>
+                                </manifest>
+                            </archive>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>client</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <finalName>cherry-island-client</finalName>
+                            <archive>
+                                <manifest>
+                                    <mainClass>org.academiadecodigo.bootcamp8.cherryisland.service.Game</mainClass>
+                                </manifest>
+                            </archive>
+                            <exclude>org.academiadecodigo.bootcamp8.cherryisland.server</exclude>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
 
         </plugins>
